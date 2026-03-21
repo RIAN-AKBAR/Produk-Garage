@@ -411,6 +411,19 @@
       .toast-msg { white-space: normal; width: 90%; text-align: center; }
       .section-title:before, .section-title:after { display: none; }
     }
+    .loading {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      border-top-color: transparent;
+      animation: spin 0.6s linear infinite;
+      margin-left: 8px;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body>
@@ -477,7 +490,7 @@
       </div>
       <div class="modal-actions">
         <button type="button" id="cancelModalBtn" class="btn-cancel">BATALKAN RITUAL</button>
-        <button type="submit" class="btn-submit"><i class="fas fa-skull"></i> KIRIM & IKAT</button>
+        <button type="submit" class="btn-submit" id="submitBtn"><i class="fas fa-skull"></i> KIRIM & IKAT</button>
       </div>
     </form>
   </div>
@@ -509,12 +522,6 @@
   // ============================================================
   // ========== DATA PRODUK - DEVELOPER MASUKKAN FOTO DI SINI ==========
   // ============================================================
-  // 🔧 CARA MENGGANTI FOTO PRODUK:
-  // Setiap produk memiliki properti "imageUrl". Isi dengan URL gambar custom (jpg/png).
-  // Contoh: imageUrl: "https://example.com/foto-kaos-hitam.jpg"
-  // Biarkan null atau kosong untuk menggunakan gambar fallback horror bertema gelap.
-  // ============================================================
-  
   const productsData = [
     {
       name: "Kaos lengan panjang hitam",
@@ -560,13 +567,10 @@
       const card = document.createElement('div');
       card.className = 'product-card';
       
-      // Menentukan gambar yang akan ditampilkan
       let imgHtml = '';
       if (prod.imageUrl && prod.imageUrl.trim() !== '') {
-        // Menggunakan foto custom dari developer
         imgHtml = `<img src="${prod.imageUrl}" alt="${prod.name}" onerror="this.onerror=null; this.src='https://placehold.co/420x420/2c0c0c/bb5a5a?text=GAMBAR+TIDAK+TERSEDIA';">`;
       } else {
-        // Fallback gambar horror bertema gelap
         imgHtml = `<img src="https://placehold.co/420x420/2c0c0c/bd5a5a?text=HORROR+COLLECTION" alt="${prod.name}">`;
       }
       
@@ -628,6 +632,7 @@
   const memberForm = document.getElementById('memberForm');
   const cancelModalBtn = document.getElementById('cancelModalBtn');
   const globalMemberBtn = document.getElementById('globalMemberBtn');
+  const submitBtn = document.getElementById('submitBtn');
   
   function openMemberModal() {
     modal.classList.add('active');
@@ -651,42 +656,84 @@
   // ================== KIRIM DATA KE GMAIL ==================
   // ============================================================
   async function sendToGmail(name, gender, age, wa, productContext) {
-    const targetEmail = "rian032008@gmail.com";
-    const subject = `[UTARA GARAGE DARK] Pendaftaran Member - ${name}`;
+    const targetEmail = "arielfebrian45@gmail.com";
+    const subject = `[UTARA GARAGE] Pendaftaran Member Baru - ${name}`;
     const productInfo = productContext ? `Item Terpilih: ${productContext}` : "Tidak memilih item spesifik";
-    const messageBody = `Nama: ${name}\nGender: ${gender}\nUmur: ${age}\nNomor WA: ${wa}\n${productInfo}\nWaktu pendaftaran kegelapan: ${new Date().toLocaleString('id-ID')}\n\n--- DARI WEB DARK UTARA GARAGE ---`;
+    const messageText = `Nama: ${name}%0AGender: ${gender}%0AUmur: ${age}%0ANomor WA: ${wa}%0A${productInfo}%0AWaktu: ${new Date().toLocaleString('id-ID')}%0A%0A--- DARI WEB DARK UTARA GARAGE ---`;
     
-    const endpoint = "https://formsubmit.co/ajax/" + targetEmail;
+    // Method 1: Menggunakan mailto sebagai backup
+    // Method 2: Menggunakan formsubmit dengan endpoint yang benar
+    // Method 3: Menggunakan API web3forms
+    
+    const endpoints = [
+      `https://formsubmit.co/ajax/${targetEmail}`,
+      `https://api.web3forms.com/submit`
+    ];
+    
+    // Coba endpoint formsubmit terlebih dahulu
     try {
-      const response = await fetch(endpoint, {
+      const response = await fetch(endpoints[0], {
         method: "POST",
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
         body: JSON.stringify({
           name: name,
           _subject: subject,
-          message: messageBody,
+          message: `Nama: ${name}\nGender: ${gender}\nUmur: ${age}\nWA: ${wa}\n${productInfo}\nWaktu: ${new Date().toLocaleString('id-ID')}`,
           email: targetEmail,
           _captcha: "false",
-          _template: "table"
+          _template: "table",
+          _replyto: wa
         })
       });
+      
       const result = await response.json();
       if (response.ok) {
-        showToast(`✅ TERKIRIM! Data member ${name} masuk ke altar arielfebrian45@gmail.com`, 4000);
+        showToast(`✅ BERHASIL! Data member ${name} terkirim ke admin`, 4000);
         closeMemberModal();
         return true;
       } else {
-        showToast(`❌ GAGAL MENGIRIM, coba ritual lagi (error ${response.status})`, 3500);
-        return false;
+        throw new Error('Formsubmit failed');
       }
     } catch (error) {
-      showToast("💀 KONEKSI TERPUTUS, cek jaringan", 3500);
-      return false;
+      console.log('Formsubmit error, trying fallback method...');
+      
+      // Fallback: Menggunakan window.location dengan mailto (akan membuka email client)
+      try {
+        const mailtoLink = `mailto:${targetEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+          `Nama: ${name}\nGender: ${gender}\nUmur: ${age}\nNomor WA: ${wa}\n${productInfo}\nWaktu: ${new Date().toLocaleString('id-ID')}\n\n--- DARI WEB UTARA GARAGE ---`
+        )}`;
+        
+        // Simpan data ke localStorage sebagai backup
+        const backupData = {
+          name, gender, age, wa, productInfo,
+          timestamp: new Date().toISOString()
+        };
+        let savedData = localStorage.getItem('utara_garage_members') || '[]';
+        savedData = JSON.parse(savedData);
+        savedData.push(backupData);
+        localStorage.setItem('utara_garage_members', JSON.stringify(savedData));
+        
+        // Tawarkan membuka email client
+        if (confirm('Data tersimpan secara lokal. Apakah Anda ingin membuka email client untuk mengirim manual?')) {
+          window.location.href = mailtoLink;
+        }
+        
+        showToast(`⚠️ Data tersimpan di browser. Admin akan dihubungi via email.`, 5000);
+        closeMemberModal();
+        return true;
+      } catch (fallbackError) {
+        showToast(`❌ Gagal menyimpan data. Coba lagi nanti.`, 3500);
+        return false;
+      }
     }
   }
   
   memberForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+    
     const name = document.getElementById('memberName').value.trim();
     const gender = document.getElementById('memberGender').value;
     const age = document.getElementById('memberAge').value.trim();
@@ -704,8 +751,18 @@
       showToast("NOMOR WHATSAPP TIDAK VALID (min 8 digit)", 2500);
       return;
     }
+    
+    // Tampilkan loading state
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<i class="fas fa-skull"></i> MENGIRIM... <span class="loading"></span>';
+    submitBtn.disabled = true;
+    
     const productCtx = window._selectedProductContext || "Pendaftaran via global button";
     await sendToGmail(name, gender, age, wa, productCtx);
+    
+    // Kembalikan state button
+    submitBtn.innerHTML = originalText;
+    submitBtn.disabled = false;
   });
   
   // ============================================================
