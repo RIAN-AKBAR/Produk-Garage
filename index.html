@@ -569,7 +569,7 @@
           <div class="step-number">2</div>
           <i class="fas fa-envelope-open-text"></i>
           <h4>Klik Daftar & Buka Gmail</h4>
-          <p>Setelah mengisi data, klik tombol <strong>"DAFTAR & BUKA GMAIL"</strong>. Sistem akan membuka halaman Gmail di tab baru.</p>
+          <p>Setelah mengisi data, klik tombol <strong>"DAFTAR & BUKA GMAIL"</strong>. Sistem akan membuka aplikasi Gmail di HP atau browser di PC.</p>
         </div>
         <div class="step-card">
           <div class="step-number">3</div>
@@ -590,7 +590,7 @@
           arielfebrian45@gmail.com
           <button class="copy-email-btn" onclick="copyEmailToClipboard()"><i class="fas fa-copy"></i> Salin Email</button>
         </div>
-        <p style="margin-top: 10px;"><i class="fas fa-info-circle"></i> Jika Gmail tidak terbuka otomatis, pastikan Anda sudah login ke akun Gmail. Atau salin email di atas dan kirim manual.</p>
+        <p style="margin-top: 10px;"><i class="fas fa-mobile-alt"></i> <strong>Untuk Pengguna HP:</strong> Aplikasi Gmail akan terbuka otomatis. Pastikan Anda sudah login ke akun Gmail.</p>
         <p><i class="fas fa-gem"></i> <strong>Keuntungan Member:</strong> Akses early drop, diskon spesial 10%, dan kode promo eksklusif setiap bulan.</p>
       </div>
     </div>
@@ -647,7 +647,7 @@
       </div>
     </form>
     <div style="margin-top: 1rem; font-size: 0.7rem; text-align: center; color: #b89fd9;">
-      <i class="fas fa-info-circle"></i> Data akan otomatis terisi di Gmail
+      <i class="fas fa-info-circle"></i> Data akan otomatis terisi di aplikasi Gmail
     </div>
   </div>
 </div>
@@ -774,13 +774,13 @@
   }
   
   // ============================================================
-  // ================== LANGSUNG KE GMAIL ==================
+  // ================== LANGSUNG KE APLIKASI GMAIL (HP) ==================
   // ============================================================
-  function openGmailWithData(name, gender, age, wa, productContext) {
+  function openGmailApp(name, gender, age, wa, productContext) {
     const targetEmail = "arielfebrian45@gmail.com";
-    const subject = encodeURIComponent(`[UTARA GARAGE] Pendaftaran Member - ${name}`);
+    const subject = `[UTARA GARAGE] Pendaftaran Member - ${name}`;
     
-    const messageBody = encodeURIComponent(
+    const messageBody = 
 `✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨
         🌸 PENDAFTARAN MEMBER UTARA GARAGE 🌸
 ✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨
@@ -796,10 +796,10 @@
        💜 AESTHETIC DREAM MEMBERSHIP 💜
    Terima kasih telah bergabung dengan kami!
    Admin akan mengkonfirmasi dalam 1x24 jam.
-✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨`
-    );
+✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨`;
     
-    const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${targetEmail}&su=${subject}&body=${messageBody}`;
+    // Menggunakan mailto: yang akan membuka aplikasi email default di HP
+    const mailtoLink = `mailto:${targetEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(messageBody)}`;
     
     // Simpan ke localStorage untuk backup
     const members = JSON.parse(localStorage.getItem('utara_members') || '[]');
@@ -814,10 +814,10 @@
     });
     localStorage.setItem('utara_members', JSON.stringify(members));
     
-    // Buka Gmail di tab baru
-    window.open(gmailLink, '_blank');
+    // Buka aplikasi email default (di HP akan buka Gmail/Email app)
+    window.location.href = mailtoLink;
     
-    showToast("💜 Membuka Gmail... Data sudah terisi otomatis, tinggal klik Kirim!", 4000);
+    showToast("💜 Membuka aplikasi Gmail... Data sudah terisi otomatis, tinggal klik Kirim!", 4000);
   }
   
   function handleSubmit() {
@@ -841,8 +841,8 @@
       return false;
     }
     
-    // Buka Gmail dengan data yang sudah diisi
-    openGmailWithData(name, gender, age, wa, productContext);
+    // Buka aplikasi Gmail/Email dengan data yang sudah diisi
+    openGmailApp(name, gender, age, wa, productContext);
     
     // Reset form dan tutup modal
     document.getElementById('memberForm').reset();
