@@ -281,13 +281,139 @@
       transform: scale(1.02);
     }
 
+    /* Tutorial Box Style */
+    .tutorial-section {
+      margin: 2rem 0;
+    }
+    .tutorial-box {
+      background: linear-gradient(135deg, rgba(20, 8, 12, 0.95), rgba(10, 3, 5, 0.95));
+      border-radius: 40px;
+      padding: 2rem;
+      border: 2px solid #ac4242;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 35px rgba(180, 50, 50, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+    .tutorial-box::before {
+      content: "⚰️";
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      font-size: 80px;
+      opacity: 0.1;
+      pointer-events: none;
+    }
+    .tutorial-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid #ac4242;
+      padding-bottom: 1rem;
+    }
+    .tutorial-header i {
+      font-size: 2.5rem;
+      color: #da6a6a;
+    }
+    .tutorial-header h3 {
+      font-family: 'Creepster', cursive;
+      font-size: 2rem;
+      color: #da6a6a;
+      margin: 0;
+    }
+    .tutorial-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .step-card {
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 24px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: 0.3s;
+      border: 1px solid #6a2a2a;
+    }
+    .step-card:hover {
+      transform: translateY(-5px);
+      border-color: #c95555;
+      box-shadow: 0 5px 20px rgba(200, 80, 80, 0.3);
+    }
+    .step-number {
+      width: 50px;
+      height: 50px;
+      background: #ac4242;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-family: 'Creepster', cursive;
+      font-size: 1.8rem;
+      color: white;
+      box-shadow: 0 0 15px rgba(172, 66, 66, 0.5);
+    }
+    .step-card h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+      color: #ffcfc0;
+    }
+    .step-card p {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #dbb8ab;
+    }
+    .step-card i {
+      font-size: 1.5rem;
+      color: #da6a6a;
+      margin-bottom: 0.8rem;
+      display: inline-block;
+    }
+    .tutorial-footer {
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 20px;
+      padding: 1.2rem;
+      text-align: center;
+      margin-top: 1rem;
+      border-left: 4px solid #da6a6a;
+    }
+    .tutorial-footer p {
+      margin: 0.3rem 0;
+      font-size: 0.85rem;
+    }
+    .tutorial-footer .email-highlight {
+      background: #ac4242;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      display: inline-block;
+      font-family: monospace;
+      font-weight: bold;
+      margin: 0.5rem 0;
+    }
+    .copy-email-btn {
+      background: #2d0f0f;
+      border: 1px solid #ac4242;
+      padding: 0.4rem 1rem;
+      border-radius: 30px;
+      color: white;
+      cursor: pointer;
+      margin-left: 10px;
+      font-size: 0.7rem;
+      transition: 0.2s;
+    }
+    .copy-email-btn:hover {
+      background: #ac4242;
+    }
+
     .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.92);
+      background-color: rgba(0, 0, 0, 0.95);
       backdrop-filter: blur(10px);
       display: flex;
       align-items: center;
@@ -303,11 +429,11 @@
     }
     .modal-card {
       background: #140709;
-      max-width: 480px;
+      max-width: 500px;
       width: 90%;
       border-radius: 40px;
-      padding: 2rem 2rem;
-      box-shadow: 0 0 45px rgba(190, 45, 45, 0.7), inset 0 0 20px rgba(100,0,0,0.3);
+      padding: 2rem;
+      box-shadow: 0 0 45px rgba(190, 45, 45, 0.7);
       border: 1px solid #bc4c4c;
       transform: scale(0.96);
       transition: transform 0.25s cubic-bezier(0.34, 1.2, 0.64, 1);
@@ -317,10 +443,9 @@
     }
     .modal-card h3 {
       font-family: 'Creepster', cursive;
-      font-size: 2rem;
+      font-size: 1.8rem;
       margin-bottom: 0.5rem;
       color: #e36a6a;
-      text-shadow: 0 0 8px darkred;
     }
     .form-group {
       margin-bottom: 1.2rem;
@@ -331,7 +456,6 @@
       margin-bottom: 6px;
       font-size: 0.8rem;
       color: #e6b7a8;
-      letter-spacing: 1px;
     }
     .form-group input, .form-group select {
       width: 100%;
@@ -341,7 +465,6 @@
       background: #200b0e;
       font-family: 'Inter', sans-serif;
       outline: none;
-      transition: 0.2s;
       color: #fbe6dd;
       font-weight: 500;
     }
@@ -367,7 +490,6 @@
     }
     .btn-submit:hover {
       background: #bc3939;
-      box-shadow: 0 0 14px #c75555;
     }
     .btn-cancel {
       background: #2c1212;
@@ -396,7 +518,6 @@
       font-weight: 800;
       box-shadow: 0 0 24px #bb3a3a;
       border-left: 6px solid #e64949;
-      font-family: monospace;
     }
     footer {
       margin-top: 4rem;
@@ -410,19 +531,17 @@
       .container { padding: 1rem; }
       .toast-msg { white-space: normal; width: 90%; text-align: center; }
       .section-title:before, .section-title:after { display: none; }
+      .tutorial-steps { grid-template-columns: 1fr; }
+      .tutorial-header h3 { font-size: 1.5rem; }
     }
-    .loading {
-      display: inline-block;
-      width: 16px;
-      height: 16px;
-      border: 2px solid #fff;
-      border-radius: 50%;
-      border-top-color: transparent;
-      animation: spin 0.6s linear infinite;
-      margin-left: 8px;
-    }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+    .info-badge {
+      background: rgba(0,0,0,0.5);
+      border-radius: 20px;
+      padding: 1rem;
+      margin: 1rem 0;
+      text-align: center;
+      font-size: 0.8rem;
+      border: 1px solid #ac4242;
     }
   </style>
 </head>
@@ -443,32 +562,83 @@
   </div>
 
   <div style="text-align: center; margin-bottom: 1rem;">
-    <span style="background: #2a0f0faa; padding: 0.4rem 1.2rem; border-radius: 60px; font-size: 0.7rem; border-left: 3px solid #c63b3b; backdrop-filter: blur(4px);"><i class="fas fa-image"></i>  LIMITED COLLECTION  <i class="fas fa-fire"></i></span>
+    <span style="background: #2a0f0faa; padding: 0.4rem 1.2rem; border-radius: 60px; font-size: 0.7rem; border-left: 3px solid #c63b3b;"><i class="fas fa-image"></i>  LIMITED COLLECTION  <i class="fas fa-fire"></i></span>
   </div>
 
   <div class="section-title">⌇  ARMAGEDDON COLLECTION  ⌇</div>
   <div class="products-grid" id="productGrid"></div>
 
+  <!-- TUTORIAL SECTION - BLOK CARA DAFTAR -->
+  <div class="tutorial-section">
+    <div class="tutorial-box">
+      <div class="tutorial-header">
+        <i class="fas fa-scroll"></i>
+        <h3>📜 TUTORIAL DAFTAR MEMBER</h3>
+      </div>
+      <div class="tutorial-steps">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <i class="fas fa-edit"></i>
+          <h4>Isi Formulir</h4>
+          <p>Klik tombol <strong>"DAFTAR JADI MEMBER"</strong> di produk favorit atau banner bawah. Isi data diri dengan lengkap (Nama, Gender, Umur, Nomor WA).</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <i class="fas fa-envelope-open-text"></i>
+          <h4>Klik Daftar & Buka Gmail</h4>
+          <p>Setelah mengisi data, klik tombol <strong>"DAFTAR & BUKA GMAIL"</strong>. Sistem akan membuka halaman Gmail di tab baru.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <i class="fas fa-check-double"></i>
+          <h4>Periksa & Kirim Email</h4>
+          <p>Data Anda sudah otomatis terisi di Gmail! <strong>Cek email tujuan, subject, dan body pesan</strong>. Pastikan semua sudah benar.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <i class="fas fa-paper-plane"></i>
+          <h4>Kirim & Tunggu Konfirmasi</h4>
+          <p>Klik tombol <strong>"Kirim"</strong> di Gmail. Admin akan mengkonfirmasi keanggotaan Anda dalam 1x24 jam ke nomor WA yang didaftarkan.</p>
+        </div>
+      </div>
+      <div class="tutorial-footer">
+        <p><i class="fas fa-envelope"></i> <strong>Email Tujuan Admin:</strong></p>
+        <div class="email-highlight">
+          arielfebrian45@gmail.com
+          <button class="copy-email-btn" onclick="copyEmailToClipboard()"><i class="fas fa-copy"></i> Salin Email</button>
+        </div>
+        <p style="margin-top: 10px;"><i class="fas fa-info-circle"></i> Jika Gmail tidak terbuka otomatis, pastikan Anda sudah login ke akun Gmail. Atau salin email di atas dan kirim manual.</p>
+        <p><i class="fas fa-dragon"></i> <strong>Member mendapatkan:</strong> Akses early drop, diskon eksklusif, dan kode promo khusus member.</p>
+      </div>
+    </div>
+  </div>
+
   <div class="section-title">⌇  RITUAL OF THE DAMNED  ⌇</div>
-  <div style="background: rgba(18, 4, 6, 0.85); border-radius: 40px; padding: 1.8rem; text-align: center; margin: 1rem 0 2rem; border: 1px solid #aa4646; backdrop-filter: blur(12px); box-shadow: 0 0 30px rgba(150, 30, 30, 0.3);">
-    <i class="fas fa-skull" style="font-size: 2.2rem; color: #da6a6a; animation: pulseRed 2s infinite;"></i>
+  <div style="background: rgba(18, 4, 6, 0.85); border-radius: 40px; padding: 1.8rem; text-align: center; margin: 1rem 0 2rem; border: 1px solid #aa4646;">
+    <i class="fas fa-skull" style="font-size: 2.2rem; color: #da6a6a;"></i>
     <h3 style="margin: 0.7rem 0; font-family: 'Creepster'; font-size: 1.8rem;">JOIN THE CURSED LEGION</h3>
-    <p style="max-width: 550px; margin: 0 auto 1.2rem; color: #e3b7a8;">Dapatkan akses item eksklusif dari dimensi lain. Isi data diri, ikuti ritual.</p>
-    <button id="globalMemberBtn" class="btn-outline-member" style="width: auto; padding: 0.8rem 2rem; background: #2f1212;"><i class="fas fa-hand-holding-heart"></i> DAFTAR JADI MEMBER (IKATAN DARAH) →</button>
+    <p style="max-width: 550px; margin: 0 auto 1.2rem;">Dapatkan akses item eksklusif dari dimensi lain. Ikuti tutorial di atas untuk mendaftar!</p>
+    <button id="globalMemberBtn" class="btn-outline-member" style="width: auto; padding: 0.8rem 2rem;"><i class="fas fa-hand-holding-heart"></i> DAFTAR JADI MEMBER →</button>
+  </div>
+  
+  <div class="info-badge">
+    <i class="fas fa-shield-alt"></i> <strong>Data Aman & Terpercaya</strong> - Semua data pendaftaran dikirim langsung ke email admin. Privasi Anda kami jaga.
   </div>
 </div>
 
 <footer>
   <i class="fas fa-ghost"></i> UTARA GARAGE • DARK COLLECTION • OFFICIAL ROBLOX CATALOG
+  <br>
+  <small>© 2024 Utara Garage - All Rights Reserved</small>
 </footer>
 
 <div id="memberModal" class="modal-overlay">
   <div class="modal-card">
     <h3><i class="fas fa-pentagram"></i> DARK REGISTRY</h3>
-    <p>Isi dengan darah digitalmu (data diri) untuk menjadi bagian dari kegelapan</p>
+    <p>Isi data diri untuk menjadi member legiun kegelapan</p>
     <form id="memberForm">
       <div class="form-group">
-        <label><i class="fas fa-tag"></i> NAMA LENGKAP (PENERUS KEGELAPAN)</label>
+        <label><i class="fas fa-tag"></i> NAMA LENGKAP</label>
         <input type="text" id="memberName" placeholder="contoh: VAMPIRE UTARA" required>
       </div>
       <div class="form-group">
@@ -482,17 +652,20 @@
       </div>
       <div class="form-group">
         <label><i class="fas fa-hourglass-half"></i> UMUR (TAHUN)</label>
-        <input type="number" id="memberAge" placeholder="contoh: 666 atau 18" required>
+        <input type="number" id="memberAge" placeholder="contoh: 18" required>
       </div>
       <div class="form-group">
-        <label><i class="fab fa-whatsapp"></i> NOMOR WHATSAPP (KONTAK DUNIAWI)</label>
+        <label><i class="fab fa-whatsapp"></i> NOMOR WHATSAPP</label>
         <input type="tel" id="memberWa" placeholder="+62xx-xxxx-xxxx" required>
       </div>
       <div class="modal-actions">
-        <button type="button" id="cancelModalBtn" class="btn-cancel">BATALKAN RITUAL</button>
-        <button type="submit" class="btn-submit" id="submitBtn"><i class="fas fa-skull"></i> KIRIM & IKAT</button>
+        <button type="button" id="cancelModalBtn" class="btn-cancel">BATAL</button>
+        <button type="submit" id="submitBtn" class="btn-submit"><i class="fas fa-envelope"></i> DAFTAR & BUKA GMAIL</button>
       </div>
     </form>
+    <div style="margin-top: 1rem; font-size: 0.7rem; text-align: center; color: #bc8a78;">
+      <i class="fas fa-info-circle"></i> Data akan otomatis terisi di Gmail
+    </div>
   </div>
 </div>
 
@@ -520,7 +693,7 @@
   createFloatingSkulls();
 
   // ============================================================
-  // ========== DATA PRODUK - DEVELOPER MASUKKAN FOTO DI SINI ==========
+  // ========== DATA PRODUK ==========
   // ============================================================
   const productsData = [
     {
@@ -555,41 +728,23 @@
     }
   ];
 
-  // ============================================================
-  // ================== RENDER PRODUK KE HALAMAN ==================
-  // ============================================================
   const productGrid = document.getElementById('productGrid');
 
   function renderProducts() {
     productGrid.innerHTML = '';
-    
     productsData.forEach(prod => {
       const card = document.createElement('div');
       card.className = 'product-card';
-      
-      let imgHtml = '';
-      if (prod.imageUrl && prod.imageUrl.trim() !== '') {
-        imgHtml = `<img src="${prod.imageUrl}" alt="${prod.name}" onerror="this.onerror=null; this.src='https://placehold.co/420x420/2c0c0c/bb5a5a?text=GAMBAR+TIDAK+TERSEDIA';">`;
-      } else {
-        imgHtml = `<img src="https://placehold.co/420x420/2c0c0c/bd5a5a?text=HORROR+COLLECTION" alt="${prod.name}">`;
-      }
-      
+      let imgHtml = `<img src="${prod.imageUrl}" alt="${prod.name}" onerror="this.src='https://placehold.co/420x420/2c0c0c/bb5a5a?text=HORROR';">`;
       card.innerHTML = `
-        <div class="product-img">
-          ${imgHtml}
-        </div>
+        <div class="product-img">${imgHtml}</div>
         <h3>${prod.name}</h3>
         <div class="product-desc">${prod.desc}</div>
-        <button class="btn-buy" data-link="${prod.link}">
-          <i class="fas fa-scythe"></i> BELI (BUY)
-        </button>
-        <button class="btn-outline-member member-trigger" data-product="${prod.name}">
-          <i class="fas fa-user-ninja"></i> DAFTAR JADI MEMBER
-        </button>
+        <button class="btn-buy" data-link="${prod.link}"><i class="fas fa-scythe"></i> BELI (BUY)</button>
+        <button class="btn-outline-member member-trigger" data-product="${prod.name}"><i class="fas fa-user-ninja"></i> DAFTAR JADI MEMBER</button>
       `;
       productGrid.appendChild(card);
     });
-    
     attachEvents();
   }
   
@@ -598,10 +753,8 @@
       btn.addEventListener('click', (e) => {
         const link = btn.getAttribute('data-link');
         if(link) window.open(link, '_blank');
-        else showToast("LINK TERKUTUK TIDAK DITEMUKAN", 1500);
       });
     });
-    
     document.querySelectorAll('.member-trigger').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -612,10 +765,7 @@
     });
   }
   
-  // ============================================================
-  // ================== TOAST NOTIFICATION ==================
-  // ============================================================
-  function showToast(message, duration = 3200) {
+  function showToast(message, duration = 3000) {
     const toastEl = document.getElementById('liveToast');
     if (window.toastTimeout) clearTimeout(window.toastTimeout);
     toastEl.textContent = `⚠️ ${message} ⚠️`;
@@ -626,13 +776,104 @@
   }
   
   // ============================================================
+  // ================== COPY EMAIL FUNCTION ==================
+  // ============================================================
+  function copyEmailToClipboard() {
+    const email = "arielfebrian45@gmail.com";
+    navigator.clipboard.writeText(email).then(() => {
+      showToast("✅ Email admin berhasil disalin: " + email, 2000);
+    }).catch(() => {
+      showToast("❌ Gagal menyalin, silakan salin manual", 1500);
+    });
+  }
+  
+  // ============================================================
+  // ================== LANGSUNG KE GMAIL ==================
+  // ============================================================
+  function openGmailWithData(name, gender, age, wa, productContext) {
+    const targetEmail = "arielfebrian45@gmail.com";
+    const subject = encodeURIComponent(`[UTARA GARAGE] Pendaftaran Member - ${name}`);
+    
+    const messageBody = encodeURIComponent(
+`╔══════════════════════════════════════════════════╗
+║     🔮 PENDAFTARAN MEMBER UTARA GARAGE 🔮        ║
+╚══════════════════════════════════════════════════╝
+
+📛 Nama Lengkap: ${name}
+⚥ Gender: ${gender}
+🎂 Umur: ${age} tahun
+📱 Nomor WhatsApp: ${wa}
+🛒 Produk Favorit: ${productContext || 'Tidak ada produk'}
+📅 Waktu Pendaftaran: ${new Date().toLocaleString('id-ID')}
+
+╔══════════════════════════════════════════════════╗
+║        🌙 DARK REALM EXCLUSIVE MEMBERSHIP 🌙     ║
+║     Terima kasih telah bergabung dengan kami!    ║
+║   Admin akan mengkonfirmasi dalam 1x24 jam.      ║
+╚══════════════════════════════════════════════════╝`
+    );
+    
+    const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${targetEmail}&su=${subject}&body=${messageBody}`;
+    
+    // Simpan ke localStorage untuk backup
+    const members = JSON.parse(localStorage.getItem('utara_members') || '[]');
+    members.push({
+      id: Date.now(),
+      name: name,
+      gender: gender,
+      age: age,
+      wa: wa,
+      product: productContext || 'Tidak ada produk',
+      date: new Date().toLocaleString('id-ID')
+    });
+    localStorage.setItem('utara_members', JSON.stringify(members));
+    
+    // Buka Gmail di tab baru
+    window.open(gmailLink, '_blank');
+    
+    showToast("✅ Membuka Gmail... Data sudah terisi otomatis, tinggal klik Kirim!", 4000);
+  }
+  
+  function handleSubmit() {
+    const name = document.getElementById('memberName').value.trim();
+    const gender = document.getElementById('memberGender').value;
+    const age = document.getElementById('memberAge').value.trim();
+    const wa = document.getElementById('memberWa').value.trim();
+    const productContext = window._selectedProductContext || "Pendaftaran Member Reguler";
+    
+    // Validasi
+    if (!name || !gender || !age || !wa) {
+      showToast("SEMUA DATA HARUS DIISI!", 2700);
+      return false;
+    }
+    if (isNaN(age) || age < 7 || age > 120) {
+      showToast("UMUR HARUS ANGKA 7-120", 2500);
+      return false;
+    }
+    if (!wa.match(/^[0-9+\-\s]{8,18}$/)) {
+      showToast("NOMOR WHATSAPP TIDAK VALID (min 8 digit)", 2500);
+      return false;
+    }
+    
+    // Buka Gmail dengan data yang sudah diisi
+    openGmailWithData(name, gender, age, wa, productContext);
+    
+    // Reset form dan tutup modal
+    document.getElementById('memberForm').reset();
+    closeMemberModal();
+    window._selectedProductContext = null;
+    
+    return true;
+  }
+  
+  // ============================================================
   // ================== MODAL MEMBER ==================
   // ============================================================
   const modal = document.getElementById('memberModal');
-  const memberForm = document.getElementById('memberForm');
   const cancelModalBtn = document.getElementById('cancelModalBtn');
   const globalMemberBtn = document.getElementById('globalMemberBtn');
   const submitBtn = document.getElementById('submitBtn');
+  const memberForm = document.getElementById('memberForm');
   
   function openMemberModal() {
     modal.classList.add('active');
@@ -644,7 +885,7 @@
   }
   
   globalMemberBtn.addEventListener('click', () => {
-    window._selectedProductContext = "RITUAL DARK MEMBERSHIP (tanpa produk)";
+    window._selectedProductContext = "Pendaftaran Member Reguler";
     openMemberModal();
   });
   cancelModalBtn.addEventListener('click', closeMemberModal);
@@ -652,123 +893,15 @@
     if (e.target === modal) closeMemberModal();
   });
   
-  // ============================================================
-  // ================== KIRIM DATA KE GMAIL ==================
-  // ============================================================
-  async function sendToGmail(name, gender, age, wa, productContext) {
-    const targetEmail = "rianakbar032008@gmail.com";
-    const subject = `[UTARA GARAGE] Pendaftaran Member Baru - ${name}`;
-    const productInfo = productContext ? `Item Terpilih: ${productContext}` : "Tidak memilih item spesifik";
-    const messageText = `Nama: ${name}%0AGender: ${gender}%0AUmur: ${age}%0ANomor WA: ${wa}%0A${productInfo}%0AWaktu: ${new Date().toLocaleString('id-ID')}%0A%0A--- DARI WEB DARK UTARA GARAGE ---`;
-    
-    // Method 1: Menggunakan mailto sebagai backup
-    // Method 2: Menggunakan formsubmit dengan endpoint yang benar
-    // Method 3: Menggunakan API web3forms
-    
-    const endpoints = [
-      `https://formsubmit.co/ajax/${targetEmail}`,
-      `https://api.web3forms.com/submit`
-    ];
-    
-    // Coba endpoint formsubmit terlebih dahulu
-    try {
-      const response = await fetch(endpoints[0], {
-        method: "POST",
-        headers: { 
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          name: name,
-          _subject: subject,
-          message: `Nama: ${name}\nGender: ${gender}\nUmur: ${age}\nWA: ${wa}\n${productInfo}\nWaktu: ${new Date().toLocaleString('id-ID')}`,
-          email: targetEmail,
-          _captcha: "false",
-          _template: "table",
-          _replyto: wa
-        })
-      });
-      
-      const result = await response.json();
-      if (response.ok) {
-        showToast(`✅ BERHASIL! Data member ${name} terkirim ke admin`, 4000);
-        closeMemberModal();
-        return true;
-      } else {
-        throw new Error('Formsubmit failed');
-      }
-    } catch (error) {
-      console.log('Formsubmit error, trying fallback method...');
-      
-      // Fallback: Menggunakan window.location dengan mailto (akan membuka email client)
-      try {
-        const mailtoLink = `mailto:${targetEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
-          `Nama: ${name}\nGender: ${gender}\nUmur: ${age}\nNomor WA: ${wa}\n${productInfo}\nWaktu: ${new Date().toLocaleString('id-ID')}\n\n--- DARI WEB UTARA GARAGE ---`
-        )}`;
-        
-        // Simpan data ke localStorage sebagai backup
-        const backupData = {
-          name, gender, age, wa, productInfo,
-          timestamp: new Date().toISOString()
-        };
-        let savedData = localStorage.getItem('utara_garage_members') || '[]';
-        savedData = JSON.parse(savedData);
-        savedData.push(backupData);
-        localStorage.setItem('utara_garage_members', JSON.stringify(savedData));
-        
-        // Tawarkan membuka email client
-        if (confirm('Data tersimpan secara lokal. Apakah Anda ingin membuka email client untuk mengirim manual?')) {
-          window.location.href = mailtoLink;
-        }
-        
-        showToast(`⚠️ Data tersimpan di browser. Admin akan dihubungi via email.`, 5000);
-        closeMemberModal();
-        return true;
-      } catch (fallbackError) {
-        showToast(`❌ Gagal menyimpan data. Coba lagi nanti.`, 3500);
-        return false;
-      }
-    }
-  }
-  
-  memberForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const name = document.getElementById('memberName').value.trim();
-    const gender = document.getElementById('memberGender').value;
-    const age = document.getElementById('memberAge').value.trim();
-    const wa = document.getElementById('memberWa').value.trim();
-    
-    if (!name || !gender || !age || !wa) {
-      showToast("SEMUA DATA HARUS DIISI! Jangan menolak kegelapan.", 2700);
-      return;
-    }
-    if (isNaN(age) || age < 7 || age > 120) {
-      showToast("UMUR HARUS ANGKA 7-120", 2500);
-      return;
-    }
-    if (!wa.match(/^[0-9+\-\s]{8,18}$/)) {
-      showToast("NOMOR WHATSAPP TIDAK VALID (min 8 digit)", 2500);
-      return;
-    }
-    
-    // Tampilkan loading state
-    const originalText = submitBtn.innerHTML;
-    submitBtn.innerHTML = '<i class="fas fa-skull"></i> MENGIRIM... <span class="loading"></span>';
-    submitBtn.disabled = true;
-    
-    const productCtx = window._selectedProductContext || "Pendaftaran via global button";
-    await sendToGmail(name, gender, age, wa, productCtx);
-    
-    // Kembalikan state button
-    submitBtn.innerHTML = originalText;
-    submitBtn.disabled = false;
-  });
+  submitBtn.addEventListener('click', handleSubmit);
   
   // ============================================================
   // ================== INITIAL RENDER ==================
   // ============================================================
   renderProducts();
+  
+  // Expose function ke global untuk tombol copy email
+  window.copyEmailToClipboard = copyEmailToClipboard;
 </script>
 </body>
 </html>
