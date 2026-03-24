@@ -273,7 +273,7 @@
         window.location.reload();
       } else {
         // Maintenance sudah dinonaktifkan, kembali ke index
-        window.location.href = 'index1.html';
+        window.location.href = 'index.html';
       }
     });
 
@@ -282,7 +282,7 @@
       const isMaintenance = localStorage.getItem('utara_maintenance_mode');
       if(isMaintenance !== 'true') {
         // Maintenance sudah dimatikan, redirect ke index
-        window.location.href = 'index.html';
+        window.location.href = 'index1.html';
       }
     }, 10000);
   </script>
