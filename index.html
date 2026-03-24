@@ -364,7 +364,7 @@
     }
 
     /* ============================================
-       MEMBER BLOCK
+       MEMBER BLOCK - DENGAN GAMBAR MAHKOTA
     ============================================ */
     .member-block {
       background: linear-gradient(135deg, rgba(26, 15, 42, 0.9), rgba(15, 10, 25, 0.9));
@@ -378,30 +378,44 @@
     .member-header {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 1.5rem;
       flex-wrap: wrap;
       margin-bottom: 1.5rem;
       padding-bottom: 1rem;
       border-bottom: 2px dashed rgba(156, 108, 214, 0.3);
     }
 
-    .member-header i {
-      font-size: 2.5rem;
-      background: linear-gradient(135deg, #b77ee6, #9c6cd6);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    /* Gambar mahkota */
+    .member-crown {
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .member-header h2 {
+    .member-crown img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 8px rgba(183, 126, 230, 0.5));
+      transition: transform 0.3s ease;
+    }
+
+    .member-block:hover .member-crown img {
+      transform: scale(1.05);
+    }
+
+    .member-header-text h2 {
       font-family: 'Playfair Display', serif;
       font-size: 1.6rem;
       color: #b77ee6;
     }
 
-    .member-header p {
+    .member-header-text p {
       color: #b89fd9;
       font-size: 0.8rem;
+      margin-top: 0.2rem;
     }
 
     .benefits {
@@ -786,6 +800,13 @@
       .logo h1 {
         font-size: 2rem;
       }
+      .member-crown {
+        width: 50px;
+        height: 50px;
+      }
+      .member-header-text h2 {
+        font-size: 1.2rem;
+      }
     }
   </style>
 </head>
@@ -823,22 +844,31 @@
       </div>
     </div>
 
-    <!-- ==================== MEMBER BLOCK ==================== -->
+    <!-- ==================== MEMBER BLOCK - DENGAN GAMBAR MAHKOTA ==================== -->
+    <!-- 
+      ============================================================
+      CARA MENGGANTI GAMBAR MAHKOTA:
+      - Ganti URL di src="..." dengan link gambar mahkota Anda sendiri
+      - Ukuran gambar disarankan 70x70px atau proporsional
+      - Format yang didukung: JPG, PNG, WebP, SVG
+      ============================================================
+    -->
     <div class="member-block">
       <div class="member-header">
-        <i class="fas fa-crown"></i>
-        <div>
+        <div class="member-crown">
+          <img 
+            src="logo.png" 
+            alt="Crown Icon"
+            id="crownImage"
+          >
+        </div>
+        <div class="member-header-text">
           <h2>✦ JOIN THE DREAM LEGION ✦</h2>
           <p>Daftar member eksklusif dan dapatkan keuntungan istimewa</p>
         </div>
       </div>
-      <div class="benefits">
-        <span class="benefit"><i class="fas fa-calendar-alt"></i> Early access drop</span>
-        <span class="benefit"><i class="fas fa-tag"></i> Kode promo spesial</span>
-        <span class="benefit"><i class="fas fa-gift"></i> Hadiah ulang tahun</span>
-      </div>
       <div class="member-actions">
-        <button id="memberBtn" class="btn-primary"><i class="fas fa-user-plus"></i> DAFTAR JADI MEMBER SEKARANG</button>
+        <button id="memberBtn" class="btn-primary"><i class="fas fa-user-plus"></i> DAFTAR JADI MEMBER UTARA GARAGE</button>
         <button id="tutorialBtn" class="btn-secondary"><i class="fas fa-book-open"></i> LIHAT TUTORIAL DAFTAR</button>
       </div>
     </div>
@@ -973,11 +1003,6 @@
     // ============================================================
     // 2. DATA PRODUK - MUDAH DIUPDATE
     // ============================================================
-    // Cara update produk:
-    // - Tambah objek baru di dalam array products
-    // - Format: { name, link, desc, image, category }
-    // - Category: "shirt" atau "jacket"
-    // ============================================================
     const products = [
       { 
         name: "UG Custom Racing Suit - Purple Edition", 
@@ -1029,20 +1054,17 @@
       const grid = document.getElementById("productGrid");
       if (!grid) return;
       
-      // Filter produk berdasarkan kategori dan pencarian
       let filtered = products.filter(p => {
         if (currentFilter !== "all" && p.category !== currentFilter) return false;
         if (searchQuery && !p.name.toLowerCase().includes(searchQuery.toLowerCase())) return false;
         return true;
       });
       
-      // Tampilkan pesan jika tidak ada produk
       if (filtered.length === 0) {
         grid.innerHTML = `<div style="text-align: center; grid-column: 1/-1; padding: 3rem; color: #b89fd9;">✨ Tidak ada produk yang ditemukan ✨</div>`;
         return;
       }
       
-      // Render produk ke HTML
       grid.innerHTML = filtered.map(p => `
         <div class="product-card">
           <div class="product-img">
@@ -1054,7 +1076,6 @@
         </div>
       `).join("");
       
-      // Event listener untuk tombol beli
       document.querySelectorAll(".btn-buy").forEach(btn => {
         btn.addEventListener("click", () => { 
           if (btn.dataset.link) window.open(btn.dataset.link, "_blank");
@@ -1096,15 +1117,10 @@
       });
     }
     
-    // Panggil render pertama kali
     renderProducts();
 
     // ============================================================
-    // 7. DATA TEAM - MUDAH DIUPDATE
-    // ============================================================
-    // Cara update team:
-    // - Tambah objek baru di dalam array team
-    // - Format: { name, role, title, profile, photo }
+    // 7. DATA TEAM
     // ============================================================
     const team = [
       { name: "BRIAN", role: "OWNER / HEADSTAFF", title: "Founder & Creative Director", profile: "https://www.roblox.com/users/3624054708/profile", photo: "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-1E6F2F7197750D011DB7AC78A24FD707-Png/150/150/AvatarHeadshot/Webp/noFilter" },
@@ -1114,7 +1130,6 @@
       { name: "NAVAA", role: "ADMIN", title: "Contributor", profile: "https://www.roblox.com/users/2617253374/profile", photo: "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-90C3CEC8A71411A516626437E6BB1F67-Png/150/150/AvatarHeadshot/Webp/noFilter" }
     ];
 
-    // Render team
     const teamGrid = document.getElementById("teamGrid");
     if (teamGrid) {
       teamGrid.innerHTML = team.map(m => `
@@ -1149,9 +1164,6 @@
       if (e.target === modal) modal.classList.remove("active"); 
     };
 
-    // ============================================================
-    // 9. FUNGSI TOAST NOTIFICATION
-    // ============================================================
     function showToast(msg) {
       const t = document.getElementById("toastMsg");
       if (!t) return;
@@ -1160,9 +1172,6 @@
       setTimeout(() => t.style.opacity = "0", 3000);
     }
 
-    // ============================================================
-    // 10. FORM PENDAFTARAN MEMBER
-    // ============================================================
     if (memberForm) {
       memberForm.onsubmit = (e) => {
         e.preventDefault();
@@ -1185,7 +1194,7 @@
     }
 
     // ============================================================
-    // 11. SCROLL KE TUTORIAL
+    // 9. SCROLL KE TUTORIAL
     // ============================================================
     const tutorialBtn = document.getElementById("tutorialBtn");
     if (tutorialBtn) {
@@ -1195,7 +1204,7 @@
     }
 
     // ============================================================
-    // 12. COPY EMAIL
+    // 10. COPY EMAIL
     // ============================================================
     window.copyEmail = () => {
       navigator.clipboard.writeText("arielfebrian45@gmail.com");
