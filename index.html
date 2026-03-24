@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
@@ -133,6 +133,134 @@
       color: #b77ee6;
     }
 
+    /* MEMBER BLOCK - TERPISAH & ESTETIK */
+    .member-registration-block {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(245, 239, 255, 0.92));
+      backdrop-filter: blur(12px);
+      border-radius: 48px;
+      padding: 2rem 2rem 2rem 2rem;
+      margin: 1rem 0 2rem 0;
+      border: 2px solid rgba(156, 108, 214, 0.4);
+      box-shadow: 0 20px 40px rgba(107, 70, 160, 0.15);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .member-registration-block:hover {
+      border-color: #b77ee6;
+      box-shadow: 0 25px 45px rgba(107, 70, 160, 0.2);
+    }
+    .member-registration-block::before {
+      content: "🌸";
+      position: absolute;
+      bottom: 15px;
+      right: 25px;
+      font-size: 100px;
+      opacity: 0.08;
+      pointer-events: none;
+    }
+    .member-registration-block::after {
+      content: "💜";
+      position: absolute;
+      top: 15px;
+      left: 25px;
+      font-size: 80px;
+      opacity: 0.08;
+      pointer-events: none;
+    }
+    .member-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      border-bottom: 2px dashed rgba(156, 108, 214, 0.3);
+      padding-bottom: 1rem;
+    }
+    .member-header-icon {
+      font-size: 3rem;
+      background: linear-gradient(135deg, #6b46a0, #9c6cd6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .member-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #6b46a0;
+      letter-spacing: -0.3px;
+    }
+    .member-header p {
+      font-size: 0.9rem;
+      color: #8b6bb0;
+      font-weight: 500;
+    }
+    .member-benefits {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.8rem;
+    }
+    .benefit-chip {
+      background: rgba(156, 108, 214, 0.15);
+      border-radius: 60px;
+      padding: 0.5rem 1.2rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #6b46a0;
+      border: 1px solid rgba(156, 108, 214, 0.3);
+      backdrop-filter: blur(4px);
+    }
+    .benefit-chip i {
+      margin-right: 6px;
+      color: #9c6cd6;
+    }
+    .member-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      align-items: center;
+      margin-top: 1rem;
+    }
+    .btn-member-primary {
+      background: linear-gradient(135deg, #6b46a0, #9c6cd6);
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 60px;
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 8px 18px rgba(107, 70, 160, 0.25);
+    }
+    .btn-member-primary:hover {
+      transform: scale(1.02);
+      background: linear-gradient(135deg, #8b5ecf, #b77ee6);
+      gap: 16px;
+      box-shadow: 0 10px 24px rgba(107, 70, 160, 0.35);
+    }
+    .btn-tutorial-secondary {
+      background: rgba(107, 70, 160, 0.08);
+      border: 1.5px solid #9c6cd6;
+      padding: 0.85rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 600;
+      color: #6b46a0;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-tutorial-secondary:hover {
+      background: #f0eaff;
+      border-color: #b77ee6;
+    }
+
     /* Products Grid */
     .products-grid {
       display: grid;
@@ -226,29 +354,91 @@
       background: linear-gradient(135deg, #8b5ecf, #a97be6);
       transform: scale(1.02);
       gap: 14px;
-      box-shadow: 0 6px 18px rgba(107, 70, 160, 0.4);
     }
-    .btn-outline-member {
-      background: rgba(107, 70, 160, 0.1);
-      border: 1.5px solid #9c6cd6;
-      color: #6b46a0;
-      margin-top: 10px;
-      width: 100%;
-      padding: 0.65rem;
-      border-radius: 50px;
-      font-weight: 600;
-      cursor: pointer;
-      font-size: 0.8rem;
-      transition: 0.3s;
+
+    /* TEAM SECTION / PROFIL ROBLOX */
+    .team-section {
+      margin: 3rem 0 2rem;
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    .team-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border-radius: 32px;
+      padding: 1.6rem;
+      text-align: center;
+      border: 1px solid rgba(156, 108, 214, 0.3);
+      transition: all 0.3s ease;
+      box-shadow: 0 12px 28px rgba(107, 70, 160, 0.08);
+      position: relative;
+    }
+    .team-card:hover {
+      transform: translateY(-6px);
+      border-color: #9c6cd6;
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 20px 35px rgba(107, 70, 160, 0.2);
+    }
+    .team-avatar {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(145deg, #e0d4ff, #f5efff);
+      border-radius: 50%;
+      margin: 0 auto 1rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      font-size: 3rem;
+      border: 3px solid #b77ee6;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
     }
-    .btn-outline-member:hover {
+    .team-role {
+      font-size: 0.7rem;
+      background: rgba(156, 108, 214, 0.2);
+      display: inline-block;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      font-weight: 700;
+      color: #6b46a0;
+      margin-bottom: 0.6rem;
+      letter-spacing: 1px;
+    }
+    .team-name {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #4a2a6e;
+      margin-bottom: 0.2rem;
+      font-family: 'Playfair Display', serif;
+    }
+    .team-title {
+      font-size: 0.75rem;
+      color: #9b7bb5;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    .btn-profile {
+      background: transparent;
+      border: 1.5px solid #9c6cd6;
+      border-radius: 40px;
+      padding: 0.6rem 1.2rem;
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: #6b46a0;
+      cursor: pointer;
+      transition: 0.25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .btn-profile:hover {
       background: #9c6cd6;
       color: white;
-      transform: scale(1.02);
+      border-color: #9c6cd6;
     }
 
     /* Tutorial Box Estetik */
@@ -262,101 +452,63 @@
       padding: 2rem;
       border: 1px solid rgba(156, 108, 214, 0.3);
       box-shadow: 0 15px 35px rgba(107, 70, 160, 0.1);
-      position: relative;
-      overflow: hidden;
-    }
-    .tutorial-box::before {
-      content: "🌸";
-      position: absolute;
-      bottom: 20px;
-      right: 20px;
-      font-size: 70px;
-      opacity: 0.08;
-      pointer-events: none;
     }
     .tutorial-header {
       display: flex;
       align-items: center;
       gap: 15px;
-      margin-bottom: 1.8rem;
-      border-bottom: 2px solid rgba(156, 108, 214, 0.3);
-      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
     .tutorial-header i {
-      font-size: 2.2rem;
+      font-size: 2rem;
       color: #9c6cd6;
     }
     .tutorial-header h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       color: #6b46a0;
-      margin: 0;
     }
     .tutorial-steps {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+      margin-bottom: 1.5rem;
     }
     .step-card {
       background: white;
       border-radius: 24px;
-      padding: 1.5rem;
+      padding: 1rem;
       text-align: center;
-      transition: 0.3s;
       border: 1px solid rgba(156, 108, 214, 0.2);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
-    }
-    .step-card:hover {
-      transform: translateY(-5px);
-      border-color: #9c6cd6;
-      box-shadow: 0 10px 25px rgba(107, 70, 160, 0.15);
     }
     .step-number {
-      width: 48px;
-      height: 48px;
+      width: 40px;
+      height: 40px;
       background: linear-gradient(135deg, #6b46a0, #9c6cd6);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 1rem;
+      margin: 0 auto 0.7rem;
       font-weight: 700;
-      font-size: 1.4rem;
       color: white;
-      box-shadow: 0 5px 12px rgba(107, 70, 160, 0.3);
     }
     .step-card h4 {
-      font-size: 1.1rem;
-      margin-bottom: 0.6rem;
-      color: #4a2a6e;
+      font-size: 1rem;
       font-weight: 700;
+      margin-bottom: 0.4rem;
     }
     .step-card p {
-      font-size: 0.8rem;
-      line-height: 1.5;
-      color: #8b6bb0;
-    }
-    .step-card i {
-      font-size: 1.8rem;
-      color: #9c6cd6;
-      margin-bottom: 0.8rem;
-      display: inline-block;
+      font-size: 0.7rem;
+      color: #6f5192;
     }
     .tutorial-footer {
       background: rgba(156, 108, 214, 0.08);
       border-radius: 20px;
-      padding: 1.2rem;
+      padding: 1rem;
       text-align: center;
-      margin-top: 1rem;
-      border: 1px solid rgba(156, 108, 214, 0.2);
     }
-    .tutorial-footer p {
-      margin: 0.3rem 0;
-      font-size: 0.85rem;
-      color: #5a3a7a;
-    }
-    .tutorial-footer .email-highlight {
+    .email-highlight {
       background: #e8e0ff;
       padding: 0.3rem 1rem;
       border-radius: 30px;
@@ -364,33 +516,24 @@
       font-family: monospace;
       font-weight: 600;
       margin: 0.5rem 0;
-      color: #6b46a0;
-      border: 1px solid #9c6cd6;
     }
     .copy-email-btn {
       background: #9c6cd6;
       border: none;
-      padding: 0.4rem 1rem;
+      padding: 0.3rem 1rem;
       border-radius: 30px;
       color: white;
       cursor: pointer;
-      margin-left: 10px;
       font-size: 0.7rem;
-      transition: 0.2s;
-      font-weight: 500;
+      margin-left: 8px;
     }
-    .copy-email-btn:hover {
-      background: #6b46a0;
-    }
-
-    /* Modal Estetik */
     .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(107, 70, 160, 0.3);
+      background-color: rgba(107, 70, 160, 0.4);
       backdrop-filter: blur(8px);
       display: flex;
       align-items: center;
@@ -398,7 +541,7 @@
       z-index: 1000;
       visibility: hidden;
       opacity: 0;
-      transition: all 0.25s ease;
+      transition: 0.2s;
     }
     .modal-overlay.active {
       visibility: visible;
@@ -410,77 +553,51 @@
       width: 90%;
       border-radius: 36px;
       padding: 2rem;
-      box-shadow: 0 20px 45px rgba(107, 70, 160, 0.25);
-      border: 1px solid rgba(156, 108, 214, 0.3);
-      transform: scale(0.96);
-      transition: transform 0.25s ease;
-    }
-    .modal-overlay.active .modal-card {
-      transform: scale(1);
+      border: 1px solid #d4c0ff;
     }
     .modal-card h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      margin-bottom: 0.5rem;
-      color: #6b46a0;
       text-align: center;
+      color: #6b46a0;
     }
     .form-group {
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
     }
     .form-group label {
-      display: block;
       font-weight: 600;
-      margin-bottom: 6px;
       font-size: 0.8rem;
       color: #6b46a0;
     }
     .form-group input, .form-group select {
       width: 100%;
-      padding: 12px 16px;
+      padding: 10px 15px;
       border-radius: 40px;
       border: 1.5px solid #e0d4ff;
-      background: #fefcff;
       font-family: 'Quicksand', sans-serif;
-      outline: none;
-      transition: 0.2s;
-      color: #4a2a6e;
-      font-weight: 500;
-    }
-    .form-group input:focus, .form-group select:focus {
-      border-color: #9c6cd6;
-      box-shadow: 0 0 0 3px rgba(156, 108, 214, 0.2);
     }
     .modal-actions {
       display: flex;
-      gap: 14px;
-      margin-top: 28px;
+      gap: 12px;
+      margin-top: 20px;
     }
     .btn-submit {
       background: linear-gradient(135deg, #6b46a0, #9c6cd6);
       color: white;
       border: none;
-      padding: 12px;
+      padding: 10px;
       border-radius: 60px;
       flex: 1;
       font-weight: 700;
       cursor: pointer;
-      transition: 0.2s;
-      font-family: 'Quicksand', sans-serif;
-    }
-    .btn-submit:hover {
-      background: linear-gradient(135deg, #8b5ecf, #b77ee6);
-      transform: scale(1.02);
     }
     .btn-cancel {
       background: #f0eaff;
-      border: 1.5px solid #e0d4ff;
+      border: 1px solid #d4c0ff;
       flex: 1;
       border-radius: 60px;
-      font-weight: 600;
       cursor: pointer;
+      font-weight: 600;
       color: #6b46a0;
-      font-family: 'Quicksand', sans-serif;
     }
     .toast-msg {
       position: fixed;
@@ -489,20 +606,16 @@
       transform: translateX(-50%);
       background: #6b46a0;
       color: white;
-      padding: 12px 28px;
+      padding: 10px 24px;
       border-radius: 50px;
-      font-size: 0.85rem;
+      font-weight: 600;
       z-index: 1100;
       opacity: 0;
       transition: opacity 0.25s;
       pointer-events: none;
-      white-space: nowrap;
-      font-weight: 600;
-      box-shadow: 0 5px 20px rgba(107, 70, 160, 0.3);
-      font-family: 'Quicksand', sans-serif;
     }
     footer {
-      margin-top: 4rem;
+      margin-top: 3rem;
       text-align: center;
       border-top: 2px solid rgba(156, 108, 214, 0.2);
       padding: 2rem 0 1rem;
@@ -521,375 +634,248 @@
     }
     @media (max-width: 640px) {
       .container { padding: 1rem; }
-      .toast-msg { white-space: normal; width: 90%; text-align: center; }
+      .member-header h2 { font-size: 1.6rem; }
       .section-title:before, .section-title:after { display: none; }
-      .tutorial-steps { grid-template-columns: 1fr; }
-      .tutorial-header h3 { font-size: 1.4rem; }
     }
   </style>
 </head>
 <body>
-
 <div class="soft-glow"></div>
 <div id="floatingContainer"></div>
-
 <div class="container">
   <div class="brand">
     <div class="logo">
       <h1>UTARA GARAGE</h1>
       <p>✦  ESTHETIC COLLECTION  ✦  PURPLE DREAM</p>
     </div>
-    <div class="tagline">
-      <i class="fas fa-star"></i>  SOFT AESTHETIC  <i class="fas fa-moon"></i>
+    <div class="tagline"><i class="fas fa-star"></i> SOFT AESTHETIC <i class="fas fa-moon"></i></div>
+  </div>
+
+  <!-- BLOCK DAFTAR MEMBER TERPISAH (DI ATAS PRODUK) -->
+  <div class="member-registration-block">
+    <div class="member-header">
+      <div class="member-header-icon"><i class="fas fa-crown"></i></div>
+      <div>
+        <h2>✦ JOIN THE DREAM LEGION ✦</h2>
+        <p>Daftar member eksklusif dan dapatkan keuntungan istimewa</p>
+      </div>
+    </div>
+    <div class="member-benefits">
+      <span class="benefit-chip"><i class="fas fa-gem"></i> Diskon 10% setiap bulan</span>
+      <span class="benefit-chip"><i class="fas fa-calendar-alt"></i> Early access drop</span>
+      <span class="benefit-chip"><i class="fas fa-tag"></i> Kode promo spesial</span>
+      <span class="benefit-chip"><i class="fas fa-gift"></i> Hadiah ulang tahun</span>
+    </div>
+    <div class="member-actions">
+      <button id="mainMemberBtn" class="btn-member-primary"><i class="fas fa-user-plus"></i> DAFTAR JADI MEMBER SEKARANG</button>
+      <button id="scrollTutorialBtn" class="btn-tutorial-secondary"><i class="fas fa-book-open"></i> LIHAT TUTORIAL DAFTAR</button>
     </div>
   </div>
 
-  <div style="text-align: center; margin-bottom: 1rem;">
-    <span style="background: rgba(156, 108, 214, 0.15); padding: 0.4rem 1.2rem; border-radius: 60px; font-size: 0.7rem; border-left: 3px solid #9c6cd6;"><i class="fas fa-sparkle"></i>  LIMITED EDITION  <i class="fas fa-feather-alt"></i></span>
-  </div>
-
+  <!-- SECTION PRODUK DREAM COLLECTION -->
   <div class="section-title">⌇  DREAM COLLECTION  ⌇</div>
   <div class="products-grid" id="productGrid"></div>
 
-  <!-- TUTORIAL SECTION - BLOK CARA DAFTAR -->
-  <div class="tutorial-section">
+  <!-- ==================== TEAM SECTION - OUR CREW ==================== -->
+  <!-- ========== ⭐ GANTI DATA TIM DI BAGIAN BAWAH INI (DALAM JAVASCRIPT) ⭐ ========== -->
+  <!-- ========== CARI const teamMembers = [ ... ] UNTUK MENGEDIT NAMA, ROLE, PROFIL URL, DLL ========== -->
+  <div class="team-section">
+    <div class="section-title">⌇  OUR CREW  ⌇</div>
+    <div class="team-grid" id="teamGrid"></div>
+  </div>
+  <!-- ==================== AKHIR TEAM SECTION ==================== -->
+
+  <!-- TUTORIAL DAFTAR MEMBER -->
+  <div class="tutorial-section" id="tutorialSection">
     <div class="tutorial-box">
-      <div class="tutorial-header">
-        <i class="fas fa-book-open"></i>
-        <h3>📖 TUTORIAL DAFTAR MEMBER</h3>
-      </div>
+      <div class="tutorial-header"><i class="fas fa-feather-alt"></i><h3>📖 TUTORIAL DAFTAR MEMBER</h3></div>
       <div class="tutorial-steps">
-        <div class="step-card">
-          <div class="step-number">1</div>
-          <i class="fas fa-pen-fancy"></i>
-          <h4>Isi Formulir</h4>
-          <p>Klik tombol <strong>"DAFTAR JADI MEMBER"</strong> di produk favorit atau banner bawah. Isi data diri dengan lengkap (Nama, Gender, Umur, Nomor WA).</p>
-        </div>
-        <div class="step-card">
-          <div class="step-number">2</div>
-          <i class="fas fa-envelope-open-text"></i>
-          <h4>Klik Daftar & Buka Gmail</h4>
-          <p>Setelah mengisi data, klik tombol <strong>"DAFTAR & BUKA GMAIL"</strong>. Sistem akan membuka aplikasi Gmail di HP atau browser di PC.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-number">3</div>
-          <i class="fas fa-check-double"></i>
-          <h4>Periksa & Kirim Email</h4>
-          <p>Data Anda sudah otomatis terisi di Gmail! <strong>Cek email tujuan, subject, dan body pesan</strong>. Pastikan semua sudah benar.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-number">4</div>
-          <i class="fas fa-paper-plane"></i>
-          <h4>Kirim & Tunggu Konfirmasi</h4>
-          <p>Klik tombol <strong>"Kirim"</strong> di Gmail. Admin akan mengkonfirmasi keanggotaan Anda dalam 1x24 jam ke nomor WA yang didaftarkan.</p>
-        </div>
+        <div class="step-card"><div class="step-number">1</div><h4>Isi Formulir</h4><p>Klik tombol DAFTAR MEMBER, isi data diri</p></div>
+        <div class="step-card"><div class="step-number">2</div><h4>Klik Daftar & Buka Gmail</h4><p>Otomatis membuka Gmail dengan data terisi</p></div>
+        <div class="step-card"><div class="step-number">3</div><h4>Periksa & Kirim Email</h4><p>Cek tujuan, subject, lalu kirim</p></div>
+        <div class="step-card"><div class="step-number">4</div><h4>Tunggu Konfirmasi WA</h4><p>Admin akan konfirmasi dalam 1x24 jam</p></div>
       </div>
       <div class="tutorial-footer">
-        <p><i class="fas fa-envelope"></i> <strong>Email Tujuan Admin:</strong></p>
-        <div class="email-highlight">
-          arielfebrian45@gmail.com
-          <button class="copy-email-btn" onclick="copyEmailToClipboard()"><i class="fas fa-copy"></i> Salin Email</button>
-        </div>
-        <p style="margin-top: 10px;"><i class="fas fa-mobile-alt"></i> <strong>Untuk Pengguna HP:</strong> Aplikasi Gmail akan terbuka otomatis. Pastikan Anda sudah login ke akun Gmail.</p>
-        <p><i class="fas fa-gem"></i> <strong>Keuntungan Member:</strong> Akses early drop, diskon spesial 10%, dan kode promo eksklusif setiap bulan.</p>
+        <p><i class="fas fa-envelope"></i> Email Admin:</p>
+        <div class="email-highlight">arielfebrian45@gmail.com <button class="copy-email-btn" onclick="copyEmailClipboard()"><i class="fas fa-copy"></i> Salin</button></div>
+        <p><i class="fas fa-mobile-alt"></i> Pastikan login Gmail di HP/PC</p>
       </div>
     </div>
   </div>
-
-  <div class="section-title">⌇  JOIN THE DREAM  ⌇</div>
-  <div style="background: linear-gradient(135deg, rgba(156, 108, 214, 0.1), rgba(107, 70, 160, 0.08)); border-radius: 40px; padding: 1.8rem; text-align: center; margin: 1rem 0 2rem; border: 1px solid rgba(156, 108, 214, 0.3);">
-    <i class="fas fa-star" style="font-size: 2rem; color: #9c6cd6;"></i>
-    <h3 style="margin: 0.7rem 0; font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #6b46a0;">JOIN THE AESTHETIC LEGION</h3>
-    <p style="max-width: 550px; margin: 0 auto 1.2rem; color: #8b6bb0;">Dapatkan koleksi eksklusif dan diskon spesial. Ikuti tutorial di atas untuk mendaftar!</p>
-    <button id="globalMemberBtn" class="btn-outline-member" style="width: auto; padding: 0.8rem 2rem; background: linear-gradient(135deg, #6b46a0, #9c6cd6); color: white; border: none;"><i class="fas fa-user-plus"></i> DAFTAR JADI MEMBER →</button>
-  </div>
-  
-  <div class="info-badge">
-    <i class="fas fa-shield-alt"></i> <strong>Data Aman & Terpercaya</strong> - Semua data pendaftaran dikirim langsung ke email admin. Privasi Anda kami jaga.
-  </div>
+  <div class="info-badge"><i class="fas fa-shield-alt"></i> Data aman & terpercaya, langsung ke email admin</div>
 </div>
+<footer><i class="fas fa-moon"></i> UTARA GARAGE • ESTHETIC COLLECTION • PURPLE DREAM<br><small>© 2026 Utara Garage - Dev:SilverHold</small></footer>
 
-<footer>
-  <i class="fas fa-moon"></i> UTARA GARAGE • ESTHETIC COLLECTION • PURPLE DREAM
-  <br>
-  <small>© 2026 Utara Garage - All Rights Reserved</small>
-  <br>
-  <small>Dev:SilverHold</small>
-</footer>
-
-<div id="memberModal" class="modal-overlay">
-  <div class="modal-card">
-    <h3><i class="fas fa-feather-alt"></i> DREAM REGISTRY</h3>
-    <p style="text-align: center; color: #8b6bb0;">Isi data diri untuk menjadi member estetik</p>
-    <form id="memberForm">
-      <div class="form-group">
-        <label><i class="fas fa-tag"></i> NAMA LENGKAP</label>
-        <input type="text" id="memberName" placeholder="contoh: Aesthetic Girl" required>
-      </div>
-      <div class="form-group">
-        <label><i class="fas fa-venus-mars"></i> GENDER</label>
-        <select id="memberGender" required>
-          <option value="">Pilih Gender</option>
-          <option value="Perempuan">Perempuan</option>
-          <option value="Laki-laki">Laki-laki</option>
-          <option value="Non-Binary">Non-Binary</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label><i class="fas fa-hourglass-half"></i> UMUR (TAHUN)</label>
-        <input type="number" id="memberAge" placeholder="contoh: 18" required>
-      </div>
-      <div class="form-group">
-        <label><i class="fab fa-whatsapp"></i> NOMOR WHATSAPP</label>
-        <input type="tel" id="memberWa" placeholder="+62xx-xxxx-xxxx" required>
-      </div>
-      <div class="modal-actions">
-        <button type="button" id="cancelModalBtn" class="btn-cancel">BATAL</button>
-        <button type="submit" id="submitBtn" class="btn-submit"><i class="fas fa-envelope"></i> DAFTAR & BUKA GMAIL</button>
-      </div>
-    </form>
-    <div style="margin-top: 1rem; font-size: 0.7rem; text-align: center; color: #b89fd9;">
-      <i class="fas fa-info-circle"></i> Data akan otomatis terisi di aplikasi Gmail
-    </div>
-  </div>
-</div>
-
+<div id="memberModal" class="modal-overlay"><div class="modal-card"><h3><i class="fas fa-feather-alt"></i> DREAM REGISTRY</h3><form id="memberForm"><div class="form-group"><label>NAMA LENGKAP</label><input type="text" id="memberName" required></div><div class="form-group"><label>GENDER</label><select id="memberGender"><option value="">Pilih</option><option>Perempuan</option><option>Laki-laki</option><option>Non-Binary</option></select></div><div class="form-group"><label>UMUR</label><input type="number" id="memberAge" required></div><div class="form-group"><label>NOMOR WHATSAPP</label><input type="tel" id="memberWa" placeholder="+62xxx" required></div><div class="modal-actions"><button type="button" id="cancelModalBtn" class="btn-cancel">BATAL</button><button type="submit" class="btn-submit"><i class="fas fa-envelope"></i> DAFTAR & BUKA GMAIL</button></div></form></div></div>
 <div id="liveToast" class="toast-msg"></div>
 
 <script>
-  // ============================================================
-  // ================== FLOATING PARTICLES ==================
-  // ============================================================
-  function createFloatingParticles() {
+  function createParticles() {
     const container = document.getElementById('floatingContainer');
     if(!container) return;
-    for(let i=0; i<25; i++) {
-      const particle = document.createElement('div');
-      particle.className = 'floating-particle';
-      particle.innerHTML = ['✨','🌸','💜','⭐','🦋','🌙'][Math.floor(Math.random()*6)];
-      particle.style.left = Math.random() * 100 + '%';
-      particle.style.animationDuration = 12 + Math.random() * 20 + 's';
-      particle.style.animationDelay = Math.random() * 15 + 's';
-      particle.style.fontSize = 1 + Math.random() * 2 + 'rem';
-      particle.style.opacity = 0.1 + Math.random() * 0.2;
-      particle.style.display = 'flex';
-      particle.style.alignItems = 'center';
-      particle.style.justifyContent = 'center';
-      container.appendChild(particle);
+    const icons = ['✨','🌸','💜','⭐','🦋','🌙'];
+    for(let i=0;i<22;i++) {
+      let p = document.createElement('div');
+      p.className = 'floating-particle';
+      p.innerHTML = icons[Math.floor(Math.random()*icons.length)];
+      p.style.left = Math.random()*100+'%';
+      p.style.animationDuration = 12+Math.random()*18+'s';
+      p.style.animationDelay = Math.random()*12+'s';
+      p.style.fontSize = 1+Math.random()*2+'rem';
+      p.style.opacity = 0.1+Math.random()*0.2;
+      container.appendChild(p);
     }
   }
-  createFloatingParticles();
+  createParticles();
 
-  // ============================================================
-  // ========== DATA PRODUK ==========
-  // ============================================================
+  // Products data
   const productsData = [
-    {
-      name: "Kaos lengan panjang hitam",
-      link: "https://www.roblox.com/catalog/117792166630212",
-      desc: "BLACK OBLIVION | ELEGANT EDITION",
-      imageUrl: "https://tr.rbxcdn.com/180DAY-9b09901599efebe532c75d4b66313944/420/420/Shirt/Webp/noFilter"
-    },
-    {
-      name: "Kaos lengan panjang warna pink",
-      link: "https://www.roblox.com/catalog/97458917858087",
-      desc: "PINK DREAM | SOFT AESTHETIC",
-      imageUrl: "https://tr.rbxcdn.com/180DAY-31fac13af671a5ed95a0d6be4d83e906/420/420/Shirt/Webp/noFilter"
-    },
-    {
-      name: "Jaket hitam & unggu",
-      link: "https://www.roblox.com/catalog/92566480248771",
-      desc: "PURPLE NIGHT | LAVENDER VIBE",
-      imageUrl: "https://tr.rbxcdn.com/180DAY-1257e0965317839a002d6fdd068f1979/420/420/Shirt/Webp/noFilter"
-    },
-    {
-      name: "Kaos putih",
-      link: "https://www.roblox.com/catalog/116066867510980",
-      desc: "WHITE ANGEL | PURE ELEGANCE",
-      imageUrl: "https://tr.rbxcdn.com/180DAY-f431fa825ebfd58cee969699d2511868/420/420/Shirt/Webp/noFilter"
-    },
-    {
-      name: "Kaos hitam",
-      link: "https://www.roblox.com/catalog/110886924053125",
-      desc: "ABYSS CORE | DARK AESTHETIC",
-      imageUrl: "https://tr.rbxcdn.com/180DAY-e7937ff4c3b22689f4a1af87cf8fd462/420/420/Shirt/Webp/noFilter"
-    }
+    { name: "Kaos lengan panjang hitam", link: "https://www.roblox.com/catalog/117792166630212", desc: "BLACK OBLIVION | ELEGANT EDITION", imageUrl: "https://tr.rbxcdn.com/180DAY-9b09901599efebe532c75d4b66313944/420/420/Shirt/Webp/noFilter" },
+    { name: "Kaos lengan panjang warna pink", link: "https://www.roblox.com/catalog/97458917858087", desc: "PINK DREAM | SOFT AESTHETIC", imageUrl: "https://tr.rbxcdn.com/180DAY-31fac13af671a5ed95a0d6be4d83e906/420/420/Shirt/Webp/noFilter" },
+    { name: "Jaket hitam & unggu", link: "https://www.roblox.com/catalog/92566480248771", desc: "PURPLE NIGHT | LAVENDER VIBE", imageUrl: "https://tr.rbxcdn.com/180DAY-1257e0965317839a002d6fdd068f1979/420/420/Shirt/Webp/noFilter" },
+    { name: "Kaos putih", link: "https://www.roblox.com/catalog/116066867510980", desc: "WHITE ANGEL | PURE ELEGANCE", imageUrl: "https://tr.rbxcdn.com/180DAY-f431fa825ebfd58cee969699d2511868/420/420/Shirt/Webp/noFilter" },
+    { name: "Kaos hitam", link: "https://www.roblox.com/catalog/110886924053125", desc: "ABYSS CORE | DARK AESTHETIC", imageUrl: "https://tr.rbxcdn.com/180DAY-e7937ff4c3b22689f4a1af87cf8fd462/420/420/Shirt/Webp/noFilter" }
   ];
 
   const productGrid = document.getElementById('productGrid');
-
   function renderProducts() {
     productGrid.innerHTML = '';
     productsData.forEach(prod => {
       const card = document.createElement('div');
       card.className = 'product-card';
-      let imgHtml = `<img src="${prod.imageUrl}" alt="${prod.name}" onerror="this.src='https://placehold.co/420x420/e8e0ff/9c6cd6?text=ESTHETIC';">`;
       card.innerHTML = `
-        <div class="product-img">${imgHtml}</div>
-        <h3>${prod.name}</h3>
-        <div class="product-desc">${prod.desc}</div>
+        <div class="product-img"><img src="${prod.imageUrl}" alt="${prod.name}" onerror="this.src='https://placehold.co/420x420/e8e0ff/9c6cd6?text=ESTHETIC';"></div>
+        <h3>${prod.name}</h3><div class="product-desc">${prod.desc}</div>
         <button class="btn-buy" data-link="${prod.link}"><i class="fas fa-shopping-bag"></i> BELI (BUY)</button>
-        <button class="btn-outline-member member-trigger" data-product="${prod.name}"><i class="fas fa-user-plus"></i> DAFTAR JADI MEMBER</button>
       `;
       productGrid.appendChild(card);
     });
-    attachEvents();
-  }
-  
-  function attachEvents() {
     document.querySelectorAll('.btn-buy').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const link = btn.getAttribute('data-link');
-        if(link) window.open(link, '_blank');
-      });
-    });
-    document.querySelectorAll('.member-trigger').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const productName = btn.getAttribute('data-product') || "item estetik";
-        window._selectedProductContext = productName;
-        openMemberModal();
-      });
+      btn.addEventListener('click', (e) => { const link = btn.getAttribute('data-link'); if(link) window.open(link, '_blank'); });
     });
   }
-  
-  function showToast(message, duration = 3000) {
-    const toastEl = document.getElementById('liveToast');
-    if (window.toastTimeout) clearTimeout(window.toastTimeout);
-    toastEl.textContent = `✨ ${message} ✨`;
-    toastEl.style.opacity = '1';
-    window.toastTimeout = setTimeout(() => {
-      toastEl.style.opacity = '0';
-    }, duration);
-  }
-  
-  // ============================================================
-  // ================== COPY EMAIL FUNCTION ==================
-  // ============================================================
-  function copyEmailToClipboard() {
-    const email = "arielfebrian45@gmail.com";
-    navigator.clipboard.writeText(email).then(() => {
-      showToast("✅ Email admin berhasil disalin: " + email, 2000);
-    }).catch(() => {
-      showToast("❌ Gagal menyalin, silakan salin manual", 1500);
+  renderProducts();
+
+  // =========================================================================
+  // ==================== ⭐ OUR CREW - GANTI DATA DI SINI ⭐ ====================
+  // =========================================================================
+  // Array di bawah ini berisi data anggota tim. Edit sesuai kebutuhan Anda.
+  // Setiap objek memiliki properti:
+  // - name       : Nama tampilan
+  // - role       : Jabatan (OWNER, ADMIN, CREW, dll)
+  // - title      : Deskripsi singkat di bawah nama
+  // - profileUrl : Link profil Roblox (saat tombol View Profile diklik)
+  // - avatarIcon : Emoji atau ikon untuk avatar (bisa diganti sesuai selera)
+  // =========================================================================
+  const teamMembers = [
+    { 
+      name: "DevAnjayyy",                      // <-- GANTI NAMA
+      role: "OWNER / HEADSTAFF",               // <-- GANTI JABATAN
+      title: "Founder & Creative Director",    // <-- GANTI DESKRIPSI
+      profileUrl: "https://www.roblox.com/users/2770377106/profile", // <-- GANTI LINK PROFIL ROBLOX
+      avatarIcon: "👑"                         // <-- GANTI ICON/EMOJI
+    },
+    { 
+      name: "ForCryingg", 
+      role: "ADMIN / CREW", 
+      title: "Community Manager", 
+      profileUrl: "https://www.roblox.com/users/3648287433/profile", 
+      avatarIcon: "🌟" 
+    },
+    { 
+      name: "Arch1N4ren", 
+      role: "ADMIN / DONATUR TOY", 
+      title: "Donatur & Support", 
+      profileUrl: "https://www.roblox.com/users/4812304995/profile", 
+      avatarIcon: "🎁" 
+    },
+    { 
+      name: "jhordi3321", 
+      role: "ADMIN / WEB DEVELOPER", 
+      title: "Lead Developer", 
+      profileUrl: "https://www.roblox.com/users/190099743/profile", 
+      avatarIcon: "💻" 
+    }
+    // ========== CARA MENAMBAH ANGGOTA BARU: ==========
+    // Copy baris di bawah ini (termasuk koma di akhir) dan tempel di sini:
+    // { 
+    //   name: "NamaBaru", 
+    //   role: "CREW / DESIGNER", 
+    //   title: "Graphic Designer", 
+    //   profileUrl: "https://www.roblox.com/users/123456789/profile", 
+    //   avatarIcon: "🎨" 
+    // },
+  ];
+  // =========================================================================
+  // ==================== AKHIR BAGIAN YANG BISA DIGANTI ====================
+  // =========================================================================
+
+  const teamGrid = document.getElementById('teamGrid');
+  function renderTeam() {
+    teamGrid.innerHTML = '';
+    teamMembers.forEach(m => {
+      const card = document.createElement('div');
+      card.className = 'team-card';
+      card.innerHTML = `
+        <div class="team-avatar">${m.avatarIcon}</div>
+        <div class="team-role">${m.role}</div>
+        <div class="team-name">${m.name}</div>
+        <div class="team-title">${m.title}</div>
+        <button class="btn-profile view-profile-btn" data-url="${m.profileUrl}"><i class="fab fa-roblox"></i> View Roblox Profile →</button>
+      `;
+      teamGrid.appendChild(card);
+    });
+    document.querySelectorAll('.view-profile-btn').forEach(btn => {
+      btn.addEventListener('click', () => { window.open(btn.getAttribute('data-url'), '_blank'); });
     });
   }
-  
-  // ============================================================
-  // ================== LANGSUNG KE APLIKASI GMAIL (HP) ==================
-  // ============================================================
+  renderTeam();
+
+  // MODAL & MEMBER
+  const modal = document.getElementById('memberModal');
+  const mainMemberBtn = document.getElementById('mainMemberBtn');
+  const cancelModalBtn = document.getElementById('cancelModalBtn');
+  const memberForm = document.getElementById('memberForm');
+  function openModal() { modal.classList.add('active'); window._selectedProductContext = "Pendaftaran Member Reguler"; }
+  function closeModal() { modal.classList.remove('active'); memberForm.reset(); }
+  mainMemberBtn.addEventListener('click', openModal);
+  cancelModalBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => { if(e.target===modal) closeModal(); });
+
+  function showToast(msg) { let t = document.getElementById('liveToast'); if(window.toastT) clearTimeout(window.toastT); t.textContent = `✨ ${msg} ✨`; t.style.opacity='1'; window.toastT = setTimeout(()=> t.style.opacity='0', 3000); }
+
   function openGmailApp(name, gender, age, wa, productContext) {
-    const targetEmail = "arielfebrian45@gmail.com";
+    const target = "arielfebrian45@gmail.com";
     const subject = `[UTARA GARAGE] Pendaftaran Member - ${name}`;
-    
-    const messageBody = 
-`✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨
-        🌸 PENDAFTARAN MEMBER UTARA GARAGE 🌸
-✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨
-
-📛 Nama Lengkap: ${name}
-⚥ Gender: ${gender}
-🎂 Umur: ${age} tahun
-📱 Nomor WhatsApp: ${wa}
-🛒 Produk Favorit: ${productContext || 'Tidak ada produk'}
-📅 Waktu Pendaftaran: ${new Date().toLocaleString('id-ID')}
-
-✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨
-       💜 AESTHETIC DREAM MEMBERSHIP 💜
-   Terima kasih telah bergabung dengan kami!
-   Admin akan mengkonfirmasi dalam 1x24 jam.
-✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨`;
-    
-    // Menggunakan mailto: yang akan membuka aplikasi email default di HP
-    const mailtoLink = `mailto:${targetEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(messageBody)}`;
-    
-    // Simpan ke localStorage untuk backup
+    const body = `✨✨ PENDAFTARAN MEMBER UTARA GARAGE ✨✨\n\n📛 Nama: ${name}\n⚥ Gender: ${gender}\n🎂 Umur: ${age}\n📱 WA: ${wa}\n🛒 Produk Favorit: ${productContext || "Tidak ada"}\n📅 Waktu: ${new Date().toLocaleString('id-ID')}\n\n💜 Terima kasih telah mendaftar!`;
+    const mailto = `mailto:${target}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     const members = JSON.parse(localStorage.getItem('utara_members') || '[]');
-    members.push({
-      id: Date.now(),
-      name: name,
-      gender: gender,
-      age: age,
-      wa: wa,
-      product: productContext || 'Tidak ada produk',
-      date: new Date().toLocaleString('id-ID')
-    });
+    members.push({ name, gender, age, wa, date: new Date().toLocaleString() });
     localStorage.setItem('utara_members', JSON.stringify(members));
-    
-    // Buka aplikasi email default (di HP akan buka Gmail/Email app)
-    window.location.href = mailtoLink;
-    
-    showToast("💜 Membuka aplikasi Gmail... Data sudah terisi otomatis, tinggal klik Kirim!", 4000);
+    window.location.href = mailto;
+    showToast("Membuka Gmail... Data sudah otomatis terisi, klik kirim ya!");
   }
-  
-  function handleSubmit() {
+
+  memberForm.addEventListener('submit', (e) => {
+    e.preventDefault();
     const name = document.getElementById('memberName').value.trim();
     const gender = document.getElementById('memberGender').value;
     const age = document.getElementById('memberAge').value.trim();
     const wa = document.getElementById('memberWa').value.trim();
-    const productContext = window._selectedProductContext || "Pendaftaran Member Reguler";
-    
-    // Validasi
-    if (!name || !gender || !age || !wa) {
-      showToast("SEMUA DATA HARUS DIISI!", 2700);
-      return false;
-    }
-    if (isNaN(age) || age < 7 || age > 120) {
-      showToast("UMUR HARUS ANGKA 7-120", 2500);
-      return false;
-    }
-    if (!wa.match(/^[0-9+\-\s]{8,18}$/)) {
-      showToast("NOMOR WHATSAPP TIDAK VALID (min 8 digit)", 2500);
-      return false;
-    }
-    
-    // Buka aplikasi Gmail/Email dengan data yang sudah diisi
-    openGmailApp(name, gender, age, wa, productContext);
-    
-    // Reset form dan tutup modal
-    document.getElementById('memberForm').reset();
-    closeMemberModal();
+    if(!name||!gender||!age||!wa) { showToast("Lengkapi semua data!"); return; }
+    if(isNaN(age)||age<7||age>100) { showToast("Umur tidak valid"); return; }
+    openGmailApp(name, gender, age, wa, window._selectedProductContext || "Member Reguler");
+    closeModal();
     window._selectedProductContext = null;
-    
-    return true;
-  }
-  
-  // ============================================================
-  // ================== MODAL MEMBER ==================
-  // ============================================================
-  const modal = document.getElementById('memberModal');
-  const cancelModalBtn = document.getElementById('cancelModalBtn');
-  const globalMemberBtn = document.getElementById('globalMemberBtn');
-  const submitBtn = document.getElementById('submitBtn');
-  const memberForm = document.getElementById('memberForm');
-  
-  function openMemberModal() {
-    modal.classList.add('active');
-  }
-  function closeMemberModal() {
-    modal.classList.remove('active');
-    memberForm.reset();
-    window._selectedProductContext = null;
-  }
-  
-  globalMemberBtn.addEventListener('click', () => {
-    window._selectedProductContext = "Pendaftaran Member Reguler";
-    openMemberModal();
   });
-  cancelModalBtn.addEventListener('click', closeMemberModal);
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeMemberModal();
+
+  // scroll ke tutorial
+  document.getElementById('scrollTutorialBtn').addEventListener('click', () => {
+    document.getElementById('tutorialSection').scrollIntoView({ behavior: 'smooth' });
   });
-  
-  submitBtn.addEventListener('click', handleSubmit);
-  
-  // ============================================================
-  // ================== INITIAL RENDER ==================
-  // ============================================================
-  renderProducts();
-  
-  // Expose function ke global untuk tombol copy email
-  window.copyEmailToClipboard = copyEmailToClipboard;
+  window.copyEmailClipboard = function() {
+    navigator.clipboard.writeText("arielfebrian45@gmail.com").then(() => showToast("Email admin disalin!")).catch(()=>alert("Salin manual"));
+  };
 </script>
 </body>
 </html>
