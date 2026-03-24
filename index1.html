@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>UTARA GARAGE | Mode Perbaikan</title>
+  <!-- Google Fonts & Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #2d1b3c 0%, #1a0f2a 100%);
+      font-family: 'Quicksand', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Floating particles */
+    .floating-particle {
+      position: fixed;
+      background: rgba(156, 108, 214, 0.2);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      animation: floatParticle 15s infinite linear;
+    }
+    @keyframes floatParticle {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.5; }
+      90% { opacity: 0.5; }
+      100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+    }
+
+    .maintenance-container {
+      max-width: 600px;
+      margin: 2rem;
+      padding: 3rem 2rem;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-radius: 48px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(156, 108, 214, 0.5);
+      animation: fadeInUp 0.6s ease;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .maintenance-icon {
+      font-size: 5rem;
+      background: linear-gradient(135deg, #6b46a0, #9c6cd6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1rem;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: #6b46a0;
+      margin-bottom: 0.5rem;
+    }
+
+    .status-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
+      color: white;
+      padding: 0.4rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
+    }
+
+    .message {
+      color: #4a2a6e;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+
+    .progress-bar-container {
+      background: #e0d4ff;
+      border-radius: 50px;
+      height: 8px;
+      margin: 2rem 0;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      width: 65%;
+      height: 100%;
+      background: linear-gradient(90deg, #6b46a0, #9c6cd6);
+      border-radius: 50px;
+      animation: loading 2s ease-in-out infinite;
+    }
+
+    @keyframes loading {
+      0% { width: 30%; }
+      50% { width: 70%; }
+      100% { width: 30%; }
+    }
+
+    .feature-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .feature-item {
+      background: #f5efff;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      color: #6b46a0;
+      font-weight: 600;
+    }
+
+    .feature-item i {
+      margin-right: 6px;
+      color: #9c6cd6;
+    }
+
+    .btn-back {
+      background: linear-gradient(135deg, #6b46a0, #9c6cd6);
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 60px;
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 1rem;
+      text-decoration: none;
+    }
+
+    .btn-back:hover {
+      transform: scale(1.02);
+      gap: 14px;
+      background: linear-gradient(135deg, #8b5ecf, #b77ee6);
+    }
+
+    .admin-note {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(156, 108, 214, 0.3);
+      font-size: 0.7rem;
+      color: #b89fd9;
+    }
+
+    .admin-note i {
+      margin-right: 4px;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 15px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 0.65rem;
+      color: rgba(255, 255, 255, 0.5);
+      z-index: 2;
+    }
+
+    @media (max-width: 640px) {
+      .maintenance-container { margin: 1rem; padding: 2rem 1.5rem; }
+      h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <div id="floatingContainer"></div>
+
+  <div class="maintenance-container">
+    <div class="maintenance-icon">
+      <i class="fas fa-tools"></i>
+    </div>
+    <div class="status-badge">
+      <i class="fas fa-hourglass-half"></i> MAINTENANCE MODE
+    </div>
+    <h1>Sedang dalam Perbaikan</h1>
+    <p class="message">
+      <i class="fas fa-sparkle"></i> UTARA GARAGE sedang <strong>dipercantik dan dioptimalkan</strong> <i class="fas fa-sparkle"></i><br>
+      Kami akan segera kembali dengan pengalaman yang lebih estetik!
+    </p>
+
+    <div class="progress-bar-container">
+      <div class="progress-bar"></div>
+    </div>
+
+    <div class="feature-list">
+      <span class="feature-item"><i class="fas fa-palette"></i> Tampilan baru</span>
+      <span class="feature-item"><i class="fas fa-rocket"></i> Performa lebih cepat</span>
+      <span class="feature-item"><i class="fas fa-gem"></i> Fitur eksklusif</span>
+      <span class="feature-item"><i class="fas fa-shield-alt"></i> Keamanan meningkat</span>
+    </div>
+
+    <button class="btn-back" id="refreshBtn">
+      <i class="fas fa-sync-alt"></i> COBA LAGI NANTI
+    </button>
+
+    <div class="admin-note">
+      <i class="fas fa-laptop-code"></i> Admin: Jika sudah selesai perbaikan, hapus file maintenance.html atau nonaktifkan mode perbaikan.
+    </div>
+  </div>
+
+  <footer>
+    <i class="fas fa-moon"></i> UTARA GARAGE • ESTHETIC COLLECTION • MAINTENANCE MODE
+  </footer>
+
+  <script>
+    // Floating particles
+    function createParticles() {
+      const container = document.getElementById('floatingContainer');
+      if(!container) return;
+      const icons = ['✨','🌸','💜','⭐','🦋','🌙','🔧','⚙️'];
+      for(let i=0;i<30;i++) {
+        let p = document.createElement('div');
+        p.className = 'floating-particle';
+        p.innerHTML = icons[Math.floor(Math.random()*icons.length)];
+        p.style.left = Math.random()*100+'%';
+        p.style.animationDuration = 12+Math.random()*20+'s';
+        p.style.animationDelay = Math.random()*15+'s';
+        p.style.fontSize = 1+Math.random()*2.5+'rem';
+        p.style.opacity = 0.1+Math.random()*0.25;
+        container.appendChild(p);
+      }
+    }
+    createParticles();
+
+    // Tombol refresh - cek apakah maintenance masih aktif
+    document.getElementById('refreshBtn').addEventListener('click', function() {
+      // Cek localStorage apakah maintenance masih aktif
+      const isMaintenance = localStorage.getItem('utara_maintenance_mode');
+      if(isMaintenance === 'true') {
+        // Masih maintenance, reload halaman
+        window.location.reload();
+      } else {
+        // Maintenance sudah dinonaktifkan, kembali ke index
+        window.location.href = 'index.html';
+      }
+    });
+
+    // Set interval untuk cek status setiap 10 detik
+    setInterval(function() {
+      const isMaintenance = localStorage.getItem('utara_maintenance_mode');
+      if(isMaintenance !== 'true') {
+        // Maintenance sudah dimatikan, redirect ke index
+        window.location.href = 'index.html';
+      }
+    }, 10000);
+  </script>
+</body>
+</html>
