@@ -268,7 +268,7 @@
     document.getElementById('refreshBtn').addEventListener('click', function() {
       // Cek localStorage apakah maintenance masih aktif
       const isMaintenance = localStorage.getItem('utara_maintenance_mode');
-      if(isMaintenance === 'true') {
+      if(isMaintenance === 'false') {
         // Masih maintenance, reload halaman
         window.location.reload();
       } else {
