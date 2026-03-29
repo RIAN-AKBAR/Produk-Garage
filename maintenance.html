@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>UTARA GARAGE | Mode Perbaikan</title>
-  <!-- Google Fonts & Font Awesome -->
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
@@ -25,7 +24,6 @@
       overflow-x: hidden;
     }
 
-    /* Floating particles */
     .floating-particle {
       position: fixed;
       background: rgba(156, 108, 214, 0.2);
@@ -33,7 +31,11 @@
       pointer-events: none;
       z-index: 0;
       animation: floatParticle 15s infinite linear;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+
     @keyframes floatParticle {
       0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
       10% { opacity: 0.5; }
@@ -84,7 +86,7 @@
 
     h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
+      font-size: 2rem;
       color: #6b46a0;
       margin-bottom: 0.5rem;
     }
@@ -98,7 +100,6 @@
       font-size: 0.8rem;
       font-weight: 600;
       margin-bottom: 1.5rem;
-      letter-spacing: 1px;
     }
 
     .message {
@@ -166,13 +167,11 @@
       align-items: center;
       gap: 10px;
       margin-top: 1rem;
-      text-decoration: none;
     }
 
     .btn-back:hover {
       transform: scale(1.02);
       gap: 14px;
-      background: linear-gradient(135deg, #8b5ecf, #b77ee6);
     }
 
     .admin-note {
@@ -181,10 +180,6 @@
       border-top: 1px solid rgba(156, 108, 214, 0.3);
       font-size: 0.7rem;
       color: #b89fd9;
-    }
-
-    .admin-note i {
-      margin-right: 4px;
     }
 
     footer {
@@ -236,7 +231,7 @@
     </button>
 
     <div class="admin-note">
-      <i class="fas fa-laptop-code"></i> Admin: Jika sudah selesai perbaikan, hapus file maintenance.html atau nonaktifkan mode perbaikan.
+      <i class="fas fa-laptop-code"></i> Admin: Mode perbaikan aktif - toko sedang dalam pengembangan
     </div>
   </div>
 
@@ -245,46 +240,58 @@
   </footer>
 
   <script>
-    // Floating particles
+    // ==================== KONFIGURASI JSONBIN.IO ====================
+    const JSONBIN_BIN_ID = "69c8bba16860e0745bfea6d5 ";
+    const JSONBIN_API_KEY = "$2a$10$xq5vXG8yPubNSS1iGU4pkOB436l3lpp6zH6KvC8GELIxb9AaSLHjy";
+    const JSONBIN_URL = `https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`;
+    
+    // Floating particles with icons
     function createParticles() {
       const container = document.getElementById('floatingContainer');
-      if(!container) return;
-      const icons = ['✨','🌸','💜','⭐','🦋','🌙','🔧','⚙️'];
-      for(let i=0;i<30;i++) {
-        let p = document.createElement('div');
-        p.className = 'floating-particle';
-        p.innerHTML = icons[Math.floor(Math.random()*icons.length)];
-        p.style.left = Math.random()*100+'%';
-        p.style.animationDuration = 12+Math.random()*20+'s';
-        p.style.animationDelay = Math.random()*15+'s';
-        p.style.fontSize = 1+Math.random()*2.5+'rem';
-        p.style.opacity = 0.1+Math.random()*0.25;
+      if (!container) return;
+      const icons = ['✨', '🌸', '💜', '⭐', '🦋', '🌙', '🔧', '⚙️', '💎', '🌟'];
+      for (let i = 0; i < 35; i++) {
+        const p = document.createElement('div');
+        p.classList.add('floating-particle');
+        p.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+        p.style.left = Math.random() * 100 + '%';
+        p.style.animationDuration = 12 + Math.random() * 20 + 's';
+        p.style.animationDelay = Math.random() * 15 + 's';
+        p.style.fontSize = 1 + Math.random() * 2.5 + 'rem';
+        p.style.opacity = 0.1 + Math.random() * 0.25;
         container.appendChild(p);
       }
     }
     createParticles();
-
-    // Tombol refresh - cek apakah maintenance masih aktif
-    document.getElementById('refreshBtn').addEventListener('click', function() {
-      // Cek localStorage apakah maintenance masih aktif
-      const isMaintenance = localStorage.getItem('utara_maintenance_mode');
-      if(isMaintenance === 'true') {
-        // Masih maintenance, reload halaman
-        window.location.reload();
-      } else {
-        // Maintenance sudah dinonaktifkan, kembali ke index
-        window.location.href = 'index.html';
+    
+    // Check maintenance status every 5 seconds
+    async function checkMaintenanceStatus() {
+      try {
+        const response = await fetch(JSONBIN_URL, {
+          headers: { 'X-Master-Key': JSONBIN_API_KEY }
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          if (!data.record.maintenance_mode) {
+            window.location.href = 'index.html';
+          }
+        }
+      } catch (error) {
+        console.error('Error checking maintenance:', error);
       }
+    }
+    
+    // Refresh button
+    document.getElementById('refreshBtn').addEventListener('click', () => {
+      checkMaintenanceStatus();
     });
-
-    // Set interval untuk cek status setiap 10 detik
-    setInterval(function() {
-      const isMaintenance = localStorage.getItem('utara_maintenance_mode');
-      if(isMaintenance !== 'true') {
-        // Maintenance sudah dimatikan, redirect ke index
-        window.location.href = 'index.html';
-      }
-    }, 10000);
+    
+    // Check every 5 seconds
+    setInterval(checkMaintenanceStatus, 5000);
+    
+    // Initial check
+    checkMaintenanceStatus();
   </script>
 </body>
 </html>
