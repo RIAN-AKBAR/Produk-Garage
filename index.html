@@ -1019,7 +1019,6 @@
 
   <script>
     // ==================== KONFIGURASI JSONBIN.IO ====================
-    // GANTI DENGAN DATA DARI JSONBIN.IO ANDA!
     const JSONBIN_BIN_ID = "69c8bba16860e0745bfea6d5";
     const JSONBIN_API_KEY = "$2a$10$xq5vXG8yPubNSS1iGU4pkOB436l3lpp6zH6KvC8GELIxb9AaSLHjy";
     const JSONBIN_URL = `https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`;
@@ -1028,6 +1027,7 @@
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     let currentFilter = "all";
     let searchQuery = "";
+    let currentMaintenanceMode = false;
     
     // Floating particles
     function createParticles() {
@@ -1059,9 +1059,10 @@
         
         const data = await response.json();
         products = data.record.products || [];
+        currentMaintenanceMode = data.record.maintenance_mode || false;
         
         // Check maintenance mode
-        if (data.record.maintenance_mode === true) {
+        if (currentMaintenanceMode === true) {
           window.location.href = 'maintenance.html';
           return;
         }
@@ -1075,14 +1076,9 @@
       }
     }
     
-    // Update stock on server after checkout
-    async function updateStockOnServer() {
+    // Save data to server (products + maintenance mode)
+    async function saveToServer() {
       try {
-        const currentData = await fetch(JSONBIN_URL, {
-          headers: { 'X-Master-Key': JSONBIN_API_KEY }
-        });
-        const current = await currentData.json();
-        
         const response = await fetch(JSONBIN_URL, {
           method: 'PUT',
           headers: {
@@ -1091,14 +1087,14 @@
           },
           body: JSON.stringify({ 
             products: products, 
-            maintenance_mode: current.record.maintenance_mode || false 
+            maintenance_mode: currentMaintenanceMode 
           })
         });
         
-        if (!response.ok) throw new Error('Gagal update stok');
+        if (!response.ok) throw new Error('Gagal menyimpan');
         return true;
       } catch (error) {
-        console.error('Error:', error);
+        console.error('Save error:', error);
         return false;
       }
     }
@@ -1253,13 +1249,13 @@
         }
       });
       
-      const success = await updateStockOnServer();
+      const success = await saveToServer();
       if (success) {
         cart = [];
         saveCart();
         closeCart();
-        await loadProductsFromServer();
         showToast('✅ Terima kasih! Pesanan Anda telah diproses.');
+        renderProducts();
       } else {
         showToast('❌ Gagal memproses pesanan. Silakan coba lagi.');
         await loadProductsFromServer();
@@ -1384,7 +1380,9 @@
     cartButton.onclick = openCart;
     cartButton.innerHTML = `🛒 Keranjang <span class="cart-count" id="cart-count">0</span>`;
     const adminLink = document.querySelector('.admin-link');
-    if (adminLink) adminLink.parentElement?.insertBefore(cartButton, adminLink);
+    if (adminLink && navContainer) {
+      navContainer.appendChild(cartButton);
+    }
     
     // Initial load
     loadProductsFromServer();
