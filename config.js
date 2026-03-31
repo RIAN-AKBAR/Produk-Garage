@@ -4,7 +4,7 @@
 // false = maintenance mode NONAKTIF (toko normal)
 
 const CONFIG = {
-    maintenance_mode: false  // Ganti jadi true untuk maintenance, false untuk normal
+    maintenance_mode: true  // Ganti jadi true untuk maintenance, false untuk normal
 };
 
 // Data Produk (bisa diedit langsung di sini)
