@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>UTARA GARAGE | Official Store</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <title>UTARA GARAGE | Collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -14,43 +14,79 @@
         }
 
         body {
-            background: linear-gradient(135deg, #0a0a0f 0%, #0f0a18 50%, #120b1f 100%);
+            background: linear-gradient(135deg, #0f0718 0%, #1a0f2a 50%, #0b0518 100%);
             font-family: 'Quicksand', sans-serif;
-            color: #e0d4ff;
+            color: #f0e6ff;
             min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        .floating-particle {
-            position: fixed;
-            background: radial-gradient(circle, #b77ee6, #6b46a0);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 0;
-            animation: floatParticle 12s infinite linear;
-        }
-
-        @keyframes floatParticle {
-            0% {
-                transform: translateY(100vh) translateX(0) rotate(0deg);
-                opacity: 0;
-            }
-            15% { opacity: 0.6; }
-            85% { opacity: 0.5; }
-            100% {
-                transform: translateY(-20vh) translateX(30px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        .soft-glow {
+        /* Canvas untuk efek partikel */
+        #particleCanvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 50% 50%, rgba(107, 70, 160, 0.2) 0%, transparent 70%);
             pointer-events: none;
             z-index: 0;
+        }
+
+        /* Glow effect background */
+        .glow-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(156, 108, 214, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Animated gradient orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(60px);
+            pointer-events: none;
+            z-index: 0;
+            animation: floatOrb 20s infinite ease-in-out;
+        }
+
+        @keyframes floatOrb {
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+            50% { transform: translate(50px, -30px) scale(1.1); opacity: 0.5; }
+        }
+
+        .orb-1 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(107, 70, 160, 0.4), rgba(156, 108, 214, 0.1));
+            top: -100px;
+            right: -100px;
+            animation-duration: 25s;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(183, 126, 230, 0.3), rgba(107, 70, 160, 0.1));
+            bottom: -150px;
+            left: -100px;
+            animation-duration: 30s;
+            animation-delay: -5s;
+        }
+
+        .orb-3 {
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(156, 108, 214, 0.4), rgba(107, 70, 160, 0.1));
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-duration: 35s;
         }
 
         .container {
@@ -61,12 +97,16 @@
             z-index: 2;
         }
 
+        /* Glassmorphism Navbar */
         .top-nav {
-            background: linear-gradient(135deg, #0f0a1a, #080510);
-            border-bottom: 3px solid #9c6cd6;
+            background: rgba(15, 7, 24, 0.7);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(156, 108, 214, 0.3);
             position: sticky;
             top: 0;
             z-index: 100;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 1rem;
         }
 
         .nav-container {
@@ -82,22 +122,41 @@
 
         .nav-logo h2 {
             font-family: 'Playfair Display', serif;
-            background: linear-gradient(135deg, #b77ee6, #9c6cd6);
+            font-size: 1.3rem;
+            background: linear-gradient(135deg, #d4c0ff, #b77ee6, #9c6cd6);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            letter-spacing: 1px;
         }
 
         .nav-links {
             display: flex;
-            gap: 1.5rem;
+            gap: 2rem;
         }
 
         .nav-links a {
             color: #d4c0ff;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 500;
             cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #b77ee6, #9c6cd6);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .nav-links a:hover {
@@ -110,112 +169,191 @@
         }
 
         .nav-search input {
-            background: rgba(26, 15, 42, 0.8);
-            border: 1px solid #6b46a0;
-            border-radius: 30px;
-            padding: 0.5rem 1rem;
+            background: rgba(26, 15, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(156, 108, 214, 0.4);
+            border-radius: 40px;
+            padding: 0.6rem 1.2rem;
             color: white;
             outline: none;
+            transition: 0.3s;
+            width: 200px;
+        }
+
+        .nav-search input:focus {
+            border-color: #b77ee6;
+            box-shadow: 0 0 15px rgba(183, 126, 230, 0.3);
         }
 
         .nav-search button {
-            background: #6b46a0;
+            background: linear-gradient(135deg, #6b46a0, #4a2a6e);
             border: none;
-            border-radius: 30px;
-            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            padding: 0.6rem 1.2rem;
             color: white;
             cursor: pointer;
+            transition: 0.3s;
         }
 
+        .nav-search button:hover {
+            background: linear-gradient(135deg, #9c6cd6, #6b46a0);
+            transform: scale(1.02);
+        }
+
+        /* Brand Section */
         .brand {
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 1rem;
-            padding: 1.5rem 0;
-            border-bottom: 2px solid rgba(156, 108, 214, 0.4);
+            padding: 2rem 0;
+            border-bottom: 1px solid rgba(156, 108, 214, 0.2);
         }
 
         .logo h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            background: linear-gradient(135deg, #b77ee6, #9c6cd6);
+            font-size: 3rem;
+            background: linear-gradient(135deg, #e0d4ff, #b77ee6, #9c6cd6);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            letter-spacing: 2px;
         }
 
         .logo p {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             color: #b89fd9;
+            letter-spacing: 2px;
         }
 
         .tagline {
-            background: rgba(156, 108, 214, 0.2);
-            padding: 0.4rem 1rem;
+            background: rgba(156, 108, 214, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1.2rem;
             border-radius: 50px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: #b77ee6;
+            border: 1px solid rgba(156, 108, 214, 0.3);
         }
 
+        /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, rgba(107, 70, 160, 0.2), rgba(26, 15, 42, 0.6));
-            border-radius: 32px;
-            padding: 2rem;
-            margin: 1.5rem 0;
+            background: linear-gradient(135deg, rgba(107, 70, 160, 0.2), rgba(26, 15, 42, 0.4));
+            backdrop-filter: blur(10px);
+            border-radius: 40px;
+            padding: 3rem 2rem;
+            margin: 2rem 0;
             text-align: center;
+            border: 1px solid rgba(156, 108, 214, 0.3);
+            animation: fadeInUp 0.8s ease;
         }
 
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            font-family: 'Playfair Display', serif;
+            color: #d4c0ff;
+        }
+
+        .hero p {
+            color: #b89fd9;
+            margin-top: 0.5rem;
+            font-size: 1rem;
+        }
+
+        /* Section Title */
         .section-title {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 600;
-            margin: 2rem 0 1rem;
+            margin: 2.5rem 0 1.5rem;
             font-family: 'Playfair Display', serif;
             color: #b77ee6;
+            position: relative;
+            display: inline-block;
         }
 
+        .section-title:before {
+            content: '✦';
+            position: absolute;
+            left: -30px;
+            top: 0;
+            color: #9c6cd6;
+            font-size: 1.5rem;
+        }
+
+        .section-title:after {
+            content: '✦';
+            position: absolute;
+            right: -30px;
+            top: 0;
+            color: #9c6cd6;
+            font-size: 1.5rem;
+        }
+
+        /* Filter Buttons */
         .filter-group {
             display: flex;
             gap: 1rem;
-            margin: 1rem 0;
+            margin: 1rem 0 2rem;
             flex-wrap: wrap;
+            justify-content: center;
         }
 
         .filter-btn {
-            background: rgba(26, 15, 42, 0.8);
-            border: 1px solid #6b46a0;
-            padding: 0.4rem 1.2rem;
+            background: rgba(26, 15, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(156, 108, 214, 0.4);
+            padding: 0.5rem 1.5rem;
             border-radius: 40px;
             color: #d4c0ff;
             cursor: pointer;
+            transition: 0.3s;
+            font-weight: 500;
         }
 
         .filter-btn.active,
         .filter-btn:hover {
-            background: #6b46a0;
+            background: linear-gradient(135deg, #6b46a0, #4a2a6e);
+            border-color: #b77ee6;
+            color: white;
+            transform: translateY(-2px);
         }
 
+        /* Products Grid */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin: 1.5rem 0;
+            gap: 2rem;
+            margin: 2rem 0;
         }
 
         .product-card {
-            background: rgba(15, 10, 25, 0.85);
+            background: rgba(15, 10, 25, 0.6);
+            backdrop-filter: blur(15px);
             border-radius: 28px;
-            padding: 1rem;
+            padding: 1.2rem;
             border: 1px solid rgba(156, 108, 214, 0.3);
             text-align: center;
-            position: relative;
-            transition: 0.3s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: fadeInUp 0.6s ease backwards;
+            animation-delay: calc(var(--index, 0) * 0.05s);
         }
 
         .product-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px) scale(1.02);
             border-color: #b77ee6;
+            box-shadow: 0 20px 40px rgba(107, 70, 160, 0.3);
         }
 
         .product-img {
@@ -224,72 +362,100 @@
             border-radius: 24px;
             overflow: hidden;
             margin-bottom: 1rem;
+            position: relative;
         }
 
         .product-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
         }
 
         .product-card h3 {
             font-size: 1rem;
-            margin: 0.5rem 0;
+            margin: 0.8rem 0;
             color: #d4c0ff;
+            font-weight: 600;
         }
 
         .product-desc {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             color: #b89fd9;
-            margin-bottom: 1rem;
-            line-height: 1.4;
+            margin-bottom: 1.2rem;
+            line-height: 1.5;
         }
 
         .btn-buy {
             background: linear-gradient(135deg, #6b46a0, #4a2a6e);
             border: none;
-            padding: 0.7rem;
+            padding: 0.8rem;
             width: 100%;
             border-radius: 40px;
             color: white;
             cursor: pointer;
             transition: 0.3s;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
         .btn-buy:hover {
             background: linear-gradient(135deg, #9c6cd6, #6b46a0);
             transform: scale(1.02);
+            gap: 12px;
         }
 
+        /* Member Block */
         .member-block {
-            background: linear-gradient(135deg, rgba(26, 15, 42, 0.9), rgba(15, 10, 25, 0.9));
+            background: linear-gradient(135deg, rgba(107, 70, 160, 0.2), rgba(26, 15, 42, 0.5));
+            backdrop-filter: blur(15px);
             border-radius: 40px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            border: 2px solid rgba(156, 108, 214, 0.5);
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(156, 108, 214, 0.4);
+            transition: 0.3s;
+        }
+
+        .member-block:hover {
+            border-color: #b77ee6;
+            box-shadow: 0 10px 30px rgba(107, 70, 160, 0.2);
         }
 
         .member-header {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.5rem;
             margin-bottom: 1.5rem;
             flex-wrap: wrap;
         }
 
         .member-crown {
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
         .member-crown img {
             width: 100%;
+            filter: drop-shadow(0 0 10px rgba(183, 126, 230, 0.5));
         }
 
         .member-header-text h2 {
             font-family: 'Playfair Display', serif;
             color: #b77ee6;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
         }
 
         .member-actions {
@@ -301,33 +467,60 @@
         .btn-primary {
             background: linear-gradient(135deg, #6b46a0, #4a2a6e);
             border: none;
-            padding: 0.7rem 1.2rem;
+            padding: 0.8rem 1.5rem;
             border-radius: 50px;
             color: white;
             cursor: pointer;
+            transition: 0.3s;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #9c6cd6, #6b46a0);
+            transform: translateY(-2px);
+            gap: 12px;
         }
 
         .btn-secondary {
             background: rgba(156, 108, 214, 0.15);
             border: 1.5px solid #9c6cd6;
-            padding: 0.65rem 1.2rem;
+            padding: 0.75rem 1.5rem;
             border-radius: 50px;
+            font-weight: 600;
             color: #b77ee6;
             cursor: pointer;
+            transition: 0.3s;
         }
 
+        .btn-secondary:hover {
+            background: rgba(156, 108, 214, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Team Grid */
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 1.5rem;
-            margin: 1.5rem 0;
+            margin: 2rem 0;
         }
 
         .team-card {
-            background: rgba(15, 10, 25, 0.85);
+            background: rgba(15, 10, 25, 0.6);
+            backdrop-filter: blur(15px);
             border-radius: 32px;
-            padding: 1.2rem;
+            padding: 1.5rem;
             text-align: center;
+            border: 1px solid rgba(156, 108, 214, 0.3);
+            transition: 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            border-color: #b77ee6;
         }
 
         .team-avatar {
@@ -337,6 +530,7 @@
             margin: 0 auto 1rem;
             overflow: hidden;
             border: 3px solid #b77ee6;
+            box-shadow: 0 0 20px rgba(183, 126, 230, 0.3);
         }
 
         .team-avatar img {
@@ -352,6 +546,7 @@
             border-radius: 30px;
             font-size: 0.7rem;
             color: #b77ee6;
+            margin-bottom: 0.5rem;
         }
 
         .team-name {
@@ -364,62 +559,81 @@
             background: transparent;
             border: 1.5px solid #9c6cd6;
             border-radius: 40px;
-            padding: 0.4rem 0.8rem;
+            padding: 0.5rem 1rem;
             color: #b77ee6;
             cursor: pointer;
+            transition: 0.3s;
+            margin-top: 0.5rem;
         }
 
+        .btn-profile:hover {
+            background: #9c6cd6;
+            color: #0a0a0f;
+        }
+
+        /* Tutorial Box */
         .tutorial-box {
-            background: linear-gradient(135deg, rgba(26, 15, 42, 0.9), rgba(15, 10, 25, 0.9));
+            background: linear-gradient(135deg, rgba(107, 70, 160, 0.15), rgba(26, 15, 42, 0.4));
+            backdrop-filter: blur(15px);
             border-radius: 32px;
-            padding: 1.5rem;
+            padding: 2rem;
             margin: 2rem 0;
+            border: 1px solid rgba(156, 108, 214, 0.3);
         }
 
         .steps {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin: 1.5rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
 
         .step {
-            background: rgba(10, 5, 20, 0.6);
-            border-radius: 20px;
-            padding: 0.8rem;
+            background: rgba(10, 5, 20, 0.5);
+            border-radius: 24px;
+            padding: 1rem;
             text-align: center;
+            transition: 0.3s;
+        }
+
+        .step:hover {
+            transform: translateY(-3px);
+            background: rgba(107, 70, 160, 0.2);
         }
 
         .step-number {
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             background: linear-gradient(135deg, #6b46a0, #9c6cd6);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 0.5rem;
+            margin: 0 auto 0.8rem;
+            font-weight: bold;
             color: white;
         }
 
         .email-highlight {
-            background: #2a1a3e;
-            padding: 0.3rem 1rem;
-            border-radius: 30px;
+            background: rgba(42, 26, 62, 0.8);
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
             display: inline-block;
             margin-top: 0.5rem;
+            font-family: monospace;
         }
 
         .copy-btn {
             background: #6b46a0;
             border: none;
-            padding: 0.2rem 0.6rem;
+            padding: 0.2rem 0.8rem;
             border-radius: 30px;
             color: white;
             cursor: pointer;
-            margin-left: 6px;
+            margin-left: 10px;
         }
 
+        /* Modal */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -443,12 +657,13 @@
         }
 
         .modal-card {
-            background: #1a1025;
+            background: linear-gradient(135deg, #1a1025, #0f0a1a);
             max-width: 450px;
             width: 90%;
             border-radius: 32px;
-            padding: 1.5rem;
+            padding: 2rem;
             border: 1px solid #9c6cd6;
+            animation: fadeInUp 0.3s ease;
         }
 
         .toast-msg {
@@ -456,18 +671,21 @@
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            background: #6b46a0;
+            background: linear-gradient(135deg, #6b46a0, #4a2a6e);
             color: white;
-            padding: 8px 20px;
+            padding: 12px 24px;
             border-radius: 50px;
             z-index: 1100;
             opacity: 0;
             transition: 0.2s;
+            font-weight: 500;
+            white-space: nowrap;
         }
 
+        /* Footer */
         footer {
             text-align: center;
-            border-top: 2px solid rgba(156, 108, 214, 0.3);
+            border-top: 1px solid rgba(156, 108, 214, 0.2);
             padding: 2rem 1rem 1rem;
             margin-top: 2rem;
             font-size: 0.7rem;
@@ -476,7 +694,7 @@
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
+            gap: 2rem;
             margin-bottom: 1rem;
             flex-wrap: wrap;
         }
@@ -492,7 +710,7 @@
         }
 
         .social-links a:hover {
-            color: #9c6cd6;
+            color: #d4c0ff;
             transform: translateY(-3px);
         }
 
@@ -510,19 +728,28 @@
             .nav-container { flex-direction: column; }
             .brand { flex-direction: column; text-align: center; }
             .member-header { flex-direction: column; text-align: center; }
+            .section-title:before, .section-title:after { display: none; }
             .social-links a { font-size: 1.2rem; }
             .social-links span { display: none; }
+            .logo h1 { font-size: 2rem; }
+            .hero h2 { font-size: 1.5rem; }
         }
     </style>
 </head>
 <body>
-    <div class="soft-glow"></div>
-    <div id="floatingContainer"></div>
+    <!-- Canvas untuk partikel -->
+    <canvas id="particleCanvas"></canvas>
+    
+    <!-- Glow orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="glow-bg"></div>
 
     <div class="top-nav">
         <div class="nav-container">
             <div class="nav-logo">
-                <h2>UTARA-GARAGE</h2>
+                <h2>✦ UTARA GARAGE ✦</h2>
             </div>
             <div class="nav-links">
                 <a onclick="scrollToSection('home')">HOME</a>
@@ -540,32 +767,32 @@
         <div class="brand" id="home">
             <div class="logo">
                 <h1>UTARA GARAGE</h1>
-                <p>✦ ESTHETIC COLLECTION ✦ PURPLE DREAM</p>
+                <p>✦ ESTHETIC COLLECTION ✦ PURPLE DREAM ✦</p>
             </div>
             <div class="tagline">
-                <i class="fas fa-star"></i> SOFT AESTHETIC <i class="fas fa-moon"></i>
+                <i class="fas fa-star"></i> SOFT AESTHETIC <i class="fas fa-moon"></i> PURPLE VIBE
             </div>
         </div>
 
         <div class="member-block">
             <div class="member-header">
                 <div class="member-crown">
-                    <img src="logo.png" alt="Crown">
+                    <img src="https://cdn-icons-png.flaticon.com/512/758/758527.png" alt="Crown">
                 </div>
                 <div class="member-header-text">
-                    <h2>✦ DAFTAR JADI MEMBER UTARA GARAGE ✦</h2>
-                    <p>Daftar member eksklusif dan dapatkan keuntungan istimewa</p>
+                    <h2>✦ DREAM REGISTRY ✦</h2>
+                    <p>Bergabunglah menjadi bagian dari keluarga UTARA GARAGE</p>
                 </div>
             </div>
             <div class="member-actions">
-                <button id="memberBtn" class="btn-primary"><i class="fas fa-user-plus"></i> DAFTAR JADI MEMBER</button>
-                <button id="tutorialBtn" class="btn-secondary"><i class="fas fa-book-open"></i> LIHAT TUTORIAL</button>
+                <button id="memberBtn" class="btn-primary"><i class="fas fa-user-plus"></i> DAFTAR MEMBER</button>
+                <button id="tutorialBtn" class="btn-secondary"><i class="fas fa-book-open"></i> TUTORIAL</button>
             </div>
         </div>
 
         <div class="hero">
             <h2>DREAM COLLECTION</h2>
-            <p>ESTHETIC PURPLE EDITION</p>
+            <p>ESTHETIC PURPLE EDITION ✦ LIMITED RELEASE</p>
         </div>
 
         <div class="filter-group" id="shop">
@@ -582,9 +809,9 @@
 
         <div id="tutorialSection">
             <div class="tutorial-box">
-                <div class="tutorial-header" style="text-align: center;">
-                    <i class="fas fa-feather-alt"></i>
-                    <h3>📖 TUTORIAL DAFTAR MEMBER</h3>
+                <div style="text-align: center;">
+                    <i class="fas fa-feather-alt" style="font-size: 2rem; color: #b77ee6;"></i>
+                    <h3 style="margin-top: 0.5rem;">📖 TUTORIAL DAFTAR MEMBER</h3>
                 </div>
                 <div class="steps">
                     <div class="step">
@@ -608,7 +835,7 @@
                         <p>Admin akan konfirmasi</p>
                     </div>
                 </div>
-                <div class="email-box" style="text-align: center;">
+                <div style="text-align: center;">
                     <p><i class="fas fa-envelope"></i> Email Admin:</p>
                     <div class="email-highlight">
                         utaragarageofficial@gmail.com
@@ -627,6 +854,9 @@
             <a href="https://tiktok.com/@utara_garage" target="_blank">
                 <i class="fab fa-tiktok"></i> <span>TikTok</span>
             </a>
+            <a href="https://www.roblox.com/groups/34340459/UTARA-GARAGE" target="_blank">
+                <i class="fab fa-roblox"></i> <span>Roblox Group</span>
+            </a>
         </div>
         <div class="copyright">
             <i class="fas fa-moon"></i> UTARA GARAGE • ESTHETIC COLLECTION • PURPLE DREAM<br>
@@ -637,31 +867,31 @@
     <!-- Member Modal -->
     <div id="memberModal" class="modal-overlay">
         <div class="modal-card">
-            <h3><i class="fas fa-feather-alt"></i> DREAM REGISTRY</h3>
+            <h3 style="text-align: center;"><i class="fas fa-feather-alt"></i> DREAM REGISTRY</h3>
             <form id="memberForm">
                 <div class="form-group" style="margin-bottom: 1rem;">
-                    <label>NAMA LENGKAP</label>
-                    <input type="text" id="memberName" required style="width: 100%; padding: 0.5rem; border-radius: 40px; background: #0f0a1a; border: 1px solid #6b46a0; color: white;">
+                    <label style="color: #b77ee6;">NAMA LENGKAP</label>
+                    <input type="text" id="memberName" required style="width: 100%; padding: 0.7rem; border-radius: 40px; background: #0f0a1a; border: 1px solid #6b46a0; color: white;">
                 </div>
                 <div class="form-group" style="margin-bottom: 1rem;">
-                    <label>GENDER</label>
-                    <select id="memberGender" style="width: 100%; padding: 0.5rem; border-radius: 40px; background: #0f0a1a; border: 1px solid #6b46a0; color: white;">
+                    <label style="color: #b77ee6;">GENDER</label>
+                    <select id="memberGender" style="width: 100%; padding: 0.7rem; border-radius: 40px; background: #0f0a1a; border: 1px solid #6b46a0; color: white;">
                         <option>Pilih</option>
                         <option>Perempuan</option>
                         <option>Laki-laki</option>
                     </select>
                 </div>
                 <div class="form-group" style="margin-bottom: 1rem;">
-                    <label>UMUR</label>
-                    <input type="number" id="memberAge" required style="width: 100%; padding: 0.5rem; border-radius: 40px; background: #0f0a1a; border: 1px solid #6b46a0; color: white;">
+                    <label style="color: #b77ee6;">UMUR</label>
+                    <input type="number" id="memberAge" required style="width: 100%; padding: 0.7rem; border-radius: 40px; background: #0f0a1a; border: 1px solid #6b46a0; color: white;">
                 </div>
                 <div class="form-group" style="margin-bottom: 1rem;">
-                    <label>NOMOR WHATSAPP</label>
-                    <input type="tel" id="memberWa" placeholder="+62xxx" required style="width: 100%; padding: 0.5rem; border-radius: 40px; background: #0f0a1a; border: 1px solid #6b46a0; color: white;">
+                    <label style="color: #b77ee6;">NOMOR WHATSAPP</label>
+                    <input type="tel" id="memberWa" placeholder="+62xxx" required style="width: 100%; padding: 0.7rem; border-radius: 40px; background: #0f0a1a; border: 1px solid #6b46a0; color: white;">
                 </div>
                 <div class="modal-actions" style="display: flex; gap: 1rem; margin-top: 1rem;">
-                    <button type="button" id="closeModalBtn" class="btn-cancel" style="flex:1; padding: 0.5rem; border-radius: 40px; background: #2a1a3e; border: 1px solid #6b46a0; color: #b77ee6;">BATAL</button>
-                    <button type="submit" class="btn-submit" style="flex:1; padding: 0.5rem; border-radius: 40px; background: linear-gradient(135deg,#6b46a0,#4a2a6e); color: white;">DAFTAR</button>
+                    <button type="button" id="closeModalBtn" style="flex:1; padding: 0.7rem; border-radius: 40px; background: #2a1a3e; border: 1px solid #6b46a0; color: #b77ee6; cursor: pointer;">BATAL</button>
+                    <button type="submit" style="flex:1; padding: 0.7rem; border-radius: 40px; background: linear-gradient(135deg,#6b46a0,#4a2a6e); color: white; border: none; cursor: pointer;">DAFTAR</button>
                 </div>
             </form>
         </div>
@@ -671,7 +901,68 @@
 
     <script src="config.js"></script>
     <script>
-        // Cek maintenance mode dari config.js
+        // ==================== PARTICLE SYSTEM ====================
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        let particles = [];
+        let particleCount = 80;
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        function createParticles() {
+            particles = [];
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 3 + 1.5,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.3,
+                    alpha: Math.random() * 0.5 + 0.2,
+                    color: `hsl(${260 + Math.random() * 40}, 70%, ${60 + Math.random() * 20}%)`
+                });
+            }
+        }
+        
+        function drawParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            for (let p of particles) {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = `rgba(156, 108, 214, 0.5)`;
+                ctx.fill();
+                
+                // Update position
+                p.x += p.vx;
+                p.y += p.vy;
+                
+                // Wrap around screen
+                if (p.x < 0) p.x = canvas.width;
+                if (p.x > canvas.width) p.x = 0;
+                if (p.y < 0) p.y = canvas.height;
+                if (p.y > canvas.height) p.y = 0;
+            }
+            ctx.shadowBlur = 0;
+            requestAnimationFrame(drawParticles);
+        }
+        
+        resizeCanvas();
+        createParticles();
+        drawParticles();
+        
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            createParticles();
+        });
+        
+        // ==================== MAIN FUNCTION ====================
         if (typeof CONFIG !== 'undefined' && CONFIG.maintenance_mode === true) {
             window.location.href = 'maintenance.html';
         }
@@ -680,19 +971,6 @@
         let currentFilter = "all";
         let searchQuery = "";
 
-        // Floating particles
-        for (let i = 0; i < 30; i++) {
-            let p = document.createElement('div');
-            p.classList.add('floating-particle');
-            p.style.width = (Math.random() * 6 + 2) + 'px';
-            p.style.height = p.style.width;
-            p.style.left = Math.random() * 100 + '%';
-            p.style.animationDuration = 8 + Math.random() * 15 + 's';
-            p.style.animationDelay = Math.random() * 15 + 's';
-            document.body.appendChild(p);
-        }
-
-        // Load products from config
         function loadProducts() {
             if (typeof PRODUCTS_DATA !== 'undefined') {
                 products = JSON.parse(JSON.stringify(PRODUCTS_DATA));
@@ -712,25 +990,24 @@
             });
             
             if (filtered.length === 0) {
-                grid.innerHTML = '<div class="loading" style="text-align:center;padding:2rem;">✨ Tidak ada produk ✨</div>';
+                grid.innerHTML = '<div style="text-align:center;padding:3rem;color:#b89fd9;">✨ Tidak ada produk ditemukan ✨</div>';
                 return;
             }
             
-            grid.innerHTML = filtered.map(p => `
-                <div class="product-card">
+            grid.innerHTML = filtered.map((p, idx) => `
+                <div class="product-card" style="animation-delay: ${idx * 0.05}s">
                     <div class="product-img">
                         <img src="${p.image}" onerror="this.src='https://placehold.co/420x420/2a1a3e/b77ee6?text=UG'">
                     </div>
                     <h3>${escapeHtml(p.name)}</h3>
                     <div class="product-desc">${escapeHtml(p.description || p.name)}</div>
                     <button class="btn-buy" onclick="buyNow(${p.id})">
-                        🛒 BELI SEKARANG
+                        <i class="fas fa-shopping-bag"></i> BELI SEKARANG
                     </button>
                 </div>
             `).join('');
         }
 
-        // Fungsi beli langsung - LANGSUNG KE LINK ROBLOX
         function buyNow(productId) {
             const product = products.find(p => p.id === productId);
             if (!product) {
@@ -740,7 +1017,7 @@
             
             if (product.link && product.link !== '#') {
                 window.open(product.link, '_blank');
-                showToast(`Membuka ${product.name} di Roblox...`);
+                showToast(`✨ Membuka ${product.name} di Roblox ✨`);
             } else {
                 showToast('Link produk tidak tersedia!');
             }
@@ -785,7 +1062,7 @@
                 <div class="team-role">${m.role}</div>
                 <div class="team-name">${m.name}</div>
                 <div class="team-title">${m.title}</div>
-                <button class="btn-profile" onclick="window.open('${m.profile}', '_blank')"><i class="fab fa-roblox"></i> Profile</button>
+                <button class="btn-profile" onclick="window.open('${m.profile}', '_blank')"><i class="fab fa-roblox"></i> View Profile</button>
             </div>
         `).join('');
 
@@ -806,20 +1083,20 @@
             const age = document.getElementById('memberAge').value;
             const wa = document.getElementById('memberWa').value;
             
-            if (!name || !gender || !age || !wa) return showToast('Lengkapi data!');
+            if (!name || !gender || !age || !wa) return showToast('Lengkapi semua data!');
             
             const subject = `[UTARA GARAGE] Pendaftaran Member - ${name}`;
-            const body = `✨ PENDAFTARAN MEMBER ✨\n\nNama: ${name}\nGender: ${gender}\nUmur: ${age}\nWA: ${wa}\nWaktu: ${new Date().toLocaleString()}`;
+            const body = `✨ PENDAFTARAN MEMBER UTARA GARAGE ✨\n\n📛 Nama: ${name}\n⚥ Gender: ${gender}\n🎂 Umur: ${age}\n📱 WA: ${wa}\n📅 Waktu: ${new Date().toLocaleString('id-ID')}\n\nTerima kasih telah mendaftar!`;
             
             window.location.href = `mailto:utaragarageofficial@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            showToast('Membuka Gmail...');
+            showToast('✨ Membuka Gmail... ✨');
             memberModal.classList.remove('active');
             e.target.reset();
         };
         
         window.copyEmail = () => {
             navigator.clipboard.writeText("utaragarageofficial@gmail.com");
-            showToast("Email disalin!");
+            showToast("📧 Email admin disalin!");
         };
         
         window.scrollToSection = (section) => {
