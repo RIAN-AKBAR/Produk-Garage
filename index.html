@@ -806,13 +806,30 @@
                     </div>
                     <h3>${escapeHtml(p.name)}</h3>
                     <div class="product-desc">${escapeHtml(p.description || p.name)}</div>
-                    <button class="btn-buy" onclick="addToCart(${p.id})">
+                    <button class="btn-buy" onclick="buyNow(${p.id})">
                         🛒 BELI SEKARANG
                     </button>
                 </div>
             `).join('');
         }
 
+        // Fungsi baru untuk beli langsung - LANGSUNG KE LINK ROBLOX
+        function buyNow(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) {
+                showToast('Produk tidak ditemukan!');
+                return;
+            }
+            
+            if (product.link && product.link !== '#') {
+                window.open(product.link, '_blank');
+                showToast(`Membuka ${product.name} di Roblox...`);
+            } else {
+                showToast('Link produk tidak tersedia!');
+            }
+        }
+
+        // Fungsi untuk add to cart (tetap dipertahankan untuk yang mau pakai keranjang)
         function addToCart(productId) {
             const product = products.find(p => p.id === productId);
             if (!product) {
@@ -907,20 +924,27 @@
                 return;
             }
             
-            // Tampilkan ringkasan pesanan
+            // Buka semua link produk di keranjang
             let message = "✅ PESANAN ANDA:\n\n";
             cart.forEach(item => {
                 message += `- ${item.name} (x${item.quantity})\n`;
             });
             message += `\n📦 Total Item: ${cart.reduce((sum, item) => sum + item.quantity, 0)}`;
-            message += `\n\nTerima kasih telah berbelanja di UTARA GARAGE!`;
+            message += `\n\nMembuka semua link produk di Roblox...`;
             
             alert(message);
+            
+            // Buka link setiap produk di tab baru
+            cart.forEach(item => {
+                if (item.link && item.link !== '#') {
+                    window.open(item.link, '_blank');
+                }
+            });
             
             cart = [];
             saveCart();
             closeCart();
-            showToast('✅ Pesanan berhasil! Terima kasih!');
+            showToast('✅ Terima kasih! Link produk telah dibuka.');
         }
 
         // Filter & Search
@@ -1003,6 +1027,7 @@
             document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
         };
         
+        window.buyNow = buyNow;
         window.addToCart = addToCart;
         window.updateQty = updateQty;
         window.removeItem = removeItem;
