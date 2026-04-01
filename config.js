@@ -51,7 +51,7 @@ const PRODUCTS_DATA = [
         "link": "https://www.roblox.com/catalog/108307125035213",
         "description": "Classic Pants",
         "image": "https://tr.rbxcdn.com/180DAY-6e4997899894bc638eb64dffc3f3d167/420/420/Pants/Webp/noFilter",
-        "category": "shirt",
+        "category": "celana",
         "stock": 500
     },
 ];
