@@ -45,4 +45,13 @@ const PRODUCTS_DATA = [
         "category": "shirt",
         "stock": 500
     },
+    {
+        "id": 5,
+        "name": "UG Custom Racing Suit - Purple Edition ( Pants )",
+        "link": "https://www.roblox.com/catalog/108307125035213",
+        "description": "Classic Pants",
+        "image": "https://tr.rbxcdn.com/180DAY-6e4997899894bc638eb64dffc3f3d167/420/420/Pants/Webp/noFilter",
+        "category": "shirt",
+        "stock": 500
+    },
 ];
