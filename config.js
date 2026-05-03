@@ -1,5 +1,5 @@
 const CONFIG = {
-    maintenance_mode: false
+    maintenance_mode: true
 };
 
 const PRODUCTS_DATA = [
