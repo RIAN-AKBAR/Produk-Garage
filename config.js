@@ -4,7 +4,7 @@
 // false = maintenance mode NONAKTIF (toko normal)
 
 const CONFIG = {
-    maintenance_mode: true  // Ganti jadi true untuk maintenance, false untuk normal
+    maintenance_mode: false  // Ganti jadi true untuk maintenance, false untuk normal
 };
 
 // Data Produk (bisa diedit langsung di sini)
@@ -53,5 +53,11 @@ const PRODUCTS_DATA = [
         "image": "https://tr.rbxcdn.com/180DAY-6e4997899894bc638eb64dffc3f3d167/420/420/Pants/Webp/noFilter",
         "category": "trousers",
         "stock": 500
-    },
+    }
 ];
+
+// Konfigurasi Event WhatsApp
+const EVENT_CONFIG = {
+    whatsapp_number: "6281234567890", // Ganti dengan nomor WhatsApp tujuan
+    message: "Assalamualaikum Bang Saya Mau Daftar Event"
+};
