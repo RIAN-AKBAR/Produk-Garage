@@ -1,13 +1,7 @@
-// ==================== KONFIGURASI GLOBAL ====================
-// Ganti nilai maintenance_mode menjadi true atau false
-// true = maintenance mode AKTIF (halaman maintenance yang tampil)
-// false = maintenance mode NONAKTIF (toko normal)
-
 const CONFIG = {
-    maintenance_mode: true  // Ganti jadi true untuk maintenance, false untuk normal
+    maintenance_mode: true
 };
 
-// Data Produk (bisa diedit langsung di sini)
 const PRODUCTS_DATA = [
     {
         "id": 1,
@@ -15,8 +9,7 @@ const PRODUCTS_DATA = [
         "link": "https://www.roblox.com/catalog/99896736437430",
         "description": "Premium racing suit dengan desain eksklusif",
         "image": "https://tr.rbxcdn.com/180DAY-0395f3bbeea9affd57289b87157e7c79/420/420/Shirt/Webp/noFilter",
-        "category": "shirt",
-        "stock": 500
+        "category": "shirt"
     },
     {
         "id": 2,
@@ -56,8 +49,7 @@ const PRODUCTS_DATA = [
     }
 ];
 
-// Konfigurasi Event WhatsApp
 const EVENT_CONFIG = {
-    whatsapp_number: "6281234567890", // Ganti dengan nomor WhatsApp tujuan
+    whatsapp_number: "6281234567890",
     message: "Assalamualaikum Bang Saya Mau Daftar Event"
 };
