@@ -1,5 +1,5 @@
 const CONFIG = {
-    maintenance_mode: true
+    maintenance_mode: false
 };
 
 const PRODUCTS_DATA = [
@@ -50,6 +50,6 @@ const PRODUCTS_DATA = [
 ];
 
 const EVENT_CONFIG = {
-    whatsapp_number: "6281234567890",
+    whatsapp_number: "6288230552638",
     message: "Assalamualaikum Bang Saya Mau Daftar Event"
 };
