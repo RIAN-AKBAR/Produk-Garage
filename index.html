@@ -197,6 +197,12 @@
         .social-links span { font-size: 0.8rem; }
         .copyright { color: #b89fd9; font-size: 0.65rem; }
 
+        .btn-disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
         @media (max-width: 768px) {
             .container { padding: 0 1rem; }
             .nav-container { flex-direction: column; }
@@ -232,7 +238,7 @@
         </div>
     </div>
 
-    <div class="container" id="mainContent">
+    <div class="container">
         <div class="brand" id="home">
             <div class="logo"><h1>UTARA GARAGE</h1><p>✦ ESTHETIC COLLECTION ✦ PURPLE DREAM ✦</p></div>
             <div class="tagline"><i class="fas fa-star"></i> SOFT AESTHETIC <i class="fas fa-moon"></i> PURPLE VIBE</div>
@@ -310,14 +316,12 @@
 
     <div id="toastMsg" class="toast-msg"></div>
 
-    <script src="config.js"></script>
     <script>
-        // ==================== MAINTENANCE MODE CHECK ====================
+             // ==================== MAINTENANCE MODE CHECK ====================
         if (typeof CONFIG !== 'undefined' && CONFIG.maintenance_mode === true) {
             // Redirect ke maintenance.html
             window.location.href = 'maintenance.html';
         }
-
         // ==================== DATA PRODUK ====================
         const PRODUCTS_DATA = [
             { id: 1, name: "Purple Dream Hoodie", category: "jacket", description: "Hoodie estetik warna ungu dengan emboss logo", image: "https://placehold.co/420x420/2a1a3e/b77ee6?text=Hoodie", link: "#" },
@@ -331,7 +335,6 @@
         const ctx = canvas.getContext('2d');
         let particles = [];
         let particleCount = 80;
-        
         function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         function createParticles() {
             particles = [];
@@ -357,10 +360,7 @@
             ctx.shadowBlur = 0;
             requestAnimationFrame(drawParticles);
         }
-        
-        resizeCanvas(); 
-        createParticles(); 
-        drawParticles();
+        resizeCanvas(); createParticles(); drawParticles();
         window.addEventListener('resize', () => { resizeCanvas(); createParticles(); });
 
         // ==================== FITUR PERINGATAN UMUR < 15 ====================
@@ -388,6 +388,7 @@
         ageInput.addEventListener('input', checkAge);
         ageInput.addEventListener('change', checkAge);
 
+        // Reset saat modal ditutup
         function resetFormAndWarning() {
             document.getElementById('memberForm').reset();
             warningDiv.style.display = 'none';
@@ -397,11 +398,13 @@
             submitBtn.style.pointerEvents = 'auto';
         }
 
+        // Tombol daftar member
         document.getElementById('memberBtn').onclick = () => {
             resetFormAndWarning();
             document.getElementById('memberModal').classList.add('active');
         };
 
+        // Submit form (hanya bisa jika umur >= 15)
         document.getElementById('memberForm').onsubmit = (e) => {
             e.preventDefault();
             const age = parseInt(ageInput.value, 10);
@@ -446,16 +449,7 @@
             if (!product) { showToast('Produk tidak ditemukan!'); return; }
             if (product.link && product.link !== '#') { window.open(product.link, '_blank'); showToast(`✨ Membuka ${product.name} di Roblox ✨`); } else { showToast('Link produk tidak tersedia!'); }
         };
-        
-        document.querySelectorAll('.filter-btn').forEach(btn => { 
-            btn.addEventListener('click', () => { 
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); 
-                btn.classList.add('active'); 
-                currentFilter = btn.dataset.filter; 
-                renderProducts(); 
-            }); 
-        });
-        
+        document.querySelectorAll('.filter-btn').forEach(btn => { btn.addEventListener('click', () => { document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); currentFilter = btn.dataset.filter; renderProducts(); }); });
         document.getElementById('searchBtn').addEventListener('click', () => { searchQuery = document.getElementById('searchInput').value; renderProducts(); });
         document.getElementById('searchInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') { searchQuery = e.target.value; renderProducts(); } });
 
@@ -467,19 +461,17 @@
             { name: "Alexander", role: "ADMIN", title: "Donatur & Support", profile: "https://www.roblox.com/users/8610088002/profile", photo: "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-A1252E3A4A8C8AF2D881F0DC530874E1-Png/150/150/AvatarHeadshot/Webp/noFilter" },
             { name: "NAVAA", role: "ADMIN", title: "Contributor", profile: "https://www.roblox.com/users/2617253374/profile", photo: "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-90C3CEC8A71411A516626437E6BB1F67-Png/150/150/AvatarHeadshot/Webp/noFilter" }
         ];
-        
         document.getElementById('teamGrid').innerHTML = team.map(m => `<div class="team-card"><div class="team-avatar"><img src="${m.photo}" onerror="this.src='https://placehold.co/100x100/2a1a3e/b77ee6?text=${m.name.charAt(0)}'"></div><div class="team-role">${m.role}</div><div class="team-name">${m.name}</div><div class="team-title">${m.title}</div><button class="btn-profile" onclick="window.open('${m.profile}', '_blank')"><i class="fab fa-roblox"></i> View Profile</button></div>`).join('');
 
         document.getElementById('closeModalBtn').onclick = () => { document.getElementById('memberModal').classList.remove('active'); resetFormAndWarning(); };
-        const modalOverlay = document.getElementById('memberModal');
         modalOverlay.onclick = (e) => { if (e.target === modalOverlay) { modalOverlay.classList.remove('active'); resetFormAndWarning(); } };
         document.getElementById('tutorialBtn').onclick = () => { document.getElementById('tutorialSection').scrollIntoView({ behavior: 'smooth' }); };
         window.copyEmail = () => { navigator.clipboard.writeText("utaragarageofficial@gmail.com"); showToast("📧 Email admin disalin!"); };
         window.scrollToSection = (section) => { document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' }); };
-        
         function escapeHtml(str) { if (!str) return ""; return str.replace(/[&<>]/g, function(m) { if (m === '&') return '&amp;'; if (m === '<') return '&lt;'; if (m === '>') return '&gt;'; return m; }); }
         function showToast(msg) { const toast = document.getElementById('toastMsg'); toast.textContent = msg; toast.style.opacity = '1'; setTimeout(() => toast.style.opacity = '0', 3000); }
         
+        const modalOverlay = document.getElementById('memberModal');
         loadProducts();
     </script>
 </body>
