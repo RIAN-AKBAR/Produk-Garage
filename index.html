@@ -153,7 +153,19 @@
             text-align: center;
         }
         .event-block:hover { border-color: #b77ee6; box-shadow: 0 10px 30px rgba(107, 70, 160, 0.2); }
-        .event-icon { font-size: 3rem; color: #b77ee6; margin-bottom: 1rem; }
+        .event-logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        .event-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px rgba(183, 126, 230, 0.5));
+        }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
         .event-block h2 { font-family: 'Playfair Display', serif; color: #b77ee6; font-size: 1.8rem; margin-bottom: 0.5rem; }
         .event-block p { color: #b89fd9; margin-bottom: 1.5rem; }
         .btn-event { background: linear-gradient(135deg, #25D366, #128C7E); border: none; padding: 1rem 2rem; border-radius: 50px; color: white; cursor: pointer; transition: 0.3s; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; font-size: 1.1rem; }
@@ -166,6 +178,7 @@
         .team-avatar img { width: 100%; height: 100%; object-fit: cover; }
         .team-role { background: rgba(156, 108, 214, 0.25); display: inline-block; padding: 0.2rem 0.8rem; border-radius: 30px; font-size: 0.7rem; color: #b77ee6; margin-bottom: 0.5rem; }
         .team-name { font-size: 1.1rem; font-weight: 700; margin: 0.5rem 0; }
+        .team-title { font-size: 0.8rem; color: #b89fd9; }
         .btn-profile { background: transparent; border: 1.5px solid #9c6cd6; border-radius: 40px; padding: 0.5rem 1rem; color: #b77ee6; cursor: pointer; transition: 0.3s; margin-top: 0.5rem; }
         .btn-profile:hover { background: #9c6cd6; color: #0a0a0f; }
 
@@ -226,10 +239,10 @@
             <div class="tagline"><i class="fas fa-star"></i> SOFT AESTHETIC <i class="fas fa-moon"></i> PURPLE VIBE</div>
         </div>
 
-        <!-- EVENT BLOCK - Menggantikan Member Block -->
+        <!-- EVENT BLOCK dengan logo.png -->
         <div class="event-block">
-            <div class="event-icon">
-                <i class="fas fa-calendar-alt"></i>
+            <div class="event-logo">
+                <img src="logo.png" alt="UTARA GARAGE" onerror="this.src='https://placehold.co/100x100/6b46a0/b77ee6?text=UG'">
             </div>
             <h2>✦ DAFTAR EVENT ✦</h2>
             <p>Ikuti event seru dari UTARA GARAGE! Dapatkan hadiah menarik dan merchandise eksklusif</p>
@@ -289,7 +302,7 @@
 
         // ==================== EVENT WHATSAPP ====================
         function openWhatsApp() {
-            let phoneNumber = "6281234567890"; // default
+            let phoneNumber = "6281234567890";
             let message = "Assalamualaikum Bang Saya Mau Daftar Event";
             
             if (typeof EVENT_CONFIG !== 'undefined') {
@@ -304,7 +317,10 @@
         }
 
         // Event listener untuk tombol event
-        document.getElementById('eventBtn').addEventListener('click', openWhatsApp);
+        const eventBtn = document.getElementById('eventBtn');
+        if (eventBtn) {
+            eventBtn.addEventListener('click', openWhatsApp);
+        }
 
         // ==================== PARTICLE SYSTEM ====================
         const canvas = document.getElementById('particleCanvas');
@@ -349,19 +365,24 @@
         let searchQuery = "";
 
         function loadProducts() {
-            if (typeof PRODUCTS_DATA !== 'undefined') {
+            if (typeof PRODUCTS_DATA !== 'undefined' && PRODUCTS_DATA.length > 0) {
                 products = JSON.parse(JSON.stringify(PRODUCTS_DATA));
+                console.log('Products loaded:', products.length);
                 renderProducts();
             } else {
-                console.error('PRODUCTS_DATA not found');
-                products = [];
-                renderProducts();
+                console.error('PRODUCTS_DATA not found or empty');
+                const grid = document.getElementById('productGrid');
+                if (grid) {
+                    grid.innerHTML = '<div style="text-align:center;padding:3rem;color:#b89fd9;">✨ Produk akan segera hadir ✨</div>';
+                }
             }
         }
         
         function renderProducts() {
             const grid = document.getElementById('productGrid');
-            if (!products.length) {
+            if (!grid) return;
+            
+            if (!products || products.length === 0) {
                 grid.innerHTML = '<div style="text-align:center;padding:3rem;color:#b89fd9;">✨ Tidak ada produk ditemukan ✨</div>';
                 return;
             }
@@ -406,28 +427,36 @@
         };
 
         // Filter & Search
-        document.querySelectorAll('.filter-btn').forEach(btn => {
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 currentFilter = btn.dataset.filter;
                 renderProducts();
             });
         });
         
-        document.getElementById('searchBtn').addEventListener('click', () => {
-            searchQuery = document.getElementById('searchInput').value;
-            renderProducts();
-        });
+        const searchBtn = document.getElementById('searchBtn');
+        const searchInput = document.getElementById('searchInput');
         
-        document.getElementById('searchInput').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                searchQuery = e.target.value;
+        if (searchBtn) {
+            searchBtn.addEventListener('click', () => {
+                searchQuery = searchInput.value;
                 renderProducts();
-            }
-        });
+            });
+        }
+        
+        if (searchInput) {
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    searchQuery = e.target.value;
+                    renderProducts();
+                }
+            });
+        }
 
-        // Team data (tetap hardcode karena data tim)
+        // Team data
         const team = [
             { name: "BRIAN", role: "OWNER", title: "Founder & Creative Director", profile: "https://www.roblox.com/users/3624054708/profile", photo: "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-1E6F2F7197750D011DB7AC78A24FD707-Png/150/150/AvatarHeadshot/Webp/noFilter" },
             { name: "RYAN", role: "PARTNER", title: "Web Developer", profile: "https://www.roblox.com/users/1210293463/profile", photo: "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-A47999B915DF81863CAB7A71ABFC4875-Png/150/150/AvatarHeadshot/Webp/noFilter" },
@@ -437,19 +466,25 @@
             { name: "NAVAA", role: "ADMIN", title: "Contributor", profile: "https://www.roblox.com/users/2617253374/profile", photo: "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-90C3CEC8A71411A516626437E6BB1F67-Png/150/150/AvatarHeadshot/Webp/noFilter" }
         ];
         
-        document.getElementById('teamGrid').innerHTML = team.map(m => `
-            <div class="team-card">
-                <div class="team-avatar"><img src="${m.photo}" onerror="this.src='https://placehold.co/100x100/2a1a3e/b77ee6?text=${m.name.charAt(0)}'"></div>
-                <div class="team-role">${m.role}</div>
-                <div class="team-name">${m.name}</div>
-                <div class="team-title">${m.title}</div>
-                <button class="btn-profile" onclick="window.open('${m.profile}', '_blank')"><i class="fab fa-roblox"></i> View Profile</button>
-            </div>
-        `).join('');
+        const teamGrid = document.getElementById('teamGrid');
+        if (teamGrid) {
+            teamGrid.innerHTML = team.map(m => `
+                <div class="team-card">
+                    <div class="team-avatar"><img src="${m.photo}" onerror="this.src='https://placehold.co/100x100/2a1a3e/b77ee6?text=${m.name.charAt(0)}'"></div>
+                    <div class="team-role">${m.role}</div>
+                    <div class="team-name">${m.name}</div>
+                    <div class="team-title">${m.title}</div>
+                    <button class="btn-profile" onclick="window.open('${m.profile}', '_blank')"><i class="fab fa-roblox"></i> View Profile</button>
+                </div>
+            `).join('');
+        }
 
-        document.getElementById('tutorialBtn').onclick = () => {
-            document.getElementById('tutorialSection').scrollIntoView({ behavior: 'smooth' });
-        };
+        const tutorialBtn = document.getElementById('tutorialBtn');
+        if (tutorialBtn) {
+            tutorialBtn.onclick = () => {
+                document.getElementById('tutorialSection').scrollIntoView({ behavior: 'smooth' });
+            };
+        }
         
         window.copyEmail = () => {
             navigator.clipboard.writeText("utaragarageofficial@gmail.com");
@@ -457,7 +492,10 @@
         };
         
         window.scrollToSection = (section) => {
-            document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
+            const element = document.getElementById(section);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
         };
         
         function escapeHtml(str) {
@@ -472,13 +510,17 @@
         
         function showToast(msg) {
             const toast = document.getElementById('toastMsg');
-            toast.textContent = msg;
-            toast.style.opacity = '1';
-            setTimeout(() => toast.style.opacity = '0', 3000);
+            if (toast) {
+                toast.textContent = msg;
+                toast.style.opacity = '1';
+                setTimeout(() => toast.style.opacity = '0', 3000);
+            }
         }
         
-        // Load products
-        loadProducts();
+        // Load products setelah config.js terload
+        setTimeout(() => {
+            loadProducts();
+        }, 100);
     </script>
 </body>
 </html>
