@@ -69,6 +69,77 @@
             z-index: 2;
         }
 
+        /* Maintenance Page Style */
+        .maintenance-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f0718 0%, #1a0f2a 50%, #0b0518 100%);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .maintenance-card {
+            background: rgba(15, 10, 25, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 48px;
+            padding: 3rem 2rem;
+            text-align: center;
+            border: 1px solid rgba(156, 108, 214, 0.5);
+            max-width: 500px;
+            margin: 1rem;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .maintenance-card i {
+            font-size: 5rem;
+            color: #b77ee6;
+            margin-bottom: 1rem;
+        }
+
+        .maintenance-card h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #d4c0ff, #b77ee6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .maintenance-card p {
+            color: #b89fd9;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(156, 108, 214, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 1.5rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #6b46a0, #b77ee6);
+            border-radius: 10px;
+            animation: loading 2s ease-in-out infinite;
+        }
+
+        @keyframes loading {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+
         .top-nav {
             background: rgba(15, 7, 24, 0.7);
             backdrop-filter: blur(20px);
@@ -197,12 +268,6 @@
         .social-links span { font-size: 0.8rem; }
         .copyright { color: #b89fd9; font-size: 0.65rem; }
 
-        .btn-disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-
         @media (max-width: 768px) {
             .container { padding: 0 1rem; }
             .nav-container { flex-direction: column; }
@@ -217,6 +282,8 @@
     </style>
 </head>
 <body>
+    <!-- Maintenance Mode akan dimasukkan oleh JS jika diperlukan -->
+    
     <canvas id="particleCanvas"></canvas>
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
@@ -238,7 +305,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container" id="mainContent">
         <div class="brand" id="home">
             <div class="logo"><h1>UTARA GARAGE</h1><p>✦ ESTHETIC COLLECTION ✦ PURPLE DREAM ✦</p></div>
             <div class="tagline"><i class="fas fa-star"></i> SOFT AESTHETIC <i class="fas fa-moon"></i> PURPLE VIBE</div>
@@ -316,7 +383,46 @@
 
     <div id="toastMsg" class="toast-msg"></div>
 
+    <script src="config.js"></script>
     <script>
+        // ==================== MAINTENANCE MODE CHECK ====================
+        function checkMaintenance() {
+            if (typeof CONFIG !== 'undefined' && CONFIG.maintenance_mode === true) {
+                // Sembunyikan konten utama
+                const mainContent = document.getElementById('mainContent');
+                const topNav = document.querySelector('.top-nav');
+                const footer = document.querySelector('footer');
+                
+                if (mainContent) mainContent.style.display = 'none';
+                if (topNav) topNav.style.display = 'none';
+                if (footer) footer.style.display = 'none';
+                
+                // Tampilkan halaman maintenance
+                const maintenanceHTML = `
+                    <div class="maintenance-wrapper" id="maintenanceWrapper">
+                        <div class="maintenance-card">
+                            <i class="fas fa-tools"></i>
+                            <h1>✦ MAINTENANCE MODE ✦</h1>
+                            <p>UTARA GARAGE sedang dalam masa pemeliharaan.<br>Kami akan segera kembali dengan koleksi terbaru!</p>
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <p><i class="fas fa-clock"></i> Mohon tunggu, sedang melakukan perbaikan sistem</p>
+                            <p style="font-size: 0.8rem; margin-top: 1rem;">✨ Follow sosial media kami untuk info update ✨</p>
+                            <div class="social-links" style="margin-top: 1rem;">
+                                <a href="https://whatsapp.com/channel/0029VbCEmlcL2ATqlP5QNf2S" target="_blank" style="color: #b77ee6;"><i class="fab fa-whatsapp"></i> <span>WhatsApp</span></a>
+                                <a href="https://tiktok.com/@utara_garage" target="_blank" style="color: #b77ee6;"><i class="fab fa-tiktok"></i> <span>TikTok</span></a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.insertAdjacentHTML('beforeend', maintenanceHTML);
+                return true;
+            }
+            return false;
+        }
+
         // ==================== DATA PRODUK ====================
         const PRODUCTS_DATA = [
             { id: 1, name: "Purple Dream Hoodie", category: "jacket", description: "Hoodie estetik warna ungu dengan emboss logo", image: "https://placehold.co/420x420/2a1a3e/b77ee6?text=Hoodie", link: "#" },
@@ -330,6 +436,7 @@
         const ctx = canvas.getContext('2d');
         let particles = [];
         let particleCount = 80;
+        
         function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         function createParticles() {
             particles = [];
@@ -338,6 +445,7 @@
             }
         }
         function drawParticles() {
+            if (document.getElementById('maintenanceWrapper')) return;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             for (let p of particles) {
                 ctx.beginPath();
@@ -355,119 +463,136 @@
             ctx.shadowBlur = 0;
             requestAnimationFrame(drawParticles);
         }
-        resizeCanvas(); createParticles(); drawParticles();
-        window.addEventListener('resize', () => { resizeCanvas(); createParticles(); });
+        
+        // Cek maintenance sebelum menjalankan apapun
+        const isMaintenance = checkMaintenance();
+        
+        if (!isMaintenance) {
+            // Jalankan semua fitur normal
+            resizeCanvas(); 
+            createParticles(); 
+            drawParticles();
+            window.addEventListener('resize', () => { resizeCanvas(); createParticles(); });
 
-        // ==================== FITUR PERINGATAN UMUR < 15 ====================
-        const ageInput = document.getElementById('memberAge');
-        const submitBtn = document.getElementById('submitDaftar');
-        const warningDiv = document.getElementById('ageWarning');
+            // ==================== FITUR PERINGATAN UMUR < 15 ====================
+            const ageInput = document.getElementById('memberAge');
+            const submitBtn = document.getElementById('submitDaftar');
+            const warningDiv = document.getElementById('ageWarning');
 
-        function checkAge() {
-            const age = parseInt(ageInput.value, 10);
-            if (!isNaN(age) && age < 15) {
-                warningDiv.style.display = 'block';
-                submitBtn.disabled = true;
-                submitBtn.style.opacity = '0.5';
-                submitBtn.style.cursor = 'not-allowed';
-                submitBtn.style.pointerEvents = 'none';
-            } else {
+            function checkAge() {
+                const age = parseInt(ageInput.value, 10);
+                if (!isNaN(age) && age < 15) {
+                    warningDiv.style.display = 'block';
+                    submitBtn.disabled = true;
+                    submitBtn.style.opacity = '0.5';
+                    submitBtn.style.cursor = 'not-allowed';
+                    submitBtn.style.pointerEvents = 'none';
+                } else {
+                    warningDiv.style.display = 'none';
+                    submitBtn.disabled = false;
+                    submitBtn.style.opacity = '1';
+                    submitBtn.style.cursor = 'pointer';
+                    submitBtn.style.pointerEvents = 'auto';
+                }
+            }
+
+            ageInput.addEventListener('input', checkAge);
+            ageInput.addEventListener('change', checkAge);
+
+            function resetFormAndWarning() {
+                document.getElementById('memberForm').reset();
                 warningDiv.style.display = 'none';
                 submitBtn.disabled = false;
                 submitBtn.style.opacity = '1';
                 submitBtn.style.cursor = 'pointer';
                 submitBtn.style.pointerEvents = 'auto';
             }
-        }
 
-        ageInput.addEventListener('input', checkAge);
-        ageInput.addEventListener('change', checkAge);
+            document.getElementById('memberBtn').onclick = () => {
+                resetFormAndWarning();
+                document.getElementById('memberModal').classList.add('active');
+            };
 
-        // Reset saat modal ditutup
-        function resetFormAndWarning() {
-            document.getElementById('memberForm').reset();
-            warningDiv.style.display = 'none';
-            submitBtn.disabled = false;
-            submitBtn.style.opacity = '1';
-            submitBtn.style.cursor = 'pointer';
-            submitBtn.style.pointerEvents = 'auto';
-        }
+            document.getElementById('memberForm').onsubmit = (e) => {
+                e.preventDefault();
+                const age = parseInt(ageInput.value, 10);
+                
+                if (isNaN(age) || age < 15) {
+                    showToast('⚠️ Usia harus 15 tahun ke atas untuk mendaftar!');
+                    return;
+                }
+                
+                const name = document.getElementById('memberName').value;
+                const gender = document.getElementById('memberGender').value;
+                const wa = document.getElementById('memberWa').value;
+                
+                if (!name || !gender || !wa) {
+                    showToast('Lengkapi semua data!');
+                    return;
+                }
+                
+                const subject = `[UTARA GARAGE] Pendaftaran Member - ${name}`;
+                const body = `✨ PENDAFTARAN MEMBER UTARA GARAGE ✨\n\n📛 Nama: ${name}\n⚥ Gender: ${gender}\n🎂 Umur: ${age}\n📱 WA: ${wa}\n📅 Waktu: ${new Date().toLocaleString('id-ID')}\n\nTerima kasih telah mendaftar!`;
+                
+                window.location.href = `mailto:utaragarageofficial@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                showToast('✨ Membuka Gmail... ✨');
+                document.getElementById('memberModal').classList.remove('active');
+                resetFormAndWarning();
+            };
 
-        // Tombol daftar member
-        document.getElementById('memberBtn').onclick = () => {
-            resetFormAndWarning();
-            document.getElementById('memberModal').classList.add('active');
-        };
+            // ==================== FUNGSI LAINNYA ====================
+            let products = [];
+            let currentFilter = "all";
+            let searchQuery = "";
 
-        // Submit form (hanya bisa jika umur >= 15)
-        document.getElementById('memberForm').onsubmit = (e) => {
-            e.preventDefault();
-            const age = parseInt(ageInput.value, 10);
-            
-            if (isNaN(age) || age < 15) {
-                showToast('⚠️ Usia harus 15 tahun ke atas untuk mendaftar!');
-                return;
+            function loadProducts() { products = JSON.parse(JSON.stringify(PRODUCTS_DATA)); renderProducts(); }
+            function renderProducts() {
+                const grid = document.getElementById('productGrid');
+                let filtered = products.filter(p => { if (currentFilter !== "all" && p.category !== currentFilter) return false; if (searchQuery && !p.name.toLowerCase().includes(searchQuery.toLowerCase())) return false; return true; });
+                if (filtered.length === 0) { grid.innerHTML = '<div style="text-align:center;padding:3rem;color:#b89fd9;">✨ Tidak ada produk ditemukan ✨</div>'; return; }
+                grid.innerHTML = filtered.map((p, idx) => `<div class="product-card" style="animation-delay: ${idx * 0.05}s"><div class="product-img"><img src="${p.image}" onerror="this.src='https://placehold.co/420x420/2a1a3e/b77ee6?text=UG'"></div><h3>${escapeHtml(p.name)}</h3><div class="product-desc">${escapeHtml(p.description || p.name)}</div><button class="btn-buy" onclick="buyNow(${p.id})"><i class="fas fa-shopping-bag"></i> BELI SEKARANG</button></div>`).join('');
             }
+            window.buyNow = function(productId) {
+                const product = products.find(p => p.id === productId);
+                if (!product) { showToast('Produk tidak ditemukan!'); return; }
+                if (product.link && product.link !== '#') { window.open(product.link, '_blank'); showToast(`✨ Membuka ${product.name} di Roblox ✨`); } else { showToast('Link produk tidak tersedia!'); }
+            };
             
-            const name = document.getElementById('memberName').value;
-            const gender = document.getElementById('memberGender').value;
-            const wa = document.getElementById('memberWa').value;
+            document.querySelectorAll('.filter-btn').forEach(btn => { 
+                btn.addEventListener('click', () => { 
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); 
+                    btn.classList.add('active'); 
+                    currentFilter = btn.dataset.filter; 
+                    renderProducts(); 
+                }); 
+            });
             
-            if (!name || !gender || !wa) {
-                showToast('Lengkapi semua data!');
-                return;
-            }
-            
-            const subject = `[UTARA GARAGE] Pendaftaran Member - ${name}`;
-            const body = `✨ PENDAFTARAN MEMBER UTARA GARAGE ✨\n\n📛 Nama: ${name}\n⚥ Gender: ${gender}\n🎂 Umur: ${age}\n📱 WA: ${wa}\n📅 Waktu: ${new Date().toLocaleString('id-ID')}\n\nTerima kasih telah mendaftar!`;
-            
-            window.location.href = `mailto:utaragarageofficial@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            showToast('✨ Membuka Gmail... ✨');
-            document.getElementById('memberModal').classList.remove('active');
-            resetFormAndWarning();
-        };
+            document.getElementById('searchBtn').addEventListener('click', () => { searchQuery = document.getElementById('searchInput').value; renderProducts(); });
+            document.getElementById('searchInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') { searchQuery = e.target.value; renderProducts(); } });
 
-        // ==================== FUNGSI LAINNYA ====================
-        let products = [];
-        let currentFilter = "all";
-        let searchQuery = "";
+            const team = [
+                { name: "BRIAN", role: "OWNER", title: "Founder & Creative Director", profile: "https://www.roblox.com/users/3624054708/profile", photo: "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-1E6F2F7197750D011DB7AC78A24FD707-Png/150/150/AvatarHeadshot/Webp/noFilter" },
+                { name: "RYAN", role: "PARTNER", title: "Web Developer", profile: "https://www.roblox.com/users/1210293463/profile", photo: "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-A47999B915DF81863CAB7A71ABFC4875-Png/150/150/AvatarHeadshot/Webp/noFilter" },
+                { name: "DAVIDD", role: "ADMIN", title: "Contributor", profile: "https://www.roblox.com/users/9925671622/profile", photo: "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-1F01A40F02D4A323D4AB9BE9F78DECD5-Png/150/150/AvatarHeadshot/Webp/noFilter" },
+                { name: "TON", role: "ADMIN", title: "Donatur & Support", profile: "https://www.roblox.com/users/1574004264/profile", photo: "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-414E9E9FB1F41CC4DCD349336E113F6E-Png/150/150/AvatarHeadshot/Webp/noFilter" },
+                { name: "Alexander", role: "ADMIN", title: "Donatur & Support", profile: "https://www.roblox.com/users/8610088002/profile", photo: "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-A1252E3A4A8C8AF2D881F0DC530874E1-Png/150/150/AvatarHeadshot/Webp/noFilter" },
+                { name: "NAVAA", role: "ADMIN", title: "Contributor", profile: "https://www.roblox.com/users/2617253374/profile", photo: "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-90C3CEC8A71411A516626437E6BB1F67-Png/150/150/AvatarHeadshot/Webp/noFilter" }
+            ];
+            
+            document.getElementById('teamGrid').innerHTML = team.map(m => `<div class="team-card"><div class="team-avatar"><img src="${m.photo}" onerror="this.src='https://placehold.co/100x100/2a1a3e/b77ee6?text=${m.name.charAt(0)}'"></div><div class="team-role">${m.role}</div><div class="team-name">${m.name}</div><div class="team-title">${m.title}</div><button class="btn-profile" onclick="window.open('${m.profile}', '_blank')"><i class="fab fa-roblox"></i> View Profile</button></div>`).join('');
 
-        function loadProducts() { products = JSON.parse(JSON.stringify(PRODUCTS_DATA)); renderProducts(); }
-        function renderProducts() {
-            const grid = document.getElementById('productGrid');
-            let filtered = products.filter(p => { if (currentFilter !== "all" && p.category !== currentFilter) return false; if (searchQuery && !p.name.toLowerCase().includes(searchQuery.toLowerCase())) return false; return true; });
-            if (filtered.length === 0) { grid.innerHTML = '<div style="text-align:center;padding:3rem;color:#b89fd9;">✨ Tidak ada produk ditemukan ✨</div>'; return; }
-            grid.innerHTML = filtered.map((p, idx) => `<div class="product-card" style="animation-delay: ${idx * 0.05}s"><div class="product-img"><img src="${p.image}" onerror="this.src='https://placehold.co/420x420/2a1a3e/b77ee6?text=UG'"></div><h3>${escapeHtml(p.name)}</h3><div class="product-desc">${escapeHtml(p.description || p.name)}</div><button class="btn-buy" onclick="buyNow(${p.id})"><i class="fas fa-shopping-bag"></i> BELI SEKARANG</button></div>`).join('');
+            document.getElementById('closeModalBtn').onclick = () => { document.getElementById('memberModal').classList.remove('active'); resetFormAndWarning(); };
+            const modalOverlay = document.getElementById('memberModal');
+            modalOverlay.onclick = (e) => { if (e.target === modalOverlay) { modalOverlay.classList.remove('active'); resetFormAndWarning(); } };
+            document.getElementById('tutorialBtn').onclick = () => { document.getElementById('tutorialSection').scrollIntoView({ behavior: 'smooth' }); };
+            window.copyEmail = () => { navigator.clipboard.writeText("utaragarageofficial@gmail.com"); showToast("📧 Email admin disalin!"); };
+            window.scrollToSection = (section) => { document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' }); };
+            
+            function escapeHtml(str) { if (!str) return ""; return str.replace(/[&<>]/g, function(m) { if (m === '&') return '&amp;'; if (m === '<') return '&lt;'; if (m === '>') return '&gt;'; return m; }); }
+            function showToast(msg) { const toast = document.getElementById('toastMsg'); toast.textContent = msg; toast.style.opacity = '1'; setTimeout(() => toast.style.opacity = '0', 3000); }
+            
+            loadProducts();
         }
-        window.buyNow = function(productId) {
-            const product = products.find(p => p.id === productId);
-            if (!product) { showToast('Produk tidak ditemukan!'); return; }
-            if (product.link && product.link !== '#') { window.open(product.link, '_blank'); showToast(`✨ Membuka ${product.name} di Roblox ✨`); } else { showToast('Link produk tidak tersedia!'); }
-        };
-        document.querySelectorAll('.filter-btn').forEach(btn => { btn.addEventListener('click', () => { document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); currentFilter = btn.dataset.filter; renderProducts(); }); });
-        document.getElementById('searchBtn').addEventListener('click', () => { searchQuery = document.getElementById('searchInput').value; renderProducts(); });
-        document.getElementById('searchInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') { searchQuery = e.target.value; renderProducts(); } });
-
-        const team = [
-            { name: "BRIAN", role: "OWNER", title: "Founder & Creative Director", profile: "https://www.roblox.com/users/3624054708/profile", photo: "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-1E6F2F7197750D011DB7AC78A24FD707-Png/150/150/AvatarHeadshot/Webp/noFilter" },
-            { name: "RYAN", role: "PARTNER", title: "Web Developer", profile: "https://www.roblox.com/users/1210293463/profile", photo: "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-A47999B915DF81863CAB7A71ABFC4875-Png/150/150/AvatarHeadshot/Webp/noFilter" },
-            { name: "DAVIDD", role: "ADMIN", title: "Contributor", profile: "https://www.roblox.com/users/9925671622/profile", photo: "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-1F01A40F02D4A323D4AB9BE9F78DECD5-Png/150/150/AvatarHeadshot/Webp/noFilter" },
-            { name: "TON", role: "ADMIN", title: "Donatur & Support", profile: "https://www.roblox.com/users/1574004264/profile", photo: "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-414E9E9FB1F41CC4DCD349336E113F6E-Png/150/150/AvatarHeadshot/Webp/noFilter" },
-            { name: "Alexander", role: "ADMIN", title: "Donatur & Support", profile: "https://www.roblox.com/users/8610088002/profile", photo: "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-A1252E3A4A8C8AF2D881F0DC530874E1-Png/150/150/AvatarHeadshot/Webp/noFilter" },
-            { name: "NAVAA", role: "ADMIN", title: "Contributor", profile: "https://www.roblox.com/users/2617253374/profile", photo: "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-90C3CEC8A71411A516626437E6BB1F67-Png/150/150/AvatarHeadshot/Webp/noFilter" }
-        ];
-        document.getElementById('teamGrid').innerHTML = team.map(m => `<div class="team-card"><div class="team-avatar"><img src="${m.photo}" onerror="this.src='https://placehold.co/100x100/2a1a3e/b77ee6?text=${m.name.charAt(0)}'"></div><div class="team-role">${m.role}</div><div class="team-name">${m.name}</div><div class="team-title">${m.title}</div><button class="btn-profile" onclick="window.open('${m.profile}', '_blank')"><i class="fab fa-roblox"></i> View Profile</button></div>`).join('');
-
-        document.getElementById('closeModalBtn').onclick = () => { document.getElementById('memberModal').classList.remove('active'); resetFormAndWarning(); };
-        modalOverlay.onclick = (e) => { if (e.target === modalOverlay) { modalOverlay.classList.remove('active'); resetFormAndWarning(); } };
-        document.getElementById('tutorialBtn').onclick = () => { document.getElementById('tutorialSection').scrollIntoView({ behavior: 'smooth' }); };
-        window.copyEmail = () => { navigator.clipboard.writeText("utaragarageofficial@gmail.com"); showToast("📧 Email admin disalin!"); };
-        window.scrollToSection = (section) => { document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' }); };
-        function escapeHtml(str) { if (!str) return ""; return str.replace(/[&<>]/g, function(m) { if (m === '&') return '&amp;'; if (m === '<') return '&lt;'; if (m === '>') return '&gt;'; return m; }); }
-        function showToast(msg) { const toast = document.getElementById('toastMsg'); toast.textContent = msg; toast.style.opacity = '1'; setTimeout(() => toast.style.opacity = '0', 3000); }
-        
-        const modalOverlay = document.getElementById('memberModal');
-        loadProducts();
     </script>
 </body>
-</html>
+                                                             </html>
