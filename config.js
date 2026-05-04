@@ -64,7 +64,7 @@ const PRODUCTS_DATA = [
 ];
 
 const EVENT_CONFIG = {
-    whatsapp_number: "6288230552638",
+    whatsapp_number: "6283875742199",
     message: "Assalamualaikum Bang Saya Mau Daftar Event"
 };
 
