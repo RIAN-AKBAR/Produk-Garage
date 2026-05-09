@@ -2,7 +2,7 @@
 // true = mode on
 // false = mode off
 const CONFIG = {
-    maintenance_mode: false
+    maintenance_mode: true
 };
 
 // data data product
