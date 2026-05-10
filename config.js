@@ -1,19 +1,22 @@
-// mode maintenace on/off
-// true = mode on
-// false = mode off
+// ==================== KONFIGURASI GLOBAL ====================
+// maintenance_mode: true = maintenance aktif, false = normal
+// member_mode: true = mode DAFTAR MEMBER, false = mode DAFTAR EVENT
+
 const CONFIG = {
-    maintenance_mode: true
+    maintenance_mode: false,  // Ganti jadi true untuk maintenance, false untuk normal
+    member_mode: true         // true = DAFTAR MEMBER, false = DAFTAR EVENT
 };
 
-// data data product
+// Data Produk (bisa diedit langsung di sini)
 const PRODUCTS_DATA = [
     {
-        "id": 1, // nomor produk
-        "name": "UG Custom Racing Suit - Purple Edition", // nama produk
-        "link": "https://www.roblox.com/catalog/99896736437430", // link yang mengarah ke produk
-        "description": "Premium racing suit dengan desain eksklusif", // dekripsi produk 
-        "image": "https://tr.rbxcdn.com/180DAY-0395f3bbeea9affd57289b87157e7c79/420/420/Shirt/Webp/noFilter", // foto produk
-        "category": "shirt" // kategori produk jenis apa
+        "id": 1,
+        "name": "UG Custom Racing Suit - Purple Edition",
+        "link": "https://www.roblox.com/catalog/99896736437430",
+        "description": "Premium racing suit dengan desain eksklusif",
+        "image": "https://tr.rbxcdn.com/180DAY-0395f3bbeea9affd57289b87157e7c79/420/420/Shirt/Webp/noFilter",
+        "category": "shirt",
+        "stock": 500
     },
     {
         "id": 2,
@@ -51,23 +54,16 @@ const PRODUCTS_DATA = [
         "category": "trousers",
         "stock": 500
     }
-    // {
-      //  "id": ganti nomor setelah yang sudah di tambahkan,
-        // "name": "ganti nama produk",
-        // "link": "ganti link produk",
-        // "description": "ganti deks produk mu / ga ada ?? ngarang aja",
-        // "image": "ganti link foto produk",
-        // "category": "ganti jenis produk", // list produk nya ada di bawah
-// hapus ->  // "stock": ganti sesuai stok yang ada
-    // }
-    // jika menambahkan produk taruh di bawah sini 
 ];
 
-const EVENT_CONFIG = {
-    whatsapp_number: "6283875742199",
-    message: "Assalamualaikum Bang Saya Mau Daftar Event"
+// Konfigurasi Pendaftaran Member
+const MEMBER_CONFIG = {
+    admin_email: "utaragarageofficial@gmail.com",
+    min_age: 15
 };
 
-
-// list jenis produk 
-// trousers, shirt, jacket
+// Konfigurasi Event WhatsApp
+const EVENT_CONFIG = {
+    whatsapp_number: "6281234567890", // Ganti dengan nomor WhatsApp tujuan
+    message: "Assalamualaikum Bang Saya Mau Daftar Event"
+};
