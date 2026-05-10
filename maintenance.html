@@ -2,9 +2,9 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UTARA GARAGE | Maintenance Mode</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>UTARA GARAGE | MAINTENANCE · LOCK & REFINE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -14,9 +14,9 @@
         }
 
         body {
-            background: linear-gradient(135deg, #2d1b3c 0%, #1a0f2a 100%);
-            font-family: 'Quicksand', sans-serif;
             min-height: 100vh;
+            background: #0c0a1a;
+            font-family: 'Inter', 'Space Grotesk', sans-serif;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -24,271 +24,586 @@
             overflow-x: hidden;
         }
 
-        .floating-particle {
+        /* ===== DEEP AESTHETIC BACKGROUND ===== */
+        .ambient-glow {
             position: fixed;
-            background: rgba(156, 108, 214, 0.2);
-            border-radius: 50%;
-            pointer-events: none;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
             z-index: 0;
-            animation: floatParticle 15s infinite linear;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        @keyframes floatParticle {
+        .glow-1 {
+            position: absolute;
+            top: -15%;
+            left: -20%;
+            width: 80vmax;
+            height: 80vmax;
+            background: radial-gradient(circle, rgba(110, 70, 200, 0.35), rgba(30, 20, 70, 0.1), transparent 70%);
+            border-radius: 50%;
+            filter: blur(100px);
+            animation: driftSlow 22s infinite alternate ease-in-out;
+        }
+
+        .glow-2 {
+            position: absolute;
+            bottom: -20%;
+            right: -15%;
+            width: 85vmax;
+            height: 85vmax;
+            background: radial-gradient(circle, rgba(0, 180, 220, 0.25), rgba(0, 100, 150, 0.08), transparent 75%);
+            border-radius: 50%;
+            filter: blur(110px);
+            animation: driftSlow2 25s infinite alternate;
+        }
+
+        .glow-3 {
+            position: absolute;
+            top: 40%;
+            left: 25%;
+            width: 60vmax;
+            height: 60vmax;
+            background: radial-gradient(circle, rgba(200, 130, 255, 0.2), rgba(160, 70, 220, 0.08), transparent 70%);
+            border-radius: 50%;
+            filter: blur(90px);
+            animation: driftSlow3 19s infinite alternate;
+        }
+
+        @keyframes driftSlow {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+            100% { transform: translate(6%, 5%) scale(1.2); opacity: 0.8; }
+        }
+        @keyframes driftSlow2 {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+            100% { transform: translate(-5%, -7%) scale(1.25); opacity: 0.7; }
+        }
+        @keyframes driftSlow3 {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(4%, -3%) scale(1.15); }
+        }
+
+        /* Grain & Grid Texture */
+        .film-grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .grid-lines {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+            background-size: 55px 55px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Floating particles (tools & aesthetic symbols) */
+        .floating-symbol {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+            font-size: 1rem;
+            opacity: 0;
+            animation: floatSymbol 14s infinite linear;
+        }
+
+        @keyframes floatSymbol {
             0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.5; }
-            90% { opacity: 0.5; }
+            15% { opacity: 0.4; }
+            85% { opacity: 0.5; }
             100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
         }
 
-        .maintenance-container {
-            max-width: 600px;
-            margin: 2rem;
-            padding: 3rem 2rem;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-            border-radius: 48px;
-            text-align: center;
+        /* ===== MAIN CARD - MODERN GLASS + LOCK THEME ===== */
+        .lock-card {
             position: relative;
-            z-index: 2;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(156, 108, 214, 0.5);
-            animation: fadeInUp 0.6s ease;
+            z-index: 30;
+            max-width: 640px;
+            width: 90%;
+            margin: 2rem;
+            padding: 2.6rem 2.2rem;
+            background: rgba(15, 12, 28, 0.6);
+            backdrop-filter: blur(20px);
+            border-radius: 56px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 35px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(140, 90, 220, 0.3) inset;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.2);
+            animation: cardRise 0.7s ease-out;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .lock-card:hover {
+            transform: translateY(-6px);
+            background: rgba(20, 16, 36, 0.7);
+            border-color: rgba(160, 120, 255, 0.4);
+            box-shadow: 0 45px 70px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(180, 130, 255, 0.5) inset;
         }
 
-        .maintenance-icon {
-            font-size: 5rem;
-            background: linear-gradient(135deg, #6b46a0, #9c6cd6);
+        @keyframes cardRise {
+            0% { opacity: 0; transform: scale(0.95) translateY(40px); backdrop-filter: blur(8px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); backdrop-filter: blur(20px); }
+        }
+
+        /* LOCK / KEY ICON - UTAMA (perbaikan) */
+        .lock-icon-container {
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 1.2rem;
+            background: linear-gradient(145deg, rgba(100, 70, 180, 0.35), rgba(40, 25, 80, 0.5));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(210, 170, 255, 0.5);
+            backdrop-filter: blur(8px);
+            animation: lockPulse 2.8s infinite;
+            box-shadow: 0 0 20px rgba(150, 100, 255, 0.3);
+        }
+
+        .lock-icon-container i {
+            font-size: 4.2rem;
+            background: linear-gradient(145deg, #f0e6ff, #cdadff, #b27eff);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            margin-bottom: 1rem;
-            animation: pulse 2s infinite;
+            filter: drop-shadow(0 0 14px rgba(160, 110, 255, 0.7));
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.1); opacity: 0.8; }
+        @keyframes lockPulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(140, 100, 230, 0.5); }
+            50% { transform: scale(1.02); box-shadow: 0 0 0 15px rgba(140, 100, 230, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(140, 100, 230, 0); }
         }
 
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: #6b46a0;
-            margin-bottom: 0.5rem;
-        }
-
-        .status-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
-            color: white;
-            padding: 0.4rem 1.2rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-        }
-
-        .message {
-            color: #4a2a6e;
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
-        }
-
-        .progress-bar-container {
-            background: #e0d4ff;
-            border-radius: 50px;
-            height: 8px;
-            margin: 2rem 0;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            width: 65%;
-            height: 100%;
-            background: linear-gradient(90deg, #6b46a0, #9c6cd6);
-            border-radius: 50px;
-            animation: loading 2s ease-in-out infinite;
-        }
-
-        @keyframes loading {
-            0% { width: 30%; }
-            50% { width: 70%; }
-            100% { width: 30%; }
-        }
-
-        .feature-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-
-        .feature-item {
-            background: #f5efff;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            color: #6b46a0;
-            font-weight: 600;
-        }
-
-        .feature-item i {
-            margin-right: 6px;
-            color: #9c6cd6;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .social-links a {
-            color: #6b46a0;
-            font-size: 1.2rem;
-            transition: 0.3s;
-        }
-
-        .social-links a:hover {
-            color: #9c6cd6;
-        }
-
-        .btn-back {
-            background: linear-gradient(135deg, #6b46a0, #9c6cd6);
-            border: none;
-            padding: 0.9rem 2rem;
-            border-radius: 60px;
-            color: white;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: 0.25s;
+        .status-shield {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            margin-top: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(12px);
+            padding: 0.5rem 1.4rem;
+            border-radius: 60px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: #ceb5ff;
+            border: 0.5px solid rgba(160, 120, 250, 0.7);
+            margin-bottom: 1rem;
         }
 
-        .btn-back:hover {
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.6rem;
+            font-weight: 700;
+            background: linear-gradient(125deg, #ffffff, #e2c2ff, #c99eff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+            margin-top: 0.2rem;
+        }
+
+        .desc-modern {
+            color: rgba(225, 210, 255, 0.85);
+            font-weight: 400;
+            font-size: 0.95rem;
+            line-height: 1.65;
+            margin: 1rem 0 1.2rem;
+        }
+
+        .gradient-accent {
+            font-weight: 700;
+            background: linear-gradient(120deg, #e2baff, #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Progress bar premium */
+        .progress-premium {
+            background: rgba(35, 28, 55, 0.9);
+            border-radius: 100px;
+            height: 6px;
+            margin: 2rem 0 1.8rem;
+            overflow: hidden;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .progress-shine-lock {
+            width: 72%;
+            height: 100%;
+            background: linear-gradient(90deg, #9b5eff, #c57eff, #edb3ff);
+            border-radius: 100px;
+            position: relative;
+            animation: lockLoader 2.3s ease-in-out infinite;
+            box-shadow: 0 0 14px #c187ff;
+        }
+
+        @keyframes lockLoader {
+            0% { width: 28%; opacity: 0.9; }
+            50% { width: 86%; opacity: 1; }
+            100% { width: 28%; opacity: 0.9; }
+        }
+
+        /* Feature chips */
+        .feature-chips {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin: 1.8rem 0;
+        }
+
+        .chip-lock {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(10px);
+            border: 0.5px solid rgba(150, 110, 230, 0.5);
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: #cfb5ff;
+            transition: 0.2s;
+        }
+
+        .chip-lock i {
+            margin-right: 8px;
+            font-size: 0.7rem;
+            color: #c992ff;
+        }
+
+        .chip-lock:hover {
+            background: rgba(140, 100, 220, 0.25);
+            border-color: #e2b0ff;
+            transform: translateY(-2px);
+        }
+
+        /* Social area */
+        .social-ring {
+            display: flex;
+            justify-content: center;
+            gap: 1.6rem;
+            margin: 1.8rem 0;
+        }
+
+        .social-icon-lock {
+            width: 48px;
+            height: 48px;
+            background: rgba(18, 14, 32, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: #e2ccff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icon-lock:hover {
+            background: linear-gradient(135deg, #884eff, #bc7eff);
+            color: white;
+            transform: translateY(-6px) scale(1.07);
+            border-color: #f0d0ff;
+            box-shadow: 0 12px 22px -8px #9b5eff;
+        }
+
+        /* elegant timer */
+        .elegant-timer-lock {
+            font-size: 0.7rem;
+            background: rgba(0, 0, 0, 0.35);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.25rem 1.2rem;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+            color: #c3a6ff;
+        }
+
+        /* CTA BUTTON with lock theme */
+        .btn-lock {
+            background: linear-gradient(102deg, #5f2d9c, #9b4dff);
+            border: none;
+            padding: 1rem 2.2rem;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 1.2px;
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: 0.25s;
+            box-shadow: 0 8px 24px rgba(100, 50, 180, 0.5);
+            margin-top: 0.2rem;
+        }
+
+        .btn-lock i {
+            transition: transform 0.25s;
+        }
+
+        .btn-lock:hover {
+            background: linear-gradient(102deg, #7842c2, #b56eff);
+            gap: 16px;
             transform: scale(1.02);
-            gap: 14px;
+            box-shadow: 0 14px 32px rgba(100, 50, 180, 0.8);
         }
 
-        .admin-note {
+        .btn-lock:active i {
+            transform: rotate(360deg);
+        }
+
+        .footer-note {
             margin-top: 2rem;
             padding-top: 1rem;
-            border-top: 1px solid rgba(156, 108, 214, 0.3);
-            font-size: 0.7rem;
-            color: #b89fd9;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 0.65rem;
+            color: #8a7bb0;
+            border-top: 1px dashed rgba(150, 110, 230, 0.5);
         }
 
-        footer {
+        .global-footer {
             position: fixed;
-            bottom: 15px;
+            bottom: 16px;
             left: 0;
             width: 100%;
             text-align: center;
-            font-size: 0.65rem;
-            color: rgba(255, 255, 255, 0.5);
-            z-index: 2;
+            font-size: 0.6rem;
+            font-weight: 400;
+            color: rgba(170, 140, 220, 0.5);
+            backdrop-filter: blur(6px);
+            z-index: 30;
         }
 
-        @media (max-width: 640px) {
-            .maintenance-container { margin: 1rem; padding: 2rem 1.5rem; }
-            h1 { font-size: 1.8rem; }
+        @media (max-width: 580px) {
+            .lock-card { padding: 1.8rem 1.4rem; }
+            h1 { font-size: 2rem; }
+            .lock-icon-container { width: 95px; height: 95px; }
+            .lock-icon-container i { font-size: 3rem; }
+        }
+
+        /* ripple effect */
+        .ripple-lock {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            animation: rippleAnim 0.6s linear forwards;
+            pointer-events: none;
+        }
+
+        @keyframes rippleAnim {
+            0% { transform: scale(0); opacity: 0.6; }
+            100% { transform: scale(30); opacity: 0; }
         }
     </style>
 </head>
 <body>
-    <div id="floatingContainer"></div>
 
-    <div class="maintenance-container">
-        <div class="maintenance-icon">
-            <i class="fas fa-tools"></i>
+    <!-- Background layers -->
+    <div class="ambient-glow">
+        <div class="glow-1"></div>
+        <div class="glow-2"></div>
+        <div class="glow-3"></div>
+    </div>
+    <div class="film-grain"></div>
+    <div class="grid-lines"></div>
+    <div id="floatingSymbolsContainer"></div>
+
+    <!-- MAIN CARD -->
+    <div class="lock-card">
+        <div class="lock-icon-container">
+            <i class="fas fa-tools"></i>   <!-- icon kunci/pas & perbaikan modern -->
         </div>
-        <div class="status-badge">
-            <i class="fas fa-hourglass-half"></i> MAINTENANCE MODE
+        <div class="status-shield">
+            <i class="fas fa-shield-haltered"></i> MAINTENANCE · LOCK MODE
         </div>
-        <h1>Sedang dalam Perbaikan</h1>
-        <p class="message">
-            <i class="fas fa-sparkle"></i> UTARA GARAGE sedang <strong>dipercantik dan dioptimalkan</strong> <i class="fas fa-sparkle"></i><br>
-            Kami akan segera kembali dengan pengalaman yang lebih estetik!
+        <h1>UTARA GARAGE</h1>
+        <p class="desc-modern">
+            <span class="gradient-accent">Sedang dalam perbaikan & optimalisasi total</span> <br>
+            Kami menyempurnakan setiap detail untuk pengalaman terbaik. <br>
+            <i class="fas fa-key" style="font-size: 0.7rem;"></i> Kunci peningkatan telah terpasang.
         </p>
 
-        <div class="progress-bar-container">
-            <div class="progress-bar"></div>
+        <div class="progress-premium">
+            <div class="progress-shine-lock"></div>
         </div>
 
-        <div class="feature-list">
-            <span class="feature-item"><i class="fas fa-palette"></i> Tampilan baru</span>
-            <span class="feature-item"><i class="fas fa-rocket"></i> Performa lebih cepat</span>
-            <span class="feature-item"><i class="fas fa-gem"></i> Fitur eksklusif</span>
-            <span class="feature-item"><i class="fas fa-shield-alt"></i> Keamanan meningkat</span>
+        <div class="feature-chips">
+            <div class="chip-lock"><i class="fas fa-wrench"></i> Repair Suite</div>
+            <div class="chip-lock"><i class="fas fa-lock"></i> Secure Upgrade</div>
+            <div class="chip-lock"><i class="fas fa-gem"></i> Luxury Tuning</div>
+            <div class="chip-lock"><i class="fas fa-bolt"></i> Performance +</div>
         </div>
 
-        <div class="social-links">
-            <a href="https://whatsapp.com/channel/0029VbCEmlcL2ATqlP5QNf2S" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://tiktok.com/@utara_garage" target="_blank"><i class="fab fa-tiktok"></i></a>
-            <a href="https://www.roblox.com/groups/34340459/UTARA-GARAGE#!/about" target="_blank"><i class="fab fa-roblox"></i></a>
+        <div class="social-ring">
+            <a href="https://whatsapp.com/channel/0029VbCEmlcL2ATqlP5QNf2S" class="social-icon-lock" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://tiktok.com/@utara_garage" class="social-icon-lock" target="_blank"><i class="fab fa-tiktok"></i></a>
         </div>
 
-        <button class="btn-back" id="refreshBtn">
-            <i class="fas fa-sync-alt"></i> COBA LAGI NANTI
+        <div class="elegant-timer-lock">
+            <i class="far fa-clock"></i> <span id="countdownLockText">siap dalam hitungan detik</span>
+        </div>
+
+        <button class="btn-lock" id="refreshLockBtn">
+            <i class="fas fa-sync-alt"></i> CEK STATUS · SEGERA KEMBALI
         </button>
 
-        <div class="admin-note">
-            <i class="fas fa-laptop-code"></i> Admin: Mode perbaikan aktif - toko sedang dalam pengembangan
+        <div class="footer-note">
+            <i class="fas fa-microchip"></i> MAINTENANCE ACTIVE
+            <span>✧</span>
+            <i class="fas fa-tools"></i> UTARA GARAGE
         </div>
     </div>
 
-    <footer>
-        <i class="fas fa-moon"></i> UTARA GARAGE • ESTHETIC COLLECTION • MAINTENANCE MODE
-    </footer>
+    <div class="global-footer">
+        <i class="fas fa-key"></i> lock & repair mode • esthetic engineering
+    </div>
 
     <script src="config.js"></script>
     <script>
-        // Floating particles
-        const icons = ['✨', '🌸', '💜', '⭐', '🦋', '🌙', '🔧', '⚙️', '💎', '🌟'];
-        for (let i = 0; i < 35; i++) {
-            const p = document.createElement('div');
-            p.classList.add('floating-particle');
-            p.innerHTML = icons[Math.floor(Math.random() * icons.length)];
-            p.style.left = Math.random() * 100 + '%';
-            p.style.animationDuration = 12 + Math.random() * 20 + 's';
-            p.style.animationDelay = Math.random() * 15 + 's';
-            p.style.fontSize = 1 + Math.random() * 2.5 + 'rem';
-            p.style.opacity = 0.1 + Math.random() * 0.25;
-            document.getElementById('floatingContainer').appendChild(p);
+        // ========== FLOATING SYMBOLS (tools, keys, locks) ==========
+        const symbolsContainer = document.getElementById('floatingSymbolsContainer');
+        const toolSymbols = ['🔧', '🔨', '⚙️', '🔒', '🔑', '🛠️', '✨', '🔩', '🧰', '⚡', '💎', '🔐'];
+        for (let i = 0; i < 55; i++) {
+            const sym = document.createElement('div');
+            sym.classList.add('floating-symbol');
+            sym.innerHTML = toolSymbols[Math.floor(Math.random() * toolSymbols.length)];
+            sym.style.left = Math.random() * 100 + '%';
+            sym.style.animationDuration = 9 + Math.random() * 20 + 's';
+            sym.style.animationDelay = Math.random() * 14 + 's';
+            sym.style.fontSize = 0.9 + Math.random() * 2.2 + 'rem';
+            sym.style.opacity = 0.1 + Math.random() * 0.45;
+            sym.style.filter = 'blur(0.4px)';
+            symbolsContainer.appendChild(sym);
         }
 
-        // Check maintenance mode from config
-        function checkMaintenance() {
+        // Additional floating soft particles
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('floating-symbol');
+            particle.style.width = '8px';
+            particle.style.height = '8px';
+            particle.style.background = `radial-gradient(circle, rgba(180,130,255,0.5), rgba(100,70,180,0.1))`;
+            particle.style.borderRadius = '50%';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = 12 + Math.random() * 18 + 's';
+            particle.style.animationDelay = Math.random() * 12 + 's';
+            particle.style.opacity = 0.2 + Math.random() * 0.5;
+            particle.innerHTML = '';
+            symbolsContainer.appendChild(particle);
+        }
+
+        // ========== CONFIG CHECKER ==========
+        function checkMaintenanceAndRedirect() {
             if (typeof CONFIG !== 'undefined' && CONFIG.maintenance_mode === false) {
                 window.location.href = 'index.html';
             }
         }
 
-        document.getElementById('refreshBtn').onclick = checkMaintenance;
-        setInterval(checkMaintenance, 5000);
-        checkMaintenance();
+        let countdownSec = 7;
+        const countdownSpan = document.getElementById('countdownLockText');
+
+        function updateCountdownDisplay() {
+            if (countdownSec <= 0) {
+                countdownSec = 7;
+                checkMaintenanceAndRedirect();
+                countdownSpan.innerHTML = `<i class="far fa-hourglass-half"></i> mengecek ulang...`;
+                setTimeout(() => {
+                    if (countdownSpan) countdownSpan.innerHTML = `<i class="far fa-clock"></i> auto cek setiap 7 detik`;
+                }, 1300);
+            } else {
+                countdownSpan.innerHTML = `<i class="far fa-hourglass-half"></i> refresh otomatis dalam ${countdownSec}s`;
+            }
+            countdownSec--;
+        }
+
+        let timerAuto = setInterval(updateCountdownDisplay, 1000);
+
+        // Button refresh with ripple & spin
+        const refreshButton = document.getElementById('refreshLockBtn');
+        refreshButton.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            // Ripple effect
+            const ripple = document.createElement('span');
+            ripple.className = 'ripple-lock';
+            const rect = refreshButton.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            refreshButton.style.position = 'relative';
+            refreshButton.style.overflow = 'hidden';
+            refreshButton.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 600);
+
+            const spinIcon = refreshButton.querySelector('i');
+            if (spinIcon) spinIcon.style.transform = 'rotate(360deg)';
+            setTimeout(() => { if (spinIcon) spinIcon.style.transform = ''; }, 500);
+            
+            checkMaintenanceAndRedirect();
+            countdownSec = 7;
+            updateCountdownDisplay();
+        });
+
+        // Initial check on load
+        if (typeof CONFIG === 'undefined') {
+            console.log("Config belum terdefinisi — maintenance mode aktif (default)");
+        }
+        checkMaintenanceAndRedirect();
+
+        // ========== MICRO INTERACTION: mouse move parallax ==========
+        const card = document.querySelector('.lock-card');
+        document.addEventListener('mousemove', (e) => {
+            if(!card) return;
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 40;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 40;
+            card.style.transform = `perspective(1100px) rotateY(${xAxis * 0.5}deg) rotateX(${yAxis * -0.3}deg) translateY(-3px)`;
+        });
+        document.addEventListener('mouseleave', () => {
+            if(card) card.style.transform = 'perspective(1100px) rotateY(0deg) rotateX(0deg) translateY(0px)';
+        });
+
+        // Dynamic badge text rotation
+        const badgeElement = document.querySelector('.status-shield');
+        const badgeMessages = [
+            '<i class="fas fa-shield-haltered"></i> MAINTENANCE · LOCK MODE',
+            '<i class="fas fa-tools"></i> REPAIR & REFINE PROGRESS',
+            '<i class="fas fa-key"></i> UNLOCKING NEW EXPERIENCE'
+        ];
+        let badgeIdx = 0;
+        setInterval(() => {
+            if(badgeElement) {
+                badgeIdx = (badgeIdx + 1) % badgeMessages.length;
+                badgeElement.innerHTML = badgeMessages[badgeIdx];
+            }
+        }, 4800);
+
+        // Animated progress glow effect
+        const progressFill = document.querySelector('.progress-shine-lock');
+        if (progressFill) {
+            setInterval(() => {
+                progressFill.style.boxShadow = `0 0 ${Math.random() * 14 + 8}px #d09eff`;
+                setTimeout(() => { if(progressFill) progressFill.style.boxShadow = '0 0 14px #c187ff'; }, 350);
+            }, 2200);
+        }
     </script>
 </body>
 </html>
