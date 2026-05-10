@@ -4,7 +4,7 @@
 
 const CONFIG = {
     maintenance_mode: false,  // Ganti jadi true untuk maintenance, false untuk normal
-    member_mode: true         // true = DAFTAR MEMBER, false = DAFTAR EVENT
+    member_mode: false         // true = DAFTAR MEMBER, false = DAFTAR EVENT
 };
 
 // Data Produk (bisa diedit langsung di sini)
