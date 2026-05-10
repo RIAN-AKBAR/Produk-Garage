@@ -142,7 +142,8 @@
         .btn-buy { background: linear-gradient(135deg, #6b46a0, #4a2a6e); border: none; padding: 0.8rem; width: 100%; border-radius: 40px; color: white; cursor: pointer; transition: 0.3s; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; }
         .btn-buy:hover { background: linear-gradient(135deg, #9c6cd6, #6b46a0); transform: scale(1.02); gap: 12px; }
 
-        .event-block {
+        /* Member Block & Event Block - Styling sama, beda warna tombol */
+        .action-block {
             background: linear-gradient(135deg, rgba(107, 70, 160, 0.2), rgba(26, 15, 42, 0.5));
             backdrop-filter: blur(15px);
             border-radius: 40px;
@@ -152,22 +153,24 @@
             transition: 0.3s;
             text-align: center;
         }
-        .event-block:hover { border-color: #b77ee6; box-shadow: 0 10px 30px rgba(107, 70, 160, 0.2); }
-        .event-logo {
+        .action-block:hover { border-color: #b77ee6; box-shadow: 0 10px 30px rgba(107, 70, 160, 0.2); }
+        .action-logo {
             width: 100px;
             height: 100px;
             margin: 0 auto 1rem;
             animation: float 3s ease-in-out infinite;
         }
-        .event-logo img {
+        .action-logo img {
             width: 100%;
             height: 100%;
             object-fit: contain;
             filter: drop-shadow(0 0 10px rgba(183, 126, 230, 0.5));
         }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-        .event-block h2 { font-family: 'Playfair Display', serif; color: #b77ee6; font-size: 1.8rem; margin-bottom: 0.5rem; }
-        .event-block p { color: #b89fd9; margin-bottom: 1.5rem; }
+        .action-block h2 { font-family: 'Playfair Display', serif; color: #b77ee6; font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .action-block p { color: #b89fd9; margin-bottom: 1.5rem; }
+        .btn-member { background: linear-gradient(135deg, #6b46a0, #4a2a6e); border: none; padding: 1rem 2rem; border-radius: 50px; color: white; cursor: pointer; transition: 0.3s; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; font-size: 1.1rem; }
+        .btn-member:hover { transform: translateY(-2px); gap: 12px; box-shadow: 0 5px 20px rgba(107, 70, 160, 0.4); }
         .btn-event { background: linear-gradient(135deg, #25D366, #128C7E); border: none; padding: 1rem 2rem; border-radius: 50px; color: white; cursor: pointer; transition: 0.3s; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; font-size: 1.1rem; }
         .btn-event:hover { transform: translateY(-2px); gap: 12px; box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4); }
 
@@ -189,6 +192,21 @@
         .step-number { width: 40px; height: 40px; background: linear-gradient(135deg, #6b46a0, #9c6cd6); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.8rem; font-weight: bold; color: white; }
         .email-highlight { background: rgba(42, 26, 62, 0.8); padding: 0.5rem 1rem; border-radius: 40px; display: inline-block; margin-top: 0.5rem; font-family: monospace; }
         .copy-btn { background: #6b46a0; border: none; padding: 0.2rem 0.8rem; border-radius: 30px; color: white; cursor: pointer; margin-left: 10px; }
+
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; z-index: 1000; visibility: hidden; opacity: 0; transition: 0.2s; }
+        .modal-overlay.active { visibility: visible; opacity: 1; }
+        .modal-card { background: linear-gradient(135deg, #1a1025, #0f0a1a); max-width: 450px; width: 90%; border-radius: 32px; padding: 2rem; border: 1px solid #9c6cd6; animation: fadeInUp 0.3s ease; }
+
+        .warning-message {
+            background: rgba(255, 150, 50, 0.2);
+            border: 1px solid #ffaa33;
+            border-radius: 20px;
+            padding: 0.8rem;
+            margin: 1rem 0;
+            text-align: center;
+            color: #ffcc88;
+            font-size: 0.85rem;
+        }
 
         .toast-msg { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #6b46a0, #4a2a6e); color: white; padding: 12px 24px; border-radius: 50px; z-index: 1100; opacity: 0; transition: 0.2s; font-weight: 500; white-space: nowrap; }
 
@@ -239,17 +257,8 @@
             <div class="tagline"><i class="fas fa-star"></i> SOFT AESTHETIC <i class="fas fa-moon"></i> PURPLE VIBE</div>
         </div>
 
-        <!-- EVENT BLOCK dengan logo.png -->
-        <div class="event-block">
-            <div class="event-logo">
-                <img src="logo.png" alt="UTARA GARAGE" onerror="this.src='https://placehold.co/100x100/6b46a0/b77ee6?text=UG'">
-            </div>
-            <h2>✦ DAFTAR EVENT ✦</h2>
-            <p>Ikuti event seru dari UTARA GARAGE! Dapatkan hadiah menarik </p>
-            <button id="eventBtn" class="btn-event">
-                <i class="fab fa-whatsapp"></i> DAFTAR EVENT SEKARANG
-            </button>
-        </div>
+        <!-- ACTION BLOCK (Member atau Event akan diisi oleh JS) -->
+        <div id="actionBlock" class="action-block"></div>
 
         <div class="hero"><h2>DREAM COLLECTION</h2><p>ESTHETIC PURPLE EDITION ✦ LIMITED RELEASE</p></div>
 
@@ -267,18 +276,8 @@
         <div class="team-grid" id="teamGrid"></div>
 
         <div id="tutorialSection">
-            <div class="tutorial-box">
-                <div style="text-align:center;"><i class="fas fa-feather-alt" style="font-size:2rem; color:#b77ee6;"></i><h3 style="margin-top:0.5rem;">📖 TUTORIAL DAFTAR EVENT</h3></div>
-                <div class="steps">
-                    <div class="step"><div class="step-number">1</div><h4>Klik Tombol</h4><p>Klik tombol DAFTAR EVENT</p></div>
-                    <div class="step"><div class="step-number">2</div><h4>Konfirmasi</h4><p>Anda akan diarahkan ke WhatsApp</p></div>
-                    <div class="step"><div class="step-number">3</div><h4>Kirim Pesan</h4><p>Pesan otomatis terkirim</p></div>
-                    <div class="step"><div class="step-number">4</div><h4>Konfirmasi Admin</h4><p>Admin akan membalas</p></div>
-                </div>
-                <div style="text-align:center;">
-                    <p><i class="fas fa-envelope"></i> Email Admin:</p>
-                    <div class="email-highlight">utaragarageofficial@gmail.com<button class="copy-btn" onclick="copyEmail()"><i class="fas fa-copy"></i> Salin</button></div>
-                </div>
+            <div class="tutorial-box" id="tutorialBox">
+                <!-- Tutorial akan diisi oleh JS -->
             </div>
         </div>
     </div>
@@ -291,6 +290,42 @@
         <div class="copyright"><i class="fas fa-moon"></i> UTARA GARAGE • ESTHETIC COLLECTION • PURPLE DREAM<br><small>© 2026 Utara Garage - All Rights Reserved</small></div>
     </footer>
 
+    <!-- MODAL PENDAFTARAN MEMBER -->
+    <div id="memberModal" class="modal-overlay">
+        <div class="modal-card">
+            <h3 style="text-align:center;"><i class="fas fa-feather-alt"></i> DREAM REGISTRY</h3>
+            <div id="ageWarning" class="warning-message" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i> <strong>PERINGATAN!</strong><br>Usia minimal untuk mendaftar adalah 15 tahun ke atas.
+            </div>
+            <form id="memberForm">
+                <div class="form-group" style="margin-bottom:1rem;">
+                    <label style="color:#b77ee6;">NAMA LENGKAP</label>
+                    <input type="text" id="memberName" required style="width:100%; padding:0.7rem; border-radius:40px; background:#0f0a1a; border:1px solid #6b46a0; color:white;">
+                </div>
+                <div class="form-group" style="margin-bottom:1rem;">
+                    <label style="color:#b77ee6;">GENDER</label>
+                    <select id="memberGender" style="width:100%; padding:0.7rem; border-radius:40px; background:#0f0a1a; border:1px solid #6b46a0; color:white;">
+                        <option>Pilih</option>
+                        <option>Perempuan</option>
+                        <option>Laki-laki</option>
+                    </select>
+                </div>
+                <div class="form-group" style="margin-bottom:1rem;">
+                    <label style="color:#b77ee6;">UMUR</label>
+                    <input type="number" id="memberAge" required style="width:100%; padding:0.7rem; border-radius:40px; background:#0f0a1a; border:1px solid #6b46a0; color:white;">
+                </div>
+                <div class="form-group" style="margin-bottom:1rem;">
+                    <label style="color:#b77ee6;">NOMOR WHATSAPP</label>
+                    <input type="tel" id="memberWa" placeholder="+62xxx" required style="width:100%; padding:0.7rem; border-radius:40px; background:#0f0a1a; border:1px solid #6b46a0; color:white;">
+                </div>
+                <div class="modal-actions" style="display:flex; gap:1rem; margin-top:1rem;">
+                    <button type="button" id="closeModalBtn" style="flex:1; padding:0.7rem; border-radius:40px; background:#2a1a3e; border:1px solid #6b46a0; color:#b77ee6; cursor:pointer;">BATAL</button>
+                    <button type="submit" id="submitDaftar" style="flex:1; padding:0.7rem; border-radius:40px; background:linear-gradient(135deg,#6b46a0,#4a2a6e); color:white; border:none; cursor:pointer;">DAFTAR</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <div id="toastMsg" class="toast-msg"></div>
 
     <script src="config.js"></script>
@@ -298,6 +333,96 @@
         // ==================== MAINTENANCE MODE CHECK ====================
         if (typeof CONFIG !== 'undefined' && CONFIG.maintenance_mode === true) {
             window.location.href = 'maintenance.html';
+        }
+
+        // ==================== TAMPILKAN MODE (MEMBER ATAU EVENT) ====================
+        const isMemberMode = (typeof CONFIG !== 'undefined' && CONFIG.member_mode === true);
+        
+        // Render Action Block (Member atau Event)
+        function renderActionBlock() {
+            const actionBlock = document.getElementById('actionBlock');
+            if (!actionBlock) return;
+            
+            if (isMemberMode) {
+                // Mode MEMBER
+                actionBlock.innerHTML = `
+                    <div class="action-logo">
+                        <img src="logo.png" alt="UTARA GARAGE" onerror="this.src='https://placehold.co/100x100/6b46a0/b77ee6?text=UG'">
+                    </div>
+                    <h2>✦ DREAM REGISTRY ✦</h2>
+                    <p>Bergabunglah menjadi bagian dari keluarga UTARA GARAGE</p>
+                    <button id="actionBtn" class="btn-member">
+                        <i class="fas fa-user-plus"></i> DAFTAR MEMBER
+                    </button>
+                `;
+            } else {
+                // Mode EVENT
+                actionBlock.innerHTML = `
+                    <div class="action-logo">
+                        <img src="logo.png" alt="UTARA GARAGE" onerror="this.src='https://placehold.co/100x100/6b46a0/b77ee6?text=UG'">
+                    </div>
+                    <h2>✦ DAFTAR EVENT ✦</h2>
+                    <p>Ikuti event seru dari UTARA GARAGE! Dapatkan hadiah menarik dan merchandise eksklusif</p>
+                    <button id="actionBtn" class="btn-event">
+                        <i class="fab fa-whatsapp"></i> DAFTAR EVENT SEKARANG
+                    </button>
+                `;
+            }
+            
+            // Tambahkan event listener setelah tombol dibuat
+            const actionBtn = document.getElementById('actionBtn');
+            if (actionBtn) {
+                if (isMemberMode) {
+                    actionBtn.onclick = () => {
+                        resetFormAndWarning();
+                        if (memberModal) memberModal.classList.add('active');
+                    };
+                } else {
+                    actionBtn.onclick = openWhatsApp;
+                }
+            }
+        }
+        
+        // Render Tutorial berdasarkan mode
+        function renderTutorial() {
+            const tutorialBox = document.getElementById('tutorialBox');
+            if (!tutorialBox) return;
+            
+            if (isMemberMode) {
+                tutorialBox.innerHTML = `
+                    <div style="text-align:center;"><i class="fas fa-feather-alt" style="font-size:2rem; color:#b77ee6;"></i><h3 style="margin-top:0.5rem;">📖 TUTORIAL DAFTAR MEMBER</h3></div>
+                    <div class="steps">
+                        <div class="step"><div class="step-number">1</div><h4>Isi Formulir</h4><p>Klik tombol DAFTAR MEMBER</p></div>
+                        <div class="step"><div class="step-number">2</div><h4>Isi Data</h4><p>Lengkapi formulir pendaftaran</p></div>
+                        <div class="step"><div class="step-number">3</div><h4>Kirim Email</h4><p>Otomatis buka Gmail</p></div>
+                        <div class="step"><div class="step-number">4</div><h4>Tunggu Konfirmasi</h4><p>Admin akan konfirmasi</p></div>
+                    </div>
+                    <div style="text-align:center;">
+                        <p><i class="fas fa-envelope"></i> Email Admin:</p>
+                        <div class="email-highlight">utaragarageofficial@gmail.com<button class="copy-btn" onclick="copyEmail()"><i class="fas fa-copy"></i> Salin</button></div>
+                    </div>
+                `;
+            } else {
+                tutorialBox.innerHTML = `
+                    <div style="text-align:center;"><i class="fas fa-calendar-alt" style="font-size:2rem; color:#b77ee6;"></i><h3 style="margin-top:0.5rem;">📖 TUTORIAL DAFTAR EVENT</h3></div>
+                    <div class="steps">
+                        <div class="step"><div class="step-number">1</div><h4>Klik Tombol</h4><p>Klik tombol DAFTAR EVENT</p></div>
+                        <div class="step"><div class="step-number">2</div><h4>Konfirmasi</h4><p>Anda akan diarahkan ke WhatsApp</p></div>
+                        <div class="step"><div class="step-number">3</div><h4>Kirim Pesan</h4><p>Pesan otomatis terkirim</p></div>
+                        <div class="step"><div class="step-number">4</div><h4>Konfirmasi Admin</h4><p>Admin akan membalas</p></div>
+                    </div>
+                    <div style="text-align:center;">
+                        <p><i class="fas fa-envelope"></i> Email Admin:</p>
+                        <div class="email-highlight">utaragarageofficial@gmail.com<button class="copy-btn" onclick="copyEmail()"><i class="fas fa-copy"></i> Salin</button></div>
+                    </div>
+                `;
+            }
+            
+            // Re-attach copy email event
+            const copyBtn = document.querySelector('.copy-btn');
+            if (copyBtn) {
+                // Event sudah ada di global
+            }
         }
 
         // ==================== EVENT WHATSAPP ====================
@@ -314,12 +439,6 @@
             const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
             window.open(whatsappUrl, '_blank');
             showToast('✨ Membuka WhatsApp... ✨');
-        }
-
-        // Event listener untuk tombol event
-        const eventBtn = document.getElementById('eventBtn');
-        if (eventBtn) {
-            eventBtn.addEventListener('click', openWhatsApp);
         }
 
         // ==================== PARTICLE SYSTEM ====================
@@ -359,6 +478,102 @@
         drawParticles();
         window.addEventListener('resize', () => { resizeCanvas(); createParticles(); });
 
+        // ==================== FITUR PERINGATAN UMUR < 15 (Hanya untuk Mode Member) ====================
+        const ageInput = document.getElementById('memberAge');
+        const submitBtn = document.getElementById('submitDaftar');
+        const warningDiv = document.getElementById('ageWarning');
+        const minAge = (typeof MEMBER_CONFIG !== 'undefined') ? MEMBER_CONFIG.min_age : 15;
+        const memberModal = document.getElementById('memberModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+
+        function checkAge() {
+            if (!isMemberMode) return;
+            const age = parseInt(ageInput.value, 10);
+            if (!isNaN(age) && age < minAge) {
+                if (warningDiv) warningDiv.style.display = 'block';
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.style.opacity = '0.5';
+                    submitBtn.style.cursor = 'not-allowed';
+                    submitBtn.style.pointerEvents = 'none';
+                }
+            } else {
+                if (warningDiv) warningDiv.style.display = 'none';
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.style.opacity = '1';
+                    submitBtn.style.cursor = 'pointer';
+                    submitBtn.style.pointerEvents = 'auto';
+                }
+            }
+        }
+
+        if (ageInput && isMemberMode) {
+            ageInput.addEventListener('input', checkAge);
+            ageInput.addEventListener('change', checkAge);
+        }
+
+        function resetFormAndWarning() {
+            if (!isMemberMode) return;
+            const form = document.getElementById('memberForm');
+            if (form) form.reset();
+            if (warningDiv) warningDiv.style.display = 'none';
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '1';
+                submitBtn.style.cursor = 'pointer';
+                submitBtn.style.pointerEvents = 'auto';
+            }
+        }
+
+        // Submit form pendaftaran member (hanya jika mode member)
+        const memberForm = document.getElementById('memberForm');
+        if (memberForm && isMemberMode) {
+            memberForm.onsubmit = (e) => {
+                e.preventDefault();
+                const age = parseInt(ageInput.value, 10);
+                
+                if (isNaN(age) || age < minAge) {
+                    showToast(`⚠️ Usia harus ${minAge} tahun ke atas untuk mendaftar!`);
+                    return;
+                }
+                
+                const name = document.getElementById('memberName').value;
+                const gender = document.getElementById('memberGender').value;
+                const wa = document.getElementById('memberWa').value;
+                
+                if (!name || !gender || !wa) {
+                    showToast('Lengkapi semua data!');
+                    return;
+                }
+                
+                const adminEmail = (typeof MEMBER_CONFIG !== 'undefined') ? MEMBER_CONFIG.admin_email : "utaragarageofficial@gmail.com";
+                const subject = `[UTARA GARAGE] Pendaftaran Member - ${name}`;
+                const body = `✨ PENDAFTARAN MEMBER UTARA GARAGE ✨\n\n📛 Nama: ${name}\n⚥ Gender: ${gender}\n🎂 Umur: ${age}\n📱 WA: ${wa}\n📅 Waktu: ${new Date().toLocaleString('id-ID')}\n\nTerima kasih telah mendaftar!`;
+                
+                window.location.href = `mailto:${adminEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                showToast('✨ Membuka Gmail... ✨');
+                if (memberModal) memberModal.classList.remove('active');
+                resetFormAndWarning();
+            };
+        }
+
+        if (closeModalBtn) {
+            closeModalBtn.onclick = () => {
+                if (memberModal) memberModal.classList.remove('active');
+                resetFormAndWarning();
+            };
+        }
+
+        if (memberModal) {
+            memberModal.onclick = (e) => {
+                if (e.target === memberModal) {
+                    memberModal.classList.remove('active');
+                    resetFormAndWarning();
+                }
+            };
+        }
+
         // ==================== FUNGSI PRODUK ====================
         let products = [];
         let currentFilter = "all";
@@ -367,10 +582,8 @@
         function loadProducts() {
             if (typeof PRODUCTS_DATA !== 'undefined' && PRODUCTS_DATA.length > 0) {
                 products = JSON.parse(JSON.stringify(PRODUCTS_DATA));
-                console.log('Products loaded:', products.length);
                 renderProducts();
             } else {
-                console.error('PRODUCTS_DATA not found or empty');
                 const grid = document.getElementById('productGrid');
                 if (grid) {
                     grid.innerHTML = '<div style="text-align:center;padding:3rem;color:#b89fd9;">✨ Produk akan segera hadir ✨</div>';
@@ -479,13 +692,6 @@
             `).join('');
         }
 
-        const tutorialBtn = document.getElementById('tutorialBtn');
-        if (tutorialBtn) {
-            tutorialBtn.onclick = () => {
-                document.getElementById('tutorialSection').scrollIntoView({ behavior: 'smooth' });
-            };
-        }
-        
         window.copyEmail = () => {
             navigator.clipboard.writeText("utaragarageofficial@gmail.com");
             showToast("📧 Email admin disalin!");
@@ -517,7 +723,9 @@
             }
         }
         
-        // Load products setelah config.js terload
+        // Inisialisasi
+        renderActionBlock();
+        renderTutorial();
         setTimeout(() => {
             loadProducts();
         }, 100);
