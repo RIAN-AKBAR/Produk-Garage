@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>UTARA GARAGE | MAINTENANCE · LOCK & REFINE</title>
+    <title>UTARA GARAGE | MAINTENANCE · AUTO REFRESH</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -319,17 +319,60 @@
             box-shadow: 0 12px 22px -8px #9b5eff;
         }
 
-        /* elegant timer */
+        /* elegant timer dengan auto refresh */
         .elegant-timer-lock {
-            font-size: 0.7rem;
-            background: rgba(0, 0, 0, 0.35);
+            font-size: 0.75rem;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(12px);
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 0.25rem 1.2rem;
-            border-radius: 50px;
+            gap: 10px;
+            padding: 0.5rem 1.4rem;
+            border-radius: 60px;
+            color: #d4bcff;
+            border: 0.5px solid rgba(160, 120, 250, 0.4);
+            font-weight: 500;
             margin-bottom: 1rem;
-            color: #c3a6ff;
+        }
+
+        .refresh-ring {
+            width: 32px;
+            height: 32px;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .refresh-ring svg {
+            transform: rotate(-90deg);
+            width: 32px;
+            height: 32px;
+        }
+
+        .refresh-ring circle {
+            fill: none;
+            stroke: rgba(160, 120, 255, 0.3);
+            stroke-width: 2.5;
+        }
+
+        .refresh-ring .progress-ring-circle {
+            stroke: #b87eff;
+            stroke-linecap: round;
+            stroke-dasharray: 87.96;
+            stroke-dashoffset: 0;
+            transition: stroke-dashoffset 0.1s linear;
+            filter: drop-shadow(0 0 4px #b87eff);
+        }
+
+        .timer-text {
+            font-weight: 700;
+            font-family: monospace;
+            font-size: 0.85rem;
+            background: linear-gradient(135deg, #e0c8ff, #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         /* CTA BUTTON with lock theme */
@@ -410,6 +453,22 @@
             0% { transform: scale(0); opacity: 0.6; }
             100% { transform: scale(30); opacity: 0; }
         }
+
+        /* live indicator */
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: #7eff8c;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 6px #00ff55;
+            animation: blinkDot 1.4s infinite;
+        }
+
+        @keyframes blinkDot {
+            0%, 100% { opacity: 1; transform: scale(1);}
+            50% { opacity: 0.3; transform: scale(0.8);}
+        }
     </style>
 </head>
 <body>
@@ -427,7 +486,7 @@
     <!-- MAIN CARD -->
     <div class="lock-card">
         <div class="lock-icon-container">
-            <i class="fas fa-tools"></i>   <!-- icon kunci/pas & perbaikan modern -->
+            <i class="fas fa-tools"></i>
         </div>
         <div class="status-shield">
             <i class="fas fa-shield-haltered"></i> MAINTENANCE · LOCK MODE
@@ -436,7 +495,7 @@
         <p class="desc-modern">
             <span class="gradient-accent">Sedang dalam perbaikan & optimalisasi total</span> <br>
             Kami menyempurnakan setiap detail untuk pengalaman terbaik. <br>
-            <i class="fas fa-key" style="font-size: 0.7rem;"></i> Kunci peningkatan telah terpasang.
+            <i class="fas fa-rotate-right" style="font-size: 0.7rem;"></i> Auto refresh setiap 8 detik.
         </p>
 
         <div class="progress-premium">
@@ -455,8 +514,17 @@
             <a href="https://tiktok.com/@utara_garage" class="social-icon-lock" target="_blank"><i class="fab fa-tiktok"></i></a>
         </div>
 
+        <!-- AUTO REFRESH TIMER DISPLAY -->
         <div class="elegant-timer-lock">
-            <i class="far fa-clock"></i> <span id="countdownLockText">siap dalam hitungan detik</span>
+            <span class="live-dot"></span>
+            <span>AUTO REFRESH</span>
+            <div class="refresh-ring">
+                <svg>
+                    <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="2.5" fill="none" opacity="0.25"/>
+                    <circle class="progress-ring-circle" cx="16" cy="16" r="14" stroke="currentColor" stroke-width="2.5" fill="none" stroke-dasharray="87.96" stroke-dashoffset="0"/>
+                </svg>
+            </div>
+            <span class="timer-text" id="countdownNumber">8s</span>
         </div>
 
         <button class="btn-lock" id="refreshLockBtn">
@@ -471,14 +539,14 @@
     </div>
 
     <div class="global-footer">
-        <i class="fas fa-key"></i> lock & repair mode • esthetic engineering
+        <i class="fas fa-rotate-right"></i> auto refresh setiap 8 detik • esthetic engineering
     </div>
 
     <script src="config.js"></script>
     <script>
         // ========== FLOATING SYMBOLS (tools, keys, locks) ==========
         const symbolsContainer = document.getElementById('floatingSymbolsContainer');
-        const toolSymbols = ['🔧', '🔨', '⚙️', '🔒', '🔑', '🛠️', '✨', '🔩', '🧰', '⚡', '💎', '🔐'];
+        const toolSymbols = ['🔧', '🔨', '⚙️', '🔒', '🔑', '🛠️', '✨', '🔩', '🧰', '⚡', '💎', '🔐', '🔄'];
         for (let i = 0; i < 55; i++) {
             const sym = document.createElement('div');
             sym.classList.add('floating-symbol');
@@ -508,37 +576,83 @@
             symbolsContainer.appendChild(particle);
         }
 
-        // ========== CONFIG CHECKER ==========
-        function checkMaintenanceAndRedirect() {
+        // ========== AUTO REFRESH LOGIC (CORE) ==========
+        let refreshInterval = null;
+        let countdownSec = 8;
+        
+        // elemen UI untuk ring progress dan angka
+        const countdownNumberSpan = document.getElementById('countdownNumber');
+        const progressCircle = document.querySelector('.progress-ring-circle');
+        const circumference = 2 * Math.PI * 14; // r=14 => 87.9646
+        
+        function setProgress(percent) {
+            if(progressCircle) {
+                const offset = circumference - (percent / 100) * circumference;
+                progressCircle.style.strokeDashoffset = offset;
+            }
+        }
+        
+        function updateUI() {
+            if(countdownNumberSpan) {
+                countdownNumberSpan.innerText = `${countdownSec}s`;
+            }
+            const percent = (countdownSec / 8) * 100;
+            setProgress(percent);
+        }
+        
+        // fungsi untuk melakukan pengecekan config & redirect jika maintenance_mode = false
+        function performAutoCheck() {
             if (typeof CONFIG !== 'undefined' && CONFIG.maintenance_mode === false) {
+                // Maintenance sudah selesai -> redirect ke index
                 window.location.href = 'index.html';
+                return true;
             }
+            return false;
         }
-
-        let countdownSec = 7;
-        const countdownSpan = document.getElementById('countdownLockText');
-
-        function updateCountdownDisplay() {
-            if (countdownSec <= 0) {
-                countdownSec = 7;
-                checkMaintenanceAndRedirect();
-                countdownSpan.innerHTML = `<i class="far fa-hourglass-half"></i> mengecek ulang...`;
-                setTimeout(() => {
-                    if (countdownSpan) countdownSpan.innerHTML = `<i class="far fa-clock"></i> auto cek setiap 7 detik`;
-                }, 1300);
-            } else {
-                countdownSpan.innerHTML = `<i class="far fa-hourglass-half"></i> refresh otomatis dalam ${countdownSec}s`;
-            }
-            countdownSec--;
+        
+        // Timer utama auto refresh: setiap detik update countdown, reset dan cek saat 0
+        function startAutoRefreshTimer() {
+            if(refreshInterval) clearInterval(refreshInterval);
+            
+            countdownSec = 8;
+            updateUI();
+            
+            refreshInterval = setInterval(() => {
+                if(countdownSec <= 1) {
+                    // saat mencapai 0, lakukan pengecekan
+                    performAutoCheck();
+                    // reset countdown ke 8 detik
+                    countdownSec = 8;
+                    updateUI();
+                    
+                    // efek visual tambahan: sedikit animasi pada badge
+                    const badge = document.querySelector('.status-shield');
+                    if(badge) {
+                        badge.style.transform = 'scale(1.02)';
+                        setTimeout(() => { if(badge) badge.style.transform = ''; }, 200);
+                    }
+                } else {
+                    countdownSec--;
+                    updateUI();
+                }
+            }, 1000);
         }
-
-        let timerAuto = setInterval(updateCountdownDisplay, 1000);
-
-        // Button refresh with ripple & spin
+        
+        // Fungsi manual refresh (tombol)
+        function manualCheck() {
+            // reset timer countdown agar user merasakan feedback
+            countdownSec = 8;
+            updateUI();
+            
+            // efek ripple dan spin pada tombol sudah ditangani event listener
+            performAutoCheck(); // cek langsung
+        }
+        
+        // ========== EVENT LISTENER TOMBOL ==========
         const refreshButton = document.getElementById('refreshLockBtn');
         refreshButton.addEventListener('click', (e) => {
             e.preventDefault();
-
+            
             // Ripple effect
             const ripple = document.createElement('span');
             ripple.className = 'ripple-lock';
@@ -553,22 +667,23 @@
             refreshButton.style.overflow = 'hidden';
             refreshButton.appendChild(ripple);
             setTimeout(() => ripple.remove(), 600);
-
+            
             const spinIcon = refreshButton.querySelector('i');
             if (spinIcon) spinIcon.style.transform = 'rotate(360deg)';
             setTimeout(() => { if (spinIcon) spinIcon.style.transform = ''; }, 500);
             
-            checkMaintenanceAndRedirect();
-            countdownSec = 7;
-            updateCountdownDisplay();
+            manualCheck();
         });
-
-        // Initial check on load
+        
+        // Inisialisasi auto refresh timer
+        startAutoRefreshTimer();
+        
+        // Cek awal saat load
         if (typeof CONFIG === 'undefined') {
-            console.log("Config belum terdefinisi — maintenance mode aktif (default)");
+            console.log("Config belum terdefinisi — maintenance mode aktif (default), auto refresh berjalan.");
         }
-        checkMaintenanceAndRedirect();
-
+        performAutoCheck();
+        
         // ========== MICRO INTERACTION: mouse move parallax ==========
         const card = document.querySelector('.lock-card');
         document.addEventListener('mousemove', (e) => {
@@ -580,13 +695,13 @@
         document.addEventListener('mouseleave', () => {
             if(card) card.style.transform = 'perspective(1100px) rotateY(0deg) rotateX(0deg) translateY(0px)';
         });
-
+        
         // Dynamic badge text rotation
         const badgeElement = document.querySelector('.status-shield');
         const badgeMessages = [
             '<i class="fas fa-shield-haltered"></i> MAINTENANCE · LOCK MODE',
             '<i class="fas fa-tools"></i> REPAIR & REFINE PROGRESS',
-            '<i class="fas fa-key"></i> UNLOCKING NEW EXPERIENCE'
+            '<i class="fas fa-rotate-right"></i> AUTO REFRESH 8 DETIK'
         ];
         let badgeIdx = 0;
         setInterval(() => {
@@ -595,7 +710,7 @@
                 badgeElement.innerHTML = badgeMessages[badgeIdx];
             }
         }, 4800);
-
+        
         // Animated progress glow effect
         const progressFill = document.querySelector('.progress-shine-lock');
         if (progressFill) {
@@ -604,6 +719,9 @@
                 setTimeout(() => { if(progressFill) progressFill.style.boxShadow = '0 0 14px #c187ff'; }, 350);
             }, 2200);
         }
+        
+        // Set initial ring progress (100% -> 8 detik awal)
+        setProgress(100);
     </script>
 </body>
 </html>
