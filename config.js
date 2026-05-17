@@ -3,7 +3,7 @@
 // member_mode: true = mode DAFTAR MEMBER, false = mode DAFTAR EVENT
 
 const CONFIG = {
-    maintenance_mode: true,  // Ganti jadi true untuk maintenance, false untuk normal
+    maintenance_mode: false,  // Ganti jadi true untuk maintenance, false untuk normal
     member_mode: true         // true = DAFTAR MEMBER, false = DAFTAR EVENT
 };
 
