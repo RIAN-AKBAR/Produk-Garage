@@ -14,12 +14,81 @@
         }
 
         body {
-            background: linear-gradient(135deg, #0f0718 0%, #1a0f2a 50%, #0b0518 100%);
+            background: #0a0515;
             font-family: 'Quicksand', sans-serif;
             color: #f0e6ff;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
+        }
+
+        /* MODERN BACKGROUND EFFECT - No Orbs, dengan efek keren */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(156, 108, 214, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(156, 108, 214, 0.08) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 20% 30%, rgba(107, 70, 160, 0.25) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 70%, rgba(183, 126, 230, 0.2) 0%, transparent 50%),
+                        linear-gradient(135deg, #0a0515 0%, #150d25 50%, #0a0515 100%);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .bg-aurora {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(107, 70, 160, 0.03) 40px, rgba(107, 70, 160, 0.05) 80px),
+                repeating-linear-gradient(135deg, transparent, transparent 60px, rgba(156, 108, 214, 0.02) 60px, rgba(156, 108, 214, 0.04) 120px);
+            z-index: 0;
+            pointer-events: none;
+        }
+        /* Animated shimmer effect */
+        .bg-shimmer {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 40%, rgba(183, 126, 230, 0.08), transparent 60%);
+            animation: shimmerRotate 25s linear infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+        @keyframes shimmerRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        /* Floating stars */
+        .star {
+            position: fixed;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: starTwinkle 4s ease-in-out infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+        @keyframes starTwinkle {
+            0%, 100% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 0.6; transform: scale(1); }
         }
 
         #particleCanvas {
@@ -29,44 +98,189 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 0;
+            z-index: 1;
         }
-
-        .glow-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 50% 50%, rgba(156, 108, 214, 0.15) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(60px);
-            pointer-events: none;
-            z-index: 0;
-            animation: floatOrb 20s infinite ease-in-out;
-        }
-
-        @keyframes floatOrb {
-            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
-            50% { transform: translate(50px, -30px) scale(1.1); opacity: 0.5; }
-        }
-
-        .orb-1 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(107, 70, 160, 0.4), rgba(156, 108, 214, 0.1)); top: -100px; right: -100px; animation-duration: 25s; }
-        .orb-2 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(183, 126, 230, 0.3), rgba(107, 70, 160, 0.1)); bottom: -150px; left: -100px; animation-duration: 30s; animation-delay: -5s; }
-        .orb-3 { width: 250px; height: 250px; background: radial-gradient(circle, rgba(156, 108, 214, 0.4), rgba(107, 70, 160, 0.1)); top: 50%; left: 50%; transform: translate(-50%, -50%); animation-duration: 35s; }
 
         .container {
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 1.5rem 2rem;
             position: relative;
+            z-index: 10;
+            opacity: 0;
+            animation: fadeInContent 0.8s ease forwards;
+            animation-delay: 0.3s;
+        }
+        @keyframes fadeInContent {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* LOADING SCREEN - NEW DESIGN with NEON WAVES */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, #0a0518 0%, #05020a 100%);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s;
+            opacity: 1;
+            visibility: visible;
+        }
+        .loading-screen.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .loading-container {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+        .loading-waves {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 320px;
+            height: 320px;
+            z-index: 0;
+        }
+        .loading-waves .wave {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: transparent;
+            border: 2px solid rgba(183, 126, 230, 0.3);
+            animation: waveExpand 4s ease-out infinite;
+        }
+        .loading-waves .wave:nth-child(1) { animation-delay: 0s; border-color: rgba(183, 126, 230, 0.6); }
+        .loading-waves .wave:nth-child(2) { animation-delay: 0.8s; border-color: rgba(156, 108, 214, 0.5); }
+        .loading-waves .wave:nth-child(3) { animation-delay: 1.6s; border-color: rgba(107, 70, 160, 0.4); }
+        .loading-waves .wave:nth-child(4) { animation-delay: 2.4s; border-color: rgba(183, 126, 230, 0.3); }
+        .loading-waves .wave:nth-child(5) { animation-delay: 3.2s; border-color: rgba(156, 108, 214, 0.2); }
+        @keyframes waveExpand {
+            0% { transform: scale(0.2); opacity: 0.9; }
+            100% { transform: scale(1.6); opacity: 0; }
+        }
+        .loading-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem;
+            position: relative;
             z-index: 2;
+            animation: logoGlow 2.5s ease-in-out infinite;
+        }
+        .loading-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 15px rgba(183, 126, 230, 0.8));
+        }
+        @keyframes logoGlow {
+            0%, 100% { filter: drop-shadow(0 0 8px rgba(183, 126, 230, 0.6)); transform: scale(1); }
+            50% { filter: drop-shadow(0 0 30px rgba(183, 126, 230, 1)); transform: scale(1.05); }
+        }
+        .loading-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, #e0d4ff, #b77ee6, #9c6cd6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 5px;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        .loading-text span {
+            display: inline-block;
+            animation: letterFloat 1.8s ease infinite;
+            animation-delay: calc(0.08s * var(--i));
+        }
+        @keyframes letterFloat {
+            0%, 100% { transform: translateY(0); text-shadow: 0 0 0px rgba(183,126,230,0); }
+            50% { transform: translateY(-6px); text-shadow: 0 0 12px rgba(183,126,230,0.8); }
+        }
+        .loading-bar {
+            width: 280px;
+            height: 4px;
+            background: rgba(156, 108, 214, 0.2);
+            border-radius: 10px;
+            margin: 1.8rem auto;
+            overflow: hidden;
+            position: relative;
+            z-index: 2;
+        }
+        .loading-progress {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #9c6cd6, #b77ee6, #d4c0ff, #b77ee6, #9c6cd6);
+            background-size: 200% 100%;
+            border-radius: 10px;
+            animation: progressFill 3s ease-in-out infinite, gradientShift 2s ease infinite;
+            box-shadow: 0 0 15px rgba(183, 126, 230, 0.8);
+        }
+        @keyframes progressFill {
+            0% { width: 0%; }
+            30% { width: 45%; }
+            60% { width: 75%; }
+            100% { width: 100%; }
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .loading-percent {
+            font-size: 0.9rem;
+            color: #b77ee6;
+            font-weight: 700;
+            letter-spacing: 3px;
+            margin-top: 0.5rem;
+            position: relative;
+            z-index: 2;
+            font-family: monospace;
+        }
+        .loading-tagline {
+            font-size: 0.75rem;
+            color: #b89fd9;
+            margin-top: 1.8rem;
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 2;
+            opacity: 0.7;
+        }
+        .loading-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .loading-particles span {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #b77ee6;
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleFloat 4s ease-in infinite;
+        }
+        @keyframes particleFloat {
+            0% { transform: translateY(0) scale(1); opacity: 0; }
+            20% { opacity: 0.8; }
+            80% { opacity: 0.5; }
+            100% { transform: translateY(-120px) scale(0); opacity: 0; }
         }
 
         .top-nav {
@@ -142,7 +356,6 @@
         .btn-buy { background: linear-gradient(135deg, #6b46a0, #4a2a6e); border: none; padding: 0.8rem; width: 100%; border-radius: 40px; color: white; cursor: pointer; transition: 0.3s; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; }
         .btn-buy:hover { background: linear-gradient(135deg, #9c6cd6, #6b46a0); transform: scale(1.02); gap: 12px; }
 
-        /* DONATION BLOCK - Modern Aesthetic (Tanpa cards nominal) */
         .donation-section {
             margin: 3rem 0 2rem;
         }
@@ -263,7 +476,6 @@
             flex-wrap: wrap;
         }
 
-        /* Member Block & Event Block */
         .action-block {
             background: linear-gradient(135deg, rgba(107, 70, 160, 0.2), rgba(26, 15, 42, 0.5));
             backdrop-filter: blur(15px);
@@ -348,15 +560,47 @@
             .logo h1 { font-size: 2rem; }
             .hero h2 { font-size: 1.5rem; }
             .custom-donation { flex-direction: column; }
+            .loading-logo { width: 90px; height: 90px; }
+            .loading-text { font-size: 1.4rem; letter-spacing: 3px; }
+            .loading-bar { width: 220px; }
         }
     </style>
 </head>
 <body>
+    <!-- MODERN BACKGROUND EFFECTS - No Orbs -->
+    <div class="bg-grid"></div>
+    <div class="bg-gradient"></div>
+    <div class="bg-aurora"></div>
+    <div class="bg-shimmer"></div>
+    
+    <!-- LOADING SCREEN -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-waves">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+        </div>
+        <div class="loading-particles" id="loadingParticles"></div>
+        <div class="loading-container">
+            <div class="loading-logo">
+                <img src="logo.png" alt="UTARA GARAGE" onerror="this.src='https://placehold.co/200x200/6b46a0/b77ee6?text=UG'">
+            </div>
+            <div class="loading-text">
+                <span style="--i:0">U</span><span style="--i:1">T</span><span style="--i:2">A</span><span style="--i:3">R</span><span style="--i:4">A</span>
+                <span style="--i:5"> </span>
+                <span style="--i:6">G</span><span style="--i:7">A</span><span style="--i:8">R</span><span style="--i:9">A</span><span style="--i:10">G</span><span style="--i:11">E</span>
+            </div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <div class="loading-percent" id="loadingPercent">✦ LOADING 0% ✦</div>
+            <div class="loading-tagline">✦ ESTHETIC COLLECTION ✦ PURPLE DREAM ✦</div>
+        </div>
+    </div>
+
     <canvas id="particleCanvas"></canvas>
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-    <div class="glow-bg"></div>
 
     <div class="top-nav">
         <div class="nav-container">
@@ -393,7 +637,6 @@
         <div class="section-title">⌇ DREAM COLLECTION ⌇</div>
         <div class="products-grid" id="productGrid"></div>
 
-        <!-- DONATION SECTION - Tanpa cards nominal (Rp 25k, 50k, 100k telah dihapus) -->
         <div class="donation-section" id="donation">
             <div class="donation-wrapper">
                 <div class="donation-header">
@@ -474,6 +717,50 @@
 
     <script src="config.js"></script>
     <script>
+        // LOADING SCREEN WITH LONGER DURATION
+        let loadingProgress = 0;
+        const percentElement = document.getElementById('loadingPercent');
+        const loadingInterval = setInterval(() => {
+            loadingProgress += Math.floor(Math.random() * 5) + 2;
+            if (loadingProgress >= 100) {
+                loadingProgress = 100;
+                if (percentElement) percentElement.textContent = '✦ LOADING 100% ✦';
+                clearInterval(loadingInterval);
+            } else {
+                if (percentElement) percentElement.textContent = `✦ LOADING ${loadingProgress}% ✦`;
+            }
+        }, 80);
+
+        function createLoadingParticles() {
+            const container = document.getElementById('loadingParticles');
+            if (!container) return;
+            for (let i = 0; i < 40; i++) {
+                const particle = document.createElement('span');
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particle.style.width = (Math.random() * 5 + 2) + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.background = `hsl(${260 + Math.random() * 40}, 80%, 65%)`;
+                particle.style.boxShadow = `0 0 5px rgba(183,126,230,0.8)`;
+                container.appendChild(particle);
+            }
+        }
+        createLoadingParticles();
+
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const loadingScreen = document.getElementById('loadingScreen');
+                if (loadingScreen) {
+                    loadingScreen.classList.add('hide');
+                    setTimeout(function() {
+                        loadingScreen.style.display = 'none';
+                    }, 800);
+                }
+            }, 3800);
+        });
+
         if (typeof CONFIG !== 'undefined' && CONFIG.maintenance_mode === true) {
             window.location.href = 'maintenance.html';
         }
@@ -513,7 +800,6 @@
             showToast('✨ Membuka WhatsApp... ✨');
         }
 
-        // Donation Logic - hanya dari custom input
         function triggerDonation(amount){
             let nominal = parseInt(amount);
             if(isNaN(nominal) || nominal < 5000){
@@ -530,21 +816,34 @@
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
-        let particleCount = 80;
+        let particleCount = 100;
         function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         function createParticles() {
             particles = [];
-            for (let i = 0; i < particleCount; i++) particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, radius: Math.random() * 3 + 1.5, vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.3, alpha: Math.random() * 0.5 + 0.2, color: `hsl(${260 + Math.random() * 40}, 70%, ${60 + Math.random() * 20}%)` });
+            for (let i = 0; i < particleCount; i++) particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, radius: Math.random() * 2 + 1, vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.2, alpha: Math.random() * 0.4 + 0.1, color: `hsl(${260 + Math.random() * 40}, 80%, ${65 + Math.random() * 20}%)` });
         }
         function drawParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let p of particles) { ctx.beginPath(); ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2); ctx.fillStyle = p.color; ctx.shadowBlur = 10; ctx.shadowColor = `rgba(156, 108, 214, 0.5)`; ctx.fill(); p.x += p.vx; p.y += p.vy; if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0; if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0; }
-            ctx.shadowBlur = 0; requestAnimationFrame(drawParticles);
+            for (let p of particles) {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.shadowBlur = 6;
+                ctx.shadowColor = `rgba(156, 108, 214, 0.4)`;
+                ctx.fill();
+                p.x += p.vx;
+                p.y += p.vy;
+                if (p.x < 0) p.x = canvas.width;
+                if (p.x > canvas.width) p.x = 0;
+                if (p.y < 0) p.y = canvas.height;
+                if (p.y > canvas.height) p.y = 0;
+            }
+            ctx.shadowBlur = 0;
+            requestAnimationFrame(drawParticles);
         }
         resizeCanvas(); createParticles(); drawParticles();
         window.addEventListener('resize', () => { resizeCanvas(); createParticles(); });
 
-        // member age logic
         const ageInput = document.getElementById('memberAge');
         const submitBtn = document.getElementById('submitDaftar');
         const warningDiv = document.getElementById('ageWarning');
@@ -584,7 +883,15 @@
         document.getElementById('searchBtn')?.addEventListener('click',()=>{ searchQuery = document.getElementById('searchInput').value; renderProducts(); });
         document.getElementById('searchInput')?.addEventListener('keypress',(e)=>{ if(e.key==='Enter'){ searchQuery = e.target.value; renderProducts(); } });
         
-        const team = [ { name:"BRIAN", role:"OWNER", title:"Founder & Creative Director", profile:"https://www.roblox.com/users/3624054708/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-1E6F2F7197750D011DB7AC78A24FD707-Png/150/150/AvatarHeadshot/Webp/noFilter" }, { name:"RYAN", role:"PARTNER", title:"Web Developer", profile:"https://www.roblox.com/users/1210293463/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-A47999B915DF81863CAB7A71ABFC4875-Png/150/150/AvatarHeadshot/Webp/noFilter" }, { name:"DAVIDD", role:"ADMIN", title:"Contributor", profile:"https://www.roblox.com/users/9925671622/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-1F01A40F02D4A323D4AB9BE9F78DECD5-Png/150/150/AvatarHeadshot/Webp/noFilter" }, { name:"TON", role:"ADMIN", title:"Donatur & Support", profile:"https://www.roblox.com/users/1574004264/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-414E9E9FB1F41CC4DCD349336E113F6E-Png/150/150/AvatarHeadshot/Webp/noFilter" }, { name:"Alexander", role:"ADMIN", title:"Donatur & Support", profile:"https://www.roblox.com/users/8610088002/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-A1252E3A4A8C8AF2D881F0DC530874E1-Png/150/150/AvatarHeadshot/Webp/noFilter" }, { name:"NAVAA", role:"ADMIN", title:"Contributor", profile:"https://www.roblox.com/users/2617253374/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-90C3CEC8A71411A516626437E6BB1F67-Png/150/150/AvatarHeadshot/Webp/noFilter" } ];
+        const team = [ 
+            { name:"BRIAN", role:"OWNER", title:"Founder & Creative Director", profile:"https://www.roblox.com/users/3624054708/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-1E6F2F7197750D011DB7AC78A24FD707-Png/150/150/AvatarHeadshot/Webp/noFilter" },
+            { name:"RYAN", role:"PARTNER", title:"Web Developer", profile:"https://www.roblox.com/users/1210293463/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-A47999B915DF81863CAB7A71ABFC4875-Png/150/150/AvatarHeadshot/Webp/noFilter" },
+            { name:"DAVIDD", role:"ADMIN", title:"Contributor", profile:"https://www.roblox.com/users/9925671622/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-1F01A40F02D4A323D4AB9BE9F78DECD5-Png/150/150/AvatarHeadshot/Webp/noFilter" },
+            { name:"TON", role:"ADMIN", title:"Donatur & Support", profile:"https://www.roblox.com/users/1574004264/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-414E9E9FB1F41CC4DCD349336E113F6E-Png/150/150/AvatarHeadshot/Webp/noFilter" },
+            { name:"Alexander", role:"ADMIN", title:"Donatur & Support", profile:"https://www.roblox.com/users/8610088002/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-A1252E3A4A8C8AF2D881F0DC530874E1-Png/150/150/AvatarHeadshot/Webp/noFilter" },
+            { name:"NAVAA", role:"ADMIN", title:"Contributor", profile:"https://www.roblox.com/users/2617253374/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-90C3CEC8A71411A516626437E6BB1F67-Png/150/150/AvatarHeadshot/Webp/noFilter" },
+            { name:"Nararya", role:"DONATUR", title:"Donatur", profile:"https://www.roblox.com/users/4885409097/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-8E32FADF36265DAF5AF1C4DD8E1ED085-Png/150/150/AvatarHeadshot/Webp/noFilter" }
+        ];
         const teamGrid = document.getElementById('teamGrid'); if(teamGrid) teamGrid.innerHTML = team.map(m=>`<div class="team-card"><div class="team-avatar"><img src="${m.photo}" onerror="this.src='https://placehold.co/100x100/2a1a3e/b77ee6?text=${m.name.charAt(0)}'"></div><div class="team-role">${m.role}</div><div class="team-name">${m.name}</div><div class="team-title">${m.title}</div><button class="btn-profile" onclick="window.open('${m.profile}', '_blank')"><i class="fab fa-roblox"></i> View Profile</button></div>`).join('');
         window.copyEmail = () => { navigator.clipboard.writeText("utaragarageofficial@gmail.com"); showToast("📧 Email admin disalin!"); };
         window.scrollToSection = (section) => { const el = document.getElementById(section); if(el) el.scrollIntoView({ behavior:'smooth' }); };
@@ -593,7 +900,6 @@
 
         renderActionBlock(); renderTutorial(); setTimeout(()=>loadProducts(),100);
         
-        // Event listener untuk tombol donasi custom
         document.getElementById('customDonateBtn')?.addEventListener('click', () => { 
             const customVal = document.getElementById('customDonateAmount')?.value; 
             if(customVal && parseInt(customVal) >= 5000) triggerDonation(customVal); 
