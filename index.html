@@ -22,7 +22,7 @@
             position: relative;
         }
 
-        /* MODERN BACKGROUND EFFECTS - No Orbs */
+        /* MODERN BACKGROUND EFFECTS */
         .bg-grid {
             position: fixed;
             top: 0;
@@ -92,16 +92,9 @@
             padding: 0 1.5rem 2rem;
             position: relative;
             z-index: 10;
-            opacity: 0;
-            animation: fadeInContent 0.8s ease forwards;
-            animation-delay: 0.3s;
-        }
-        @keyframes fadeInContent {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* LOADING SCREEN - FULLY RESPONSIVE */
+        /* LOADING SCREEN */
         .loading-screen {
             position: fixed;
             top: 0;
@@ -192,10 +185,6 @@
             margin-bottom: 0.5rem;
             position: relative;
             z-index: 2;
-            white-space: nowrap;
-            overflow-x: auto;
-            overflow-y: hidden;
-            -webkit-overflow-scrolling: touch;
         }
         .loading-text span {
             display: inline-block;
@@ -254,31 +243,6 @@
             position: relative;
             z-index: 2;
             opacity: 0.7;
-            white-space: nowrap;
-            overflow-x: auto;
-            overflow-y: hidden;
-            -webkit-overflow-scrolling: touch;
-            padding: 0 0.5rem;
-        }
-        /* Untuk layar sangat kecil, teks akan scroll horizontal */
-        @media (max-width: 480px) {
-            .loading-text {
-                white-space: normal;
-                word-break: keep-all;
-                letter-spacing: 2px;
-            }
-            .loading-text span {
-                animation: letterFloatSmall 1.8s ease infinite;
-            }
-            @keyframes letterFloatSmall {
-                0%, 100% { transform: translateY(0); }
-                50% { transform: translateY(-3px); }
-            }
-            .loading-tagline {
-                white-space: normal;
-                word-break: keep-all;
-                line-height: 1.4;
-            }
         }
         .loading-particles {
             position: absolute;
@@ -315,7 +279,6 @@
             border-radius: 0 0 30px 30px;
             margin-bottom: 1rem;
         }
-
         .nav-container {
             max-width: 1280px;
             margin: 0 auto;
@@ -326,7 +289,6 @@
             flex-wrap: wrap;
             gap: 1rem;
         }
-
         .nav-logo h2 {
             font-family: 'Playfair Display', serif;
             font-size: 1.3rem;
@@ -336,42 +298,36 @@
             color: transparent;
             letter-spacing: 1px;
         }
-
         .nav-links { display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; }
         .nav-links a { color: #d4c0ff; text-decoration: none; font-weight: 500; cursor: pointer; transition: 0.3s; position: relative; }
         .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #b77ee6, #9c6cd6); transition: width 0.3s; }
         .nav-links a:hover::after { width: 100%; }
         .nav-links a:hover { color: #b77ee6; }
-
         .nav-search { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; }
         .nav-search input { background: rgba(26, 15, 42, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(156, 108, 214, 0.4); border-radius: 40px; padding: 0.6rem 1.2rem; color: white; outline: none; transition: 0.3s; width: 200px; }
         .nav-search input:focus { border-color: #b77ee6; box-shadow: 0 0 15px rgba(183, 126, 230, 0.3); }
         .nav-search button { background: linear-gradient(135deg, #6b46a0, #4a2a6e); border: none; border-radius: 40px; padding: 0.6rem 1.2rem; color: white; cursor: pointer; transition: 0.3s; }
-        .nav-search button:hover { background: linear-gradient(135deg, #9c6cd6, #6b46a0); transform: scale(1.02); }
 
         .brand { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; padding: 2rem 0; border-bottom: 1px solid rgba(156, 108, 214, 0.2); }
         .logo h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 8vw, 3rem); background: linear-gradient(135deg, #e0d4ff, #b77ee6, #9c6cd6); -webkit-background-clip: text; background-clip: text; color: transparent; letter-spacing: 2px; }
         .logo p { font-size: 0.7rem; color: #b89fd9; letter-spacing: 2px; }
         .tagline { background: rgba(156, 108, 214, 0.15); backdrop-filter: blur(10px); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.75rem; color: #b77ee6; border: 1px solid rgba(156, 108, 214, 0.3); }
 
-        .hero { background: linear-gradient(135deg, rgba(107, 70, 160, 0.2), rgba(26, 15, 42, 0.4)); backdrop-filter: blur(10px); border-radius: 40px; padding: clamp(1.5rem, 5vw, 3rem) clamp(1rem, 4vw, 2rem); margin: 2rem 0; text-align: center; border: 1px solid rgba(156, 108, 214, 0.3); animation: fadeInUp 0.8s ease; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .hero { background: linear-gradient(135deg, rgba(107, 70, 160, 0.2), rgba(26, 15, 42, 0.4)); backdrop-filter: blur(10px); border-radius: 40px; padding: clamp(1.5rem, 5vw, 3rem) clamp(1rem, 4vw, 2rem); margin: 2rem 0; text-align: center; border: 1px solid rgba(156, 108, 214, 0.3); }
         .hero h2 { font-size: clamp(1.2rem, 5vw, 2rem); font-family: 'Playfair Display', serif; color: #d4c0ff; }
         .hero p { color: #b89fd9; margin-top: 0.5rem; font-size: clamp(0.8rem, 3vw, 1rem); }
 
         .section-title { font-size: clamp(1.2rem, 5vw, 1.8rem); font-weight: 600; margin: 2rem 0 1.5rem; font-family: 'Playfair Display', serif; color: #b77ee6; position: relative; display: inline-block; }
         .section-title:before { content: '✦'; position: absolute; left: -25px; top: 0; color: #9c6cd6; font-size: clamp(1rem, 4vw, 1.5rem); }
         .section-title:after { content: '✦'; position: absolute; right: -25px; top: 0; color: #9c6cd6; font-size: clamp(1rem, 4vw, 1.5rem); }
-        @media (max-width: 600px) {
-            .section-title:before, .section-title:after { display: none; }
-        }
+        @media (max-width: 600px) { .section-title:before, .section-title:after { display: none; } }
 
         .filter-group { display: flex; gap: 0.8rem; margin: 1rem 0 2rem; flex-wrap: wrap; justify-content: center; }
         .filter-btn { background: rgba(26, 15, 42, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(156, 108, 214, 0.4); padding: 0.5rem 1rem; border-radius: 40px; color: #d4c0ff; cursor: pointer; transition: 0.3s; font-weight: 500; font-size: clamp(0.7rem, 3vw, 0.9rem); }
         .filter-btn.active, .filter-btn:hover { background: linear-gradient(135deg, #6b46a0, #4a2a6e); border-color: #b77ee6; color: white; transform: translateY(-2px); }
 
         .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
-        .product-card { background: rgba(15, 10, 25, 0.6); backdrop-filter: blur(15px); border-radius: 28px; padding: 1rem; border: 1px solid rgba(156, 108, 214, 0.3); text-align: center; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); animation: fadeInUp 0.6s ease backwards; }
+        .product-card { background: rgba(15, 10, 25, 0.6); backdrop-filter: blur(15px); border-radius: 28px; padding: 1rem; border: 1px solid rgba(156, 108, 214, 0.3); text-align: center; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .product-card:hover { transform: translateY(-8px) scale(1.01); border-color: #b77ee6; box-shadow: 0 20px 40px rgba(107, 70, 160, 0.3); }
         .product-img { width: 100%; aspect-ratio: 1/1; border-radius: 24px; overflow: hidden; margin-bottom: 1rem; }
         .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
@@ -387,7 +343,7 @@
         .donation-icon { font-size: clamp(1.8rem, 6vw, 2.5rem); background: linear-gradient(135deg, #e0d4ff, #b77ee6); -webkit-background-clip: text; background-clip: text; color: transparent; display: inline-block; animation: gentleFloat 3s infinite ease; }
         @keyframes gentleFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
         .donation-header h3 { font-family: 'Playfair Display', serif; font-size: clamp(1.2rem, 5vw, 1.8rem); background: linear-gradient(135deg, #f0e6ff, #cbaaff); -webkit-background-clip: text; background-clip: text; color: transparent; margin: 0.3rem 0; }
-        .donation-sub span { background: rgba(156, 108, 214, 0.2); padding: 4px 10px; border-radius: 40px; font-size: 0.7rem; backdrop-filter: blur(5px); }
+        .donation-sub span { background: rgba(156, 108, 214, 0.2); padding: 4px 10px; border-radius: 40px; font-size: 0.7rem; backdrop-filter: blur(5px); display: inline-block; margin: 0 0.3rem; }
         .custom-donation { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; align-items: center; margin-top: 0.5rem; }
         .custom-input { background: rgba(26, 15, 42, 0.7); border: 1px solid #7a4ca8; border-radius: 60px; padding: 0.6rem 1rem; color: white; width: 170px; text-align: center; font-size: 0.85rem; }
         .btn-donate { background: linear-gradient(135deg, #8a5fc9, #563b7c); border: none; padding: 0.6rem 1.5rem; border-radius: 60px; color: white; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; }
@@ -405,63 +361,56 @@
 
         .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.2rem; margin: 2rem 0; }
         .team-card { background: rgba(15, 10, 25, 0.6); backdrop-filter: blur(15px); border-radius: 28px; padding: 1.2rem; text-align: center; border: 1px solid rgba(156, 108, 214, 0.3); transition: 0.3s; }
-        .team-avatar { width: min(80px, 25vw); height: min(80px, 25vw); border-radius: 50%; margin: 0 auto 0.8rem; overflow: hidden; border: 3px solid #b77ee6; }
+        .team-card:hover { transform: translateY(-5px); border-color: #b77ee6; }
+        .team-avatar { width: min(80px, 25vw); height: min(80px, 25vw); border-radius: 50%; margin: 0 auto 0.8rem; overflow: hidden; border: 3px solid #b77ee6; box-shadow: 0 0 20px rgba(183, 126, 230, 0.3); }
+        .team-avatar img { width: 100%; height: 100%; object-fit: cover; }
         .team-role { background: rgba(156, 108, 214, 0.25); display: inline-block; padding: 0.2rem 0.6rem; border-radius: 30px; font-size: 0.6rem; color: #b77ee6; margin-bottom: 0.5rem; }
         .team-name { font-size: 1rem; font-weight: 700; margin: 0.3rem 0; }
         .team-title { font-size: 0.7rem; color: #b89fd9; }
         .btn-profile { background: transparent; border: 1.5px solid #9c6cd6; border-radius: 40px; padding: 0.4rem 0.8rem; color: #b77ee6; cursor: pointer; transition: 0.3s; font-size: 0.7rem; margin-top: 0.5rem; }
+        .btn-profile:hover { background: #9c6cd6; color: #0a0a0f; }
 
-        .tutorial-box { background: linear-gradient(135deg, rgba(107, 70, 160, 0.15), rgba(26, 15, 42, 0.4)); backdrop-filter: blur(15px); border-radius: 32px; padding: 1.5rem; margin: 2rem 0; }
+        .tutorial-box { background: linear-gradient(135deg, rgba(107, 70, 160, 0.15), rgba(26, 15, 42, 0.4)); backdrop-filter: blur(15px); border-radius: 32px; padding: 1.5rem; margin: 2rem 0 0; }
         .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
         .step { background: rgba(10, 5, 20, 0.5); border-radius: 20px; padding: 0.8rem; text-align: center; }
         .step-number { width: 35px; height: 35px; background: linear-gradient(135deg, #6b46a0, #9c6cd6); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem; font-weight: bold; color: white; font-size: 0.9rem; }
-        .step h4 { font-size: 0.8rem; }
-        .step p { font-size: 0.65rem; }
-        .email-highlight { background: rgba(42, 26, 62, 0.8); padding: 0.4rem 0.8rem; border-radius: 40px; display: inline-block; font-size: 0.7rem; }
+        .step h4 { font-size: 0.8rem; margin-bottom: 0.3rem; }
+        .step p { font-size: 0.65rem; color: #b89fd9; }
+        .email-highlight { background: rgba(42, 26, 62, 0.8); padding: 0.4rem 0.8rem; border-radius: 40px; display: inline-block; font-size: 0.7rem; margin-top: 0.5rem; }
         .copy-btn { background: #6b46a0; border: none; padding: 0.2rem 0.6rem; border-radius: 30px; color: white; cursor: pointer; margin-left: 8px; font-size: 0.7rem; }
 
-        .modal-card { background: linear-gradient(135deg, #1a1025, #0f0a1a); max-width: 400px; width: 90%; border-radius: 28px; padding: 1.5rem; border: 1px solid #9c6cd6; }
-        .modal-card input, .modal-card select { width: 100%; padding: 0.6rem; border-radius: 40px; background: #0f0a1a; border: 1px solid #6b46a0; color: white; font-size: 0.85rem; }
-
-        .toast-msg { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #6b46a0, #4a2a6e); color: white; padding: 8px 20px; border-radius: 50px; z-index: 1100; opacity: 0; transition: 0.2s; font-weight: 500; font-size: 0.8rem; white-space: nowrap; }
-        @media (max-width: 500px) { .toast-msg { white-space: normal; text-align: center; max-width: 90%; } }
-
-        footer { text-align: center; border-top: 1px solid rgba(156, 108, 214, 0.2); padding: 1.5rem 1rem 1rem; margin-top: 2rem; font-size: 0.65rem; }
+        footer { text-align: center; border-top: 1px solid rgba(156, 108, 214, 0.2); padding: 2rem 1rem 1.5rem; margin-top: 2rem; }
         .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 0.8rem; flex-wrap: wrap; }
         .social-links a { color: #b77ee6; font-size: 1.2rem; transition: 0.3s; display: inline-flex; align-items: center; gap: 0.3rem; text-decoration: none; }
+        .social-links a:hover { color: #d4c0ff; transform: translateY(-3px); }
         .social-links span { font-size: 0.7rem; }
+        .copyright { color: #b89fd9; font-size: 0.65rem; line-height: 1.5; }
         @media (max-width: 500px) { .social-links span { display: none; } }
+
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; z-index: 1000; visibility: hidden; opacity: 0; transition: 0.2s; }
+        .modal-overlay.active { visibility: visible; opacity: 1; }
+        .modal-card { background: linear-gradient(135deg, #1a1025, #0f0a1a); max-width: 400px; width: 90%; border-radius: 28px; padding: 1.5rem; border: 1px solid #9c6cd6; }
+        .modal-card input, .modal-card select { width: 100%; padding: 0.6rem; border-radius: 40px; background: #0f0a1a; border: 1px solid #6b46a0; color: white; font-size: 0.85rem; margin-top: 0.3rem; }
+        .modal-card label { color: #b77ee6; font-size: 0.8rem; }
+        .warning-message { background: rgba(255, 150, 50, 0.2); border: 1px solid #ffaa33; border-radius: 20px; padding: 0.8rem; margin: 1rem 0; text-align: center; color: #ffcc88; font-size: 0.75rem; display: none; }
+
+        .toast-msg { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #6b46a0, #4a2a6e); color: white; padding: 8px 20px; border-radius: 50px; z-index: 1100; opacity: 0; transition: 0.2s; font-weight: 500; font-size: 0.8rem; white-space: nowrap; pointer-events: none; }
+        @media (max-width: 500px) { .toast-msg { white-space: normal; text-align: center; max-width: 90%; } }
     </style>
 </head>
 <body>
-    <!-- MODERN BACKGROUND EFFECTS -->
     <div class="bg-grid"></div>
     <div class="bg-gradient"></div>
     <div class="bg-aurora"></div>
     <div class="bg-shimmer"></div>
     
-    <!-- LOADING SCREEN - FULLY RESPONSIVE -->
     <div id="loadingScreen" class="loading-screen">
-        <div class="loading-waves">
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-        </div>
+        <div class="loading-waves"><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div></div>
         <div class="loading-particles" id="loadingParticles"></div>
         <div class="loading-container">
-            <div class="loading-logo">
-                <img src="logo.png" alt="UTARA GARAGE" onerror="this.src='https://placehold.co/200x200/6b46a0/b77ee6?text=UG'">
-            </div>
-            <div class="loading-text">
-                <span style="--i:0">U</span><span style="--i:1">T</span><span style="--i:2">A</span><span style="--i:3">R</span><span style="--i:4">A</span>
-                <span style="--i:5"> </span>
-                <span style="--i:6">G</span><span style="--i:7">A</span><span style="--i:8">R</span><span style="--i:9">A</span><span style="--i:10">G</span><span style="--i:11">E</span>
-            </div>
-            <div class="loading-bar">
-                <div class="loading-progress"></div>
-            </div>
+            <div class="loading-logo"><img src="logo.png" alt="UTARA GARAGE" onerror="this.src='https://placehold.co/200x200/6b46a0/b77ee6?text=UG'"></div>
+            <div class="loading-text"><span style="--i:0">U</span><span style="--i:1">T</span><span style="--i:2">A</span><span style="--i:3">R</span><span style="--i:4">A</span><span style="--i:5"> </span><span style="--i:6">G</span><span style="--i:7">A</span><span style="--i:8">R</span><span style="--i:9">A</span><span style="--i:10">G</span><span style="--i:11">E</span></div>
+            <div class="loading-bar"><div class="loading-progress"></div></div>
             <div class="loading-percent" id="loadingPercent">✦ LOADING 0% ✦</div>
             <div class="loading-tagline">✦ ESTHETIC COLLECTION ✦ PURPLE DREAM ✦</div>
         </div>
@@ -472,110 +421,51 @@
     <div class="top-nav">
         <div class="nav-container">
             <div class="nav-logo"><h2>✦ UTARA GARAGE ✦</h2></div>
-            <div class="nav-links">
-                <a onclick="scrollToSection('home')">HOME</a>
-                <a onclick="scrollToSection('shop')">SHOP</a>
-                <a onclick="scrollToSection('team')">TEAM</a>
-            </div>
-            <div class="nav-search">
-                <input type="text" id="searchInput" placeholder="Cari produk...">
-                <button id="searchBtn"><i class="fas fa-search"></i></button>
-            </div>
+            <div class="nav-links"><a onclick="scrollToSection('home')">HOME</a><a onclick="scrollToSection('shop')">SHOP</a><a onclick="scrollToSection('team')">TEAM</a></div>
+            <div class="nav-search"><input type="text" id="searchInput" placeholder="Cari produk..."><button id="searchBtn"><i class="fas fa-search"></i></button></div>
         </div>
     </div>
 
     <div class="container">
-        <div class="brand" id="home">
-            <div class="logo"><h1>UTARA GARAGE</h1><p>✦ ESTHETIC COLLECTION ✦ PURPLE DREAM ✦</p></div>
-            <div class="tagline"><i class="fas fa-star"></i> SOFT AESTHETIC <i class="fas fa-moon"></i> PURPLE VIBE</div>
-        </div>
+        <div class="brand" id="home"><div class="logo"><h1>UTARA GARAGE</h1><p>✦ ESTHETIC COLLECTION ✦ PURPLE DREAM ✦</p></div><div class="tagline"><i class="fas fa-star"></i> SOFT AESTHETIC <i class="fas fa-moon"></i> PURPLE VIBE</div></div>
 
         <div id="actionBlock" class="action-block"></div>
 
         <div class="hero"><h2>DREAM COLLECTION</h2><p>ESTHETIC PURPLE EDITION ✦ LIMITED RELEASE</p></div>
 
-        <div class="filter-group" id="shop">
-            <button class="filter-btn active" data-filter="all">ALL</button>
-            <button class="filter-btn" data-filter="shirt">SHIRT</button>
-            <button class="filter-btn" data-filter="jacket">JACKET</button>
-            <button class="filter-btn" data-filter="trousers">TROUSERS</button>
-        </div>
+        <div class="filter-group" id="shop"><button class="filter-btn active" data-filter="all">ALL</button><button class="filter-btn" data-filter="shirt">SHIRT</button><button class="filter-btn" data-filter="jacket">JACKET</button><button class="filter-btn" data-filter="trousers">TROUSERS</button></div>
 
         <div class="section-title">⌇ DREAM COLLECTION ⌇</div>
         <div class="products-grid" id="productGrid"></div>
 
-        <div class="donation-section" id="donation">
+        <div class="donation-section">
             <div class="donation-wrapper">
-                <div class="donation-header">
-                    <div class="donation-icon"><i class="fas fa-hand-holding-heart"></i></div>
-                    <h3>✦ SUPPORT OUR DREAM ✦</h3>
-                    <div class="donation-sub">
-                        <span><i class="fas fa-gem"></i> Donasi</span>
-                        <span><i class="fas fa-crown"></i> Dukungan Kreator</span>
-                        <span><i class="fas fa-moon"></i> Bantu Kami Berkarya</span>
-                    </div>
-                </div>
-                <div class="donation-footer">
-                    <div class="custom-donation">
-                        <input type="number" id="customDonateAmount" class="custom-input" placeholder="Masukkan nominal (Rp)" min="5000" step="1000">
-                        <button id="customDonateBtn" class="btn-donate"><i class="fas fa-heart"></i> DONASI</button>
-                    </div>
-                    <div class="donation-note">
-                        <i class="fas fa-lock"></i> Aman & Terpercaya
-                        <i class="fas fa-gift"></i> Dukung pengembangan koleksi
-                        <i class="fas fa-coffee"></i> Terima kasih!
-                    </div>
-                </div>
+                <div class="donation-header"><div class="donation-icon"><i class="fas fa-hand-holding-heart"></i></div><h3>✦ SUPPORT OUR DREAM ✦</h3><div class="donation-sub"><span><i class="fas fa-gem"></i> Donasi</span><span><i class="fas fa-crown"></i> Dukungan Kreator</span><span><i class="fas fa-moon"></i> Bantu Kami Berkarya</span></div></div>
+                <div class="donation-footer"><div class="custom-donation"><input type="number" id="customDonateAmount" class="custom-input" placeholder="Masukkan nominal (Rp)" min="5000" step="1000"><button id="customDonateBtn" class="btn-donate"><i class="fas fa-heart"></i> DONASI</button></div><div class="donation-note"><i class="fas fa-lock"></i> Aman & Terpercaya <i class="fas fa-gift"></i> Dukung pengembangan koleksi <i class="fas fa-coffee"></i> Terima kasih!</div></div>
             </div>
         </div>
 
         <div class="section-title" id="team">⌇ OUR CREW ⌇</div>
         <div class="team-grid" id="teamGrid"></div>
 
-        <div id="tutorialSection">
-            <div class="tutorial-box" id="tutorialBox"></div>
-        </div>
+        <div id="tutorialSection"><div class="tutorial-box" id="tutorialBox"></div></div>
     </div>
 
     <footer>
-        <div class="social-links">
-            <a href="https://whatsapp.com/channel/0029VbCEmlcL2ATqlP5QNf2S" target="_blank"><i class="fab fa-whatsapp"></i><span>WhatsApp Channel</span></a>
-            <a href="https://tiktok.com/@utara_garage" target="_blank"><i class="fab fa-tiktok"></i><span>TikTok</span></a>
-        </div>
+        <div class="social-links"><a href="https://whatsapp.com/channel/0029VbCEmlcL2ATqlP5QNf2S" target="_blank"><i class="fab fa-whatsapp"></i><span>WhatsApp Channel</span></a><a href="https://tiktok.com/@utara_garage" target="_blank"><i class="fab fa-tiktok"></i><span>TikTok</span></a></div>
         <div class="copyright"><i class="fas fa-moon"></i> UTARA GARAGE • ESTHETIC COLLECTION • PURPLE DREAM<br><small>© 2026 Utara Garage - All Rights Reserved</small></div>
     </footer>
 
     <div id="memberModal" class="modal-overlay">
         <div class="modal-card">
             <h3 style="text-align:center;"><i class="fas fa-feather-alt"></i> DREAM REGISTRY</h3>
-            <div id="ageWarning" class="warning-message" style="display: none; font-size:0.75rem;">
-                <i class="fas fa-exclamation-triangle"></i> <strong>PERINGATAN!</strong><br>Usia minimal 15 tahun ke atas.
-            </div>
+            <div id="ageWarning" class="warning-message"><i class="fas fa-exclamation-triangle"></i> <strong>PERINGATAN!</strong><br>Usia minimal 15 tahun ke atas.</div>
             <form id="memberForm">
-                <div class="form-group" style="margin-bottom:0.8rem;">
-                    <label style="color:#b77ee6; font-size:0.8rem;">NAMA LENGKAP</label>
-                    <input type="text" id="memberName" required>
-                </div>
-                <div class="form-group" style="margin-bottom:0.8rem;">
-                    <label style="color:#b77ee6; font-size:0.8rem;">GENDER</label>
-                    <select id="memberGender">
-                        <option>Pilih</option>
-                        <option>Perempuan</option>
-                        <option>Laki-laki</option>
-                    </select>
-                </div>
-                <div class="form-group" style="margin-bottom:0.8rem;">
-                    <label style="color:#b77ee6; font-size:0.8rem;">UMUR</label>
-                    <input type="number" id="memberAge" required>
-                </div>
-                <div class="form-group" style="margin-bottom:0.8rem;">
-                    <label style="color:#b77ee6; font-size:0.8rem;">NOMOR WHATSAPP</label>
-                    <input type="tel" id="memberWa" placeholder="+62xxx" required>
-                </div>
-                <div class="modal-actions" style="display:flex; gap:0.8rem; margin-top:1rem;">
-                    <button type="button" id="closeModalBtn" style="flex:1; padding:0.6rem; border-radius:40px; background:#2a1a3e; border:1px solid #6b46a0; color:#b77ee6; cursor:pointer;">BATAL</button>
-                    <button type="submit" id="submitDaftar" style="flex:1; padding:0.6rem; border-radius:40px; background:linear-gradient(135deg,#6b46a0,#4a2a6e); color:white; border:none; cursor:pointer;">DAFTAR</button>
-                </div>
+                <div class="form-group" style="margin-bottom:0.8rem;"><label>NAMA LENGKAP</label><input type="text" id="memberName" required></div>
+                <div class="form-group" style="margin-bottom:0.8rem;"><label>GENDER</label><select id="memberGender"><option>Pilih</option><option>Perempuan</option><option>Laki-laki</option></select></div>
+                <div class="form-group" style="margin-bottom:0.8rem;"><label>UMUR</label><input type="number" id="memberAge" required></div>
+                <div class="form-group" style="margin-bottom:0.8rem;"><label>NOMOR WHATSAPP</label><input type="tel" id="memberWa" placeholder="+62xxx" required></div>
+                <div class="modal-actions" style="display:flex; gap:0.8rem; margin-top:1rem;"><button type="button" id="closeModalBtn" style="flex:1; padding:0.6rem; border-radius:40px; background:#2a1a3e; border:1px solid #6b46a0; color:#b77ee6; cursor:pointer;">BATAL</button><button type="submit" id="submitDaftar" style="flex:1; padding:0.6rem; border-radius:40px; background:linear-gradient(135deg,#6b46a0,#4a2a6e); color:white; border:none; cursor:pointer;">DAFTAR</button></div>
             </form>
         </div>
     </div>
@@ -584,196 +474,86 @@
 
     <script src="config.js"></script>
     <script>
-        // LOADING SCREEN WITH LONGER DURATION
         let loadingProgress = 0;
         const percentElement = document.getElementById('loadingPercent');
         const loadingInterval = setInterval(() => {
             loadingProgress += Math.floor(Math.random() * 5) + 2;
-            if (loadingProgress >= 100) {
-                loadingProgress = 100;
-                if (percentElement) percentElement.textContent = '✦ LOADING 100% ✦';
-                clearInterval(loadingInterval);
-            } else {
-                if (percentElement) percentElement.textContent = `✦ LOADING ${loadingProgress}% ✦`;
-            }
+            if (loadingProgress >= 100) { loadingProgress = 100; if(percentElement) percentElement.textContent = '✦ LOADING 100% ✦'; clearInterval(loadingInterval); }
+            else { if(percentElement) percentElement.textContent = `✦ LOADING ${loadingProgress}% ✦`; }
         }, 80);
 
         function createLoadingParticles() {
             const container = document.getElementById('loadingParticles');
-            if (!container) return;
-            const particleCount = window.innerWidth < 600 ? 25 : 40;
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('span');
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 5 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                particle.style.width = (Math.random() * 4 + 2) + 'px';
-                particle.style.height = particle.style.width;
-                particle.style.background = `hsl(${260 + Math.random() * 40}, 80%, 65%)`;
-                particle.style.boxShadow = `0 0 5px rgba(183,126,230,0.8)`;
-                container.appendChild(particle);
-            }
+            if(!container) return;
+            const count = window.innerWidth < 600 ? 25 : 40;
+            for(let i=0;i<count;i++){ const p=document.createElement('span'); p.style.left=Math.random()*100+'%'; p.style.top=Math.random()*100+'%'; p.style.animationDelay=Math.random()*5+'s'; p.style.animationDuration=(Math.random()*3+3)+'s'; p.style.width=(Math.random()*4+2)+'px'; p.style.height=p.style.width; p.style.background=`hsl(${260+Math.random()*40},80%,65%)`; container.appendChild(p); }
         }
         createLoadingParticles();
 
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                const loadingScreen = document.getElementById('loadingScreen');
-                if (loadingScreen) {
-                    loadingScreen.classList.add('hide');
-                    setTimeout(function() {
-                        loadingScreen.style.display = 'none';
-                    }, 800);
-                }
-            }, 3800);
-        });
+        window.addEventListener('load',function(){ setTimeout(function(){ const ls=document.getElementById('loadingScreen'); if(ls){ ls.classList.add('hide'); setTimeout(function(){ ls.style.display='none'; },800); } },3800); });
 
-        if (typeof CONFIG !== 'undefined' && CONFIG.maintenance_mode === true) {
-            window.location.href = 'maintenance.html';
-        }
+        if(typeof CONFIG !== 'undefined' && CONFIG.maintenance_mode === true) window.location.href = 'maintenance.html';
 
         const isMemberMode = (typeof CONFIG !== 'undefined' && CONFIG.member_mode === true);
         
-        function renderActionBlock() {
-            const actionBlock = document.getElementById('actionBlock');
-            if (!actionBlock) return;
-            if (isMemberMode) {
-                actionBlock.innerHTML = `<div class="action-logo"><img src="logo.png" alt="UG" onerror="this.src='https://placehold.co/100x100/6b46a0/b77ee6?text=UG'"></div><h2>✦ DREAM REGISTRY ✦</h2><p>Bergabunglah menjadi bagian dari keluarga UTARA GARAGE</p><button id="actionBtn" class="btn-member"><i class="fas fa-user-plus"></i> DAFTAR MEMBER</button>`;
-            } else {
-                actionBlock.innerHTML = `<div class="action-logo"><img src="logo.png" alt="UG" onerror="this.src='https://placehold.co/100x100/6b46a0/b77ee6?text=UG'"></div><h2>✦ DAFTAR EVENT ✦</h2><p>Ikuti event seru dari UTARA GARAGE! Dapatkan hadiah menarik dan merchandise eksklusif</p><button id="actionBtn" class="btn-event"><i class="fab fa-whatsapp"></i> DAFTAR EVENT</button>`;
-            }
-            const actionBtn = document.getElementById('actionBtn');
-            if (actionBtn) {
-                if (isMemberMode) actionBtn.onclick = () => { resetFormAndWarning(); if(memberModal) memberModal.classList.add('active'); };
-                else actionBtn.onclick = openWhatsApp;
-            }
+        function renderActionBlock(){
+            const ab=document.getElementById('actionBlock');
+            if(!ab) return;
+            if(isMemberMode){ ab.innerHTML=`<div class="action-logo"><img src="logo.png" alt="UG" onerror="this.src='https://placehold.co/100x100/6b46a0/b77ee6?text=UG'"></div><h2>✦ DREAM REGISTRY ✦</h2><p>Bergabunglah menjadi bagian dari keluarga UTARA GARAGE</p><button id="actionBtn" class="btn-member"><i class="fas fa-user-plus"></i> DAFTAR MEMBER</button>`; }
+            else { ab.innerHTML=`<div class="action-logo"><img src="logo.png" alt="UG" onerror="this.src='https://placehold.co/100x100/6b46a0/b77ee6?text=UG'"></div><h2>✦ DAFTAR EVENT ✦</h2><p>Ikuti event seru dari UTARA GARAGE! Dapatkan hadiah menarik dan merchandise eksklusif</p><button id="actionBtn" class="btn-event"><i class="fab fa-whatsapp"></i> DAFTAR EVENT</button>`; }
+            const btn=document.getElementById('actionBtn');
+            if(btn){ if(isMemberMode) btn.onclick=()=>{ resetFormAndWarning(); if(memberModal) memberModal.classList.add('active'); }; else btn.onclick=openWhatsApp; }
         }
-        
-        function renderTutorial() {
-            const tutorialBox = document.getElementById('tutorialBox');
-            if(!tutorialBox) return;
+
+        function renderTutorial(){
+            const tb=document.getElementById('tutorialBox');
+            if(!tb) return;
             if(isMemberMode){
-                tutorialBox.innerHTML = `<div style="text-align:center;"><i class="fas fa-feather-alt" style="font-size:1.5rem; color:#b77ee6;"></i><h3 style="margin-top:0.3rem; font-size:1.1rem;">📖 TUTORIAL DAFTAR MEMBER</h3></div><div class="steps"><div class="step"><div class="step-number">1</div><h4>Isi Formulir</h4><p>Klik tombol DAFTAR MEMBER</p></div><div class="step"><div class="step-number">2</div><h4>Isi Data</h4><p>Lengkapi formulir</p></div><div class="step"><div class="step-number">3</div><h4>Kirim Email</h4><p>Otomatis buka Gmail</p></div><div class="step"><div class="step-number">4</div><h4>Tunggu Konfirmasi</h4><p>Admin akan konfirmasi</p></div></div><div style="text-align:center; font-size:0.75rem;"><p><i class="fas fa-envelope"></i> Email Admin:</p><div class="email-highlight">utaragarageofficial@gmail.com<button class="copy-btn" onclick="copyEmail()"><i class="fas fa-copy"></i> Salin</button></div></div>`;
+                tb.innerHTML=`<div style="text-align:center;"><i class="fas fa-feather-alt" style="font-size:1.5rem; color:#b77ee6;"></i><h3 style="margin-top:0.3rem; font-size:1.1rem;">📖 TUTORIAL DAFTAR MEMBER</h3></div><div class="steps"><div class="step"><div class="step-number">1</div><h4>Isi Formulir</h4><p>Klik tombol DAFTAR MEMBER</p></div><div class="step"><div class="step-number">2</div><h4>Isi Data</h4><p>Lengkapi formulir pendaftaran</p></div><div class="step"><div class="step-number">3</div><h4>Kirim Email</h4><p>Otomatis buka Gmail</p></div><div class="step"><div class="step-number">4</div><h4>Tunggu Konfirmasi</h4><p>Admin akan konfirmasi</p></div></div><div style="text-align:center;"><p><i class="fas fa-envelope"></i> Email Admin:</p><div class="email-highlight">utaragarageofficial@gmail.com<button class="copy-btn" onclick="copyEmail()"><i class="fas fa-copy"></i> Salin</button></div></div>`;
             } else {
-                tutorialBox.innerHTML = `<div style="text-align:center;"><i class="fas fa-calendar-alt" style="font-size:1.5rem; color:#b77ee6;"></i><h3 style="margin-top:0.3rem; font-size:1.1rem;">📖 TUTORIAL DAFTAR EVENT</h3></div><div class="steps"><div class="step"><div class="step-number">1</div><h4>Klik Tombol</h4><p>Klik tombol DAFTAR EVENT</p></div><div class="step"><div class="step-number">2</div><h4>Konfirmasi</h4><p>Diarahkan ke WhatsApp</p></div><div class="step"><div class="step-number">3</div><h4>Kirim Pesan</h4><p>Pesan otomatis terkirim</p></div><div class="step"><div class="step-number">4</div><h4>Konfirmasi Admin</h4><p>Admin akan membalas</p></div></div><div style="text-align:center; font-size:0.75rem;"><p><i class="fas fa-envelope"></i> Email Admin:</p><div class="email-highlight">utaragarageofficial@gmail.com<button class="copy-btn" onclick="copyEmail()"><i class="fas fa-copy"></i> Salin</button></div></div>`;
+                tb.innerHTML=`<div style="text-align:center;"><i class="fas fa-calendar-alt" style="font-size:1.5rem; color:#b77ee6;"></i><h3 style="margin-top:0.3rem; font-size:1.1rem;">📖 TUTORIAL DAFTAR EVENT</h3></div><div class="steps"><div class="step"><div class="step-number">1</div><h4>Klik Tombol</h4><p>Klik tombol DAFTAR EVENT</p></div><div class="step"><div class="step-number">2</div><h4>Konfirmasi</h4><p>Anda akan diarahkan ke WhatsApp</p></div><div class="step"><div class="step-number">3</div><h4>Kirim Pesan</h4><p>Pesan otomatis terkirim</p></div><div class="step"><div class="step-number">4</div><h4>Konfirmasi Admin</h4><p>Admin akan membalas</p></div></div><div style="text-align:center;"><p><i class="fas fa-envelope"></i> Email Admin:</p><div class="email-highlight">utaragarageofficial@gmail.com<button class="copy-btn" onclick="copyEmail()"><i class="fas fa-copy"></i> Salin</button></div></div>`;
             }
         }
 
-        function openWhatsApp() {
-            let phoneNumber = "6281234567890";
-            let message = "Assalamualaikum Bang Saya Mau Daftar Event";
-            if (typeof EVENT_CONFIG !== 'undefined') { phoneNumber = EVENT_CONFIG.whatsapp_number || phoneNumber; message = EVENT_CONFIG.message || message; }
-            window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
-            showToast('✨ Membuka WhatsApp... ✨');
-        }
+        function openWhatsApp(){ let phone="6281234567890", msg="Assalamualaikum Bang Saya Mau Daftar Event"; if(typeof EVENT_CONFIG !== 'undefined'){ phone=EVENT_CONFIG.whatsapp_number||phone; msg=EVENT_CONFIG.message||msg; } window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`,'_blank'); showToast('✨ Membuka WhatsApp... ✨'); }
+        function triggerDonation(amount){ let nominal=parseInt(amount); if(isNaN(nominal)||nominal<5000){ showToast("Minimal donasi Rp 5.000"); return; } const adminEmail="utaragarageofficial@gmail.com"; window.location.href=`mailto:${adminEmail}?subject=${encodeURIComponent(`DONASI UTARA GARAGE - Rp ${nominal.toLocaleString()}`)}&body=${encodeURIComponent(`Halo Tim UTARA GARAGE,\n\nSaya ingin melakukan donasi sebesar Rp ${nominal.toLocaleString()}.\n\nMohon informasi metode pembayaran lebih lanjut.\nTerima kasih. ✨`)}`; showToast(`💜 Email donasi Rp ${nominal.toLocaleString()} akan terbuka`); }
 
-        function triggerDonation(amount){
-            let nominal = parseInt(amount);
-            if(isNaN(nominal) || nominal < 5000){
-                showToast("Minimal donasi Rp 5.000");
-                return;
-            }
-            const adminEmail = "utaragarageofficial@gmail.com";
-            const subject = `DONASI UTARA GARAGE - Rp ${nominal.toLocaleString()}`;
-            const body = `Halo Tim UTARA GARAGE,\n\nSaya ingin melakukan donasi sebesar Rp ${nominal.toLocaleString()}.\n\nMohon informasi metode pembayaran lebih lanjut.\nTerima kasih. ✨\n\n-- Support Dream Collection`;
-            window.location.href = `mailto:${adminEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            showToast(`💜 Email donasi Rp ${nominal.toLocaleString()} akan terbuka`);
-        }
-
-        const canvas = document.getElementById('particleCanvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        let particleCount = 80;
-        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        function createParticles() {
-            particles = [];
-            const count = window.innerWidth < 600 ? 50 : 80;
-            for (let i = 0; i < count; i++) particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, radius: Math.random() * 2 + 1, vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.2, color: `hsl(${260 + Math.random() * 40}, 80%, ${65 + Math.random() * 20}%)` });
-        }
-        function drawParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let p of particles) {
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                ctx.fillStyle = p.color;
-                ctx.shadowBlur = 5;
-                ctx.shadowColor = `rgba(156, 108, 214, 0.4)`;
-                ctx.fill();
-                p.x += p.vx;
-                p.y += p.vy;
-                if (p.x < 0) p.x = canvas.width;
-                if (p.x > canvas.width) p.x = 0;
-                if (p.y < 0) p.y = canvas.height;
-                if (p.y > canvas.height) p.y = 0;
-            }
-            ctx.shadowBlur = 0;
-            requestAnimationFrame(drawParticles);
-        }
+        const canvas=document.getElementById('particleCanvas'), ctx=canvas.getContext('2d');
+        let particles=[];
+        function resizeCanvas(){ canvas.width=window.innerWidth; canvas.height=window.innerHeight; }
+        function createParticles(){ particles=[]; const count=window.innerWidth<600?50:80; for(let i=0;i<count;i++) particles.push({ x:Math.random()*canvas.width, y:Math.random()*canvas.height, radius:Math.random()*2+1, vx:(Math.random()-0.5)*0.3, vy:(Math.random()-0.5)*0.2, color:`hsl(${260+Math.random()*40},80%,${65+Math.random()*20}%)` }); }
+        function drawParticles(){ ctx.clearRect(0,0,canvas.width,canvas.height); for(let p of particles){ ctx.beginPath(); ctx.arc(p.x,p.y,p.radius,0,Math.PI*2); ctx.fillStyle=p.color; ctx.shadowBlur=5; ctx.shadowColor='rgba(156,108,214,0.4)'; ctx.fill(); p.x+=p.vx; p.y+=p.vy; if(p.x<0) p.x=canvas.width; if(p.x>canvas.width) p.x=0; if(p.y<0) p.y=canvas.height; if(p.y>canvas.height) p.y=0; } ctx.shadowBlur=0; requestAnimationFrame(drawParticles); }
         resizeCanvas(); createParticles(); drawParticles();
-        window.addEventListener('resize', () => { resizeCanvas(); createParticles(); });
+        window.addEventListener('resize',()=>{ resizeCanvas(); createParticles(); });
 
-        const ageInput = document.getElementById('memberAge');
-        const submitBtn = document.getElementById('submitDaftar');
-        const warningDiv = document.getElementById('ageWarning');
-        const minAge = (typeof MEMBER_CONFIG !== 'undefined') ? MEMBER_CONFIG.min_age : 15;
-        const memberModal = document.getElementById('memberModal');
-        const closeModalBtn = document.getElementById('closeModalBtn');
-        function checkAge() { if(!isMemberMode) return; const age = parseInt(ageInput?.value); if (!isNaN(age) && age < minAge) { if(warningDiv) warningDiv.style.display = 'block'; if(submitBtn) { submitBtn.disabled = true; submitBtn.style.opacity = '0.5'; submitBtn.style.cursor = 'not-allowed'; } } else { if(warningDiv) warningDiv.style.display = 'none'; if(submitBtn) { submitBtn.disabled = false; submitBtn.style.opacity = '1'; submitBtn.style.cursor = 'pointer'; } } }
-        if(ageInput && isMemberMode) ageInput.addEventListener('input', checkAge);
-        function resetFormAndWarning() { if(!isMemberMode) return; const form = document.getElementById('memberForm'); if(form) form.reset(); if(warningDiv) warningDiv.style.display = 'none'; if(submitBtn) { submitBtn.disabled = false; submitBtn.style.opacity='1'; } }
-        const memberForm = document.getElementById('memberForm');
-        if(memberForm && isMemberMode) {
-            memberForm.onsubmit = (e) => {
-                e.preventDefault(); const age = parseInt(ageInput.value); if(isNaN(age) || age < minAge) { showToast(`⚠️ Usia harus ${minAge} tahun ke atas!`); return; }
-                const name = document.getElementById('memberName').value, gender = document.getElementById('memberGender').value, wa = document.getElementById('memberWa').value;
-                if(!name||!gender||!wa) { showToast('Lengkapi semua data!'); return; }
-                const adminEmail = (typeof MEMBER_CONFIG !== 'undefined') ? MEMBER_CONFIG.admin_email : "utaragarageofficial@gmail.com";
-                window.location.href = `mailto:${adminEmail}?subject=${encodeURIComponent(`[UTARA GARAGE] Pendaftaran Member - ${name}`)}&body=${encodeURIComponent(`✨ PENDAFTARAN MEMBER UTARA GARAGE ✨\n\n📛 Nama: ${name}\n⚥ Gender: ${gender}\n🎂 Umur: ${age}\n📱 WA: ${wa}\n📅 Waktu: ${new Date().toLocaleString('id-ID')}`)}`;
-                showToast('✨ Membuka Gmail... ✨'); if(memberModal) memberModal.classList.remove('active'); resetFormAndWarning();
-            };
+        const ageInput=document.getElementById('memberAge'), submitBtn=document.getElementById('submitDaftar'), warningDiv=document.getElementById('ageWarning'), minAge=(typeof MEMBER_CONFIG!=='undefined')?MEMBER_CONFIG.min_age:15, memberModal=document.getElementById('memberModal'), closeModalBtn=document.getElementById('closeModalBtn');
+        function checkAge(){ if(!isMemberMode) return; const age=parseInt(ageInput?.value); if(!isNaN(age)&&age<minAge){ if(warningDiv) warningDiv.style.display='block'; if(submitBtn){ submitBtn.disabled=true; submitBtn.style.opacity='0.5'; } } else { if(warningDiv) warningDiv.style.display='none'; if(submitBtn){ submitBtn.disabled=false; submitBtn.style.opacity='1'; } } }
+        if(ageInput&&isMemberMode) ageInput.addEventListener('input',checkAge);
+        function resetFormAndWarning(){ if(!isMemberMode) return; const form=document.getElementById('memberForm'); if(form) form.reset(); if(warningDiv) warningDiv.style.display='none'; if(submitBtn){ submitBtn.disabled=false; submitBtn.style.opacity='1'; } }
+        const memberForm=document.getElementById('memberForm');
+        if(memberForm&&isMemberMode){
+            memberForm.onsubmit=(e)=>{ e.preventDefault(); const age=parseInt(ageInput.value); if(isNaN(age)||age<minAge){ showToast(`⚠️ Usia harus ${minAge} tahun ke atas!`); return; } const name=document.getElementById('memberName').value, gender=document.getElementById('memberGender').value, wa=document.getElementById('memberWa').value; if(!name||!gender||!wa){ showToast('Lengkapi semua data!'); return; } const adminEmail=(typeof MEMBER_CONFIG!=='undefined')?MEMBER_CONFIG.admin_email:"utaragarageofficial@gmail.com"; window.location.href=`mailto:${adminEmail}?subject=${encodeURIComponent(`[UTARA GARAGE] Pendaftaran Member - ${name}`)}&body=${encodeURIComponent(`✨ PENDAFTARAN MEMBER UTARA GARAGE ✨\n\n📛 Nama: ${name}\n⚥ Gender: ${gender}\n🎂 Umur: ${age}\n📱 WA: ${wa}\n📅 Waktu: ${new Date().toLocaleString('id-ID')}`)}`; showToast('✨ Membuka Gmail... ✨'); if(memberModal) memberModal.classList.remove('active'); resetFormAndWarning(); };
         }
-        if(closeModalBtn) closeModalBtn.onclick = () => { if(memberModal) memberModal.classList.remove('active'); resetFormAndWarning(); };
-        if(memberModal) memberModal.onclick = (e) => { if(e.target === memberModal) { memberModal.classList.remove('active'); resetFormAndWarning(); } };
+        if(closeModalBtn) closeModalBtn.onclick=()=>{ if(memberModal) memberModal.classList.remove('active'); resetFormAndWarning(); };
+        if(memberModal) memberModal.onclick=(e)=>{ if(e.target===memberModal){ memberModal.classList.remove('active'); resetFormAndWarning(); } };
 
-        let products = [];
-        let currentFilter = "all";
-        let searchQuery = "";
-        function loadProducts() { if(typeof PRODUCTS_DATA !== 'undefined' && PRODUCTS_DATA.length) { products = JSON.parse(JSON.stringify(PRODUCTS_DATA)); renderProducts(); } else { const grid = document.getElementById('productGrid'); if(grid) grid.innerHTML = '<div style="text-align:center;padding:2rem;color:#b89fd9;">✨ Produk akan segera hadir ✨</div>'; } }
-        function renderProducts() {
-            const grid = document.getElementById('productGrid'); if(!grid) return;
-            if(!products || !products.length) { grid.innerHTML = '<div style="text-align:center;padding:2rem;color:#b89fd9;">✨ Tidak ada produk ditemukan ✨</div>'; return; }
-            let filtered = products.filter(p => (currentFilter === "all" || p.category === currentFilter) && (!searchQuery || p.name.toLowerCase().includes(searchQuery.toLowerCase())));
-            if(filtered.length===0) { grid.innerHTML = '<div style="text-align:center;padding:2rem;color:#b89fd9;">✨ Tidak ada produk ditemukan ✨</div>'; return; }
-            grid.innerHTML = filtered.map((p,idx)=>`<div class="product-card" style="animation-delay: ${idx*0.05}s"><div class="product-img"><img src="${p.image}" onerror="this.src='https://placehold.co/420x420/2a1a3e/b77ee6?text=UG'"></div><h3>${escapeHtml(p.name)}</h3><div class="product-desc">${escapeHtml(p.description||p.name)}</div><button class="btn-buy" onclick="buyNow(${p.id})"><i class="fas fa-shopping-bag"></i> BELI</button></div>`).join('');
-        }
-        window.buyNow = function(productId) { const product = products.find(p=>p.id===productId); if(!product) return showToast('Produk tidak ditemukan!'); if(product.link && product.link!=='#') { window.open(product.link,'_blank'); showToast(`✨ Membuka ${product.name} di Roblox ✨`); } else showToast('Link produk tidak tersedia!'); };
-        document.querySelectorAll('.filter-btn').forEach(btn=>{ btn.addEventListener('click',()=>{ document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); currentFilter = btn.dataset.filter; renderProducts(); }); });
-        document.getElementById('searchBtn')?.addEventListener('click',()=>{ searchQuery = document.getElementById('searchInput').value; renderProducts(); });
-        document.getElementById('searchInput')?.addEventListener('keypress',(e)=>{ if(e.key==='Enter'){ searchQuery = e.target.value; renderProducts(); } });
+        let products=[], currentFilter="all", searchQuery="";
+        function loadProducts(){ if(typeof PRODUCTS_DATA !== 'undefined' && PRODUCTS_DATA.length){ products=JSON.parse(JSON.stringify(PRODUCTS_DATA)); renderProducts(); } else { const grid=document.getElementById('productGrid'); if(grid) grid.innerHTML='<div style="text-align:center;padding:2rem;color:#b89fd9;">✨ Produk akan segera hadir ✨</div>'; } }
+        function renderProducts(){ const grid=document.getElementById('productGrid'); if(!grid) return; if(!products||!products.length){ grid.innerHTML='<div style="text-align:center;padding:2rem;color:#b89fd9;">✨ Tidak ada produk ditemukan ✨</div>'; return; } let filtered=products.filter(p=>(currentFilter==="all"||p.category===currentFilter)&&(!searchQuery||p.name.toLowerCase().includes(searchQuery.toLowerCase()))); if(filtered.length===0){ grid.innerHTML='<div style="text-align:center;padding:2rem;color:#b89fd9;">✨ Tidak ada produk ditemukan ✨</div>'; return; } grid.innerHTML=filtered.map((p,idx)=>`<div class="product-card"><div class="product-img"><img src="${p.image}" onerror="this.src='https://placehold.co/420x420/2a1a3e/b77ee6?text=UG'"></div><h3>${escapeHtml(p.name)}</h3><div class="product-desc">${escapeHtml(p.description||p.name)}</div><button class="btn-buy" onclick="buyNow(${p.id})"><i class="fas fa-shopping-bag"></i> BELI</button></div>`).join(''); }
+        window.buyNow=function(id){ const p=products.find(p=>p.id===id); if(!p) return showToast('Produk tidak ditemukan!'); if(p.link&&p.link!=='#'){ window.open(p.link,'_blank'); showToast(`✨ Membuka ${p.name} di Roblox ✨`); } else showToast('Link produk tidak tersedia!'); };
+        document.querySelectorAll('.filter-btn').forEach(btn=>{ btn.addEventListener('click',()=>{ document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); currentFilter=btn.dataset.filter; renderProducts(); }); });
+        document.getElementById('searchBtn')?.addEventListener('click',()=>{ searchQuery=document.getElementById('searchInput').value; renderProducts(); });
+        document.getElementById('searchInput')?.addEventListener('keypress',(e)=>{ if(e.key==='Enter'){ searchQuery=e.target.value; renderProducts(); } });
         
-        const team = [ 
-            { name:"BRIAN", role:"OWNER", title:"Founder & Creative Director", profile:"https://www.roblox.com/users/3624054708/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-1E6F2F7197750D011DB7AC78A24FD707-Png/150/150/AvatarHeadshot/Webp/noFilter" },
-            { name:"RYAN", role:"PARTNER", title:"Web Developer", profile:"https://www.roblox.com/users/1210293463/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-A47999B915DF81863CAB7A71ABFC4875-Png/150/150/AvatarHeadshot/Webp/noFilter" },
-            { name:"DAVIDD", role:"ADMIN", title:"Contributor", profile:"https://www.roblox.com/users/9925671622/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-1F01A40F02D4A323D4AB9BE9F78DECD5-Png/150/150/AvatarHeadshot/Webp/noFilter" },
-            { name:"TON", role:"ADMIN", title:"Donatur & Support", profile:"https://www.roblox.com/users/1574004264/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-414E9E9FB1F41CC4DCD349336E113F6E-Png/150/150/AvatarHeadshot/Webp/noFilter" },
-            { name:"Alexander", role:"ADMIN", title:"Donatur & Support", profile:"https://www.roblox.com/users/8610088002/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-A1252E3A4A8C8AF2D881F0DC530874E1-Png/150/150/AvatarHeadshot/Webp/noFilter" },
-            { name:"NAVAA", role:"ADMIN", title:"Contributor", profile:"https://www.roblox.com/users/2617253374/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-90C3CEC8A71411A516626437E6BB1F67-Png/150/150/AvatarHeadshot/Webp/noFilter" },
-            { name:"Nararya", role:"DONATUR", title:"Donatur", profile:"https://www.roblox.com/users/4885409097/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-8E32FADF36265DAF5AF1C4DD8E1ED085-Png/150/150/AvatarHeadshot/Webp/noFilter" }
-        ];
-        const teamGrid = document.getElementById('teamGrid'); if(teamGrid) teamGrid.innerHTML = team.map(m=>`<div class="team-card"><div class="team-avatar"><img src="${m.photo}" onerror="this.src='https://placehold.co/100x100/2a1a3e/b77ee6?text=${m.name.charAt(0)}'"></div><div class="team-role">${m.role}</div><div class="team-name">${m.name}</div><div class="team-title">${m.title}</div><button class="btn-profile" onclick="window.open('${m.profile}', '_blank')"><i class="fab fa-roblox"></i> Profile</button></div>`).join('');
-        window.copyEmail = () => { navigator.clipboard.writeText("utaragarageofficial@gmail.com"); showToast("📧 Email admin disalin!"); };
-        window.scrollToSection = (section) => { const el = document.getElementById(section); if(el) el.scrollIntoView({ behavior:'smooth' }); };
-        function escapeHtml(str) { if(!str) return ""; return str.replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m; }); }
-        function showToast(msg) { const toast = document.getElementById('toastMsg'); if(toast){ toast.textContent = msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0',3000); } }
+        const team=[ { name:"BRIAN", role:"OWNER", title:"Founder & Creative Director", profile:"https://www.roblox.com/users/3624054708/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-1E6F2F7197750D011DB7AC78A24FD707-Png/150/150/AvatarHeadshot/Webp/noFilter" }, { name:"RYAN", role:"PARTNER", title:"Web Developer", profile:"https://www.roblox.com/users/1210293463/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-A47999B915DF81863CAB7A71ABFC4875-Png/150/150/AvatarHeadshot/Webp/noFilter" }, { name:"DAVIDD", role:"ADMIN", title:"Contributor", profile:"https://www.roblox.com/users/9925671622/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-1F01A40F02D4A323D4AB9BE9F78DECD5-Png/150/150/AvatarHeadshot/Webp/noFilter" }, { name:"TON", role:"ADMIN", title:"Donatur & Support", profile:"https://www.roblox.com/users/1574004264/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-414E9E9FB1F41CC4DCD349336E113F6E-Png/150/150/AvatarHeadshot/Webp/noFilter" }, { name:"Alexander", role:"ADMIN", title:"Donatur & Support", profile:"https://www.roblox.com/users/8610088002/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-A1252E3A4A8C8AF2D881F0DC530874E1-Png/150/150/AvatarHeadshot/Webp/noFilter" }, { name:"NAVAA", role:"ADMIN", title:"Contributor", profile:"https://www.roblox.com/users/2617253374/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-90C3CEC8A71411A516626437E6BB1F67-Png/150/150/AvatarHeadshot/Webp/noFilter" }, { name:"Nararya", role:"DONATUR", title:"Donatur", profile:"https://www.roblox.com/users/4885409097/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-8E32FADF36265DAF5AF1C4DD8E1ED085-Png/150/150/AvatarHeadshot/Webp/noFilter" } ];
+        const teamGrid=document.getElementById('teamGrid'); if(teamGrid) teamGrid.innerHTML=team.map(m=>`<div class="team-card"><div class="team-avatar"><img src="${m.photo}" onerror="this.src='https://placehold.co/100x100/2a1a3e/b77ee6?text=${m.name.charAt(0)}'"></div><div class="team-role">${m.role}</div><div class="team-name">${m.name}</div><div class="team-title">${m.title}</div><button class="btn-profile" onclick="window.open('${m.profile}', '_blank')"><i class="fab fa-roblox"></i> Profile</button></div>`).join('');
+        window.copyEmail=()=>{ navigator.clipboard.writeText("utaragarageofficial@gmail.com"); showToast("📧 Email admin disalin!"); };
+        window.scrollToSection=(section)=>{ const el=document.getElementById(section); if(el) el.scrollIntoView({ behavior:'smooth' }); };
+        function escapeHtml(str){ if(!str) return ""; return str.replace(/[&<>]/g,function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m; }); }
+        function showToast(msg){ const toast=document.getElementById('toastMsg'); if(toast){ toast.textContent=msg; toast.style.opacity='1'; setTimeout(()=>toast.style.opacity='0',3000); } }
 
         renderActionBlock(); renderTutorial(); setTimeout(()=>loadProducts(),100);
-        
-        document.getElementById('customDonateBtn')?.addEventListener('click', () => { 
-            const customVal = document.getElementById('customDonateAmount')?.value; 
-            if(customVal && parseInt(customVal) >= 5000) triggerDonation(customVal); 
-            else showToast("Minimal donasi Rp 5.000"); 
-        });
+        document.getElementById('customDonateBtn')?.addEventListener('click',()=>{ const val=document.getElementById('customDonateAmount')?.value; if(val&&parseInt(val)>=5000) triggerDonation(val); else showToast("Minimal donasi Rp 5.000"); });
     </script>
 </body>
 </html>
