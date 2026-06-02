@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>UTARA GARAGE | Admin Team</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0515;
+            font-family: 'Quicksand', sans-serif;
+            color: #f0e6ff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(156, 108, 214, 0.08) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(156, 108, 214, 0.08) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 20% 30%, rgba(107, 70, 160, 0.25) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 70%, rgba(183, 126, 230, 0.2) 0%, transparent 50%),
+                        linear-gradient(135deg, #0a0515 0%, #150d25 50%, #0a0515 100%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1280px;
+            width: 90%;
+            margin: 0 auto;
+            padding: 2rem 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(156, 108, 214, 0.2);
+            border: 1px solid rgba(156, 108, 214, 0.5);
+            border-radius: 40px;
+            padding: 0.5rem 1.2rem;
+            color: #b77ee6;
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-home:hover {
+            background: rgba(156, 108, 214, 0.4);
+            transform: translateY(-2px);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 8vw, 3rem);
+            background: linear-gradient(135deg, #e0d4ff, #b77ee6, #9c6cd6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            color: #b89fd9;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .admin-card {
+            background: rgba(15, 10, 25, 0.6);
+            backdrop-filter: blur(15px);
+            border-radius: 28px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(156, 108, 214, 0.3);
+            transition: all 0.4s ease;
+            animation: fadeInUp 0.6s ease backwards;
+        }
+
+        .admin-card:hover {
+            transform: translateY(-8px);
+            border-color: #b77ee6;
+            box-shadow: 0 20px 40px rgba(107, 70, 160, 0.3);
+        }
+
+        .admin-avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            overflow: hidden;
+            border: 3px solid #b77ee6;
+            box-shadow: 0 0 20px rgba(183, 126, 230, 0.3);
+        }
+
+        .admin-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .admin-role {
+            background: rgba(156, 108, 214, 0.25);
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.65rem;
+            color: #b77ee6;
+            margin-bottom: 0.5rem;
+        }
+
+        .admin-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0.3rem 0;
+            color: #d4c0ff;
+        }
+
+        .admin-title {
+            font-size: 0.75rem;
+            color: #b89fd9;
+            margin-bottom: 0.8rem;
+        }
+
+        .btn-view-profile {
+            background: transparent;
+            border: 1.5px solid #9c6cd6;
+            border-radius: 40px;
+            padding: 0.5rem 1rem;
+            color: #b77ee6;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-view-profile:hover {
+            background: #9c6cd6;
+            color: #0a0a0f;
+        }
+
+        .section-title {
+            font-size: clamp(1.2rem, 5vw, 1.8rem);
+            font-weight: 600;
+            margin: 2rem 0 1.5rem;
+            font-family: 'Playfair Display', serif;
+            color: #b77ee6;
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+        }
+
+        .section-title:before {
+            content: '✦';
+            position: absolute;
+            left: -25px;
+            top: 0;
+            color: #9c6cd6;
+            font-size: clamp(1rem, 4vw, 1.5rem);
+        }
+
+        .section-title:after {
+            content: '✦';
+            position: absolute;
+            right: -25px;
+            top: 0;
+            color: #9c6cd6;
+            font-size: clamp(1rem, 4vw, 1.5rem);
+        }
+
+        @media (max-width: 600px) {
+            .section-title:before, .section-title:after {
+                display: none;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        footer {
+            text-align: center;
+            border-top: 1px solid rgba(156, 108, 214, 0.3);
+            padding: 2rem 1rem;
+            margin-top: 2rem;
+            background: rgba(10, 5, 21, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .stats {
+            background: rgba(156, 108, 214, 0.15);
+            border-radius: 50px;
+            padding: 0.5rem 1.2rem;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+            .admin-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                gap: 1rem;
+            }
+            .admin-avatar {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="bg-gradient"></div>
+
+    <div class="container">
+        <div class="page-header">
+            <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            <h1>✦ ADMIN TEAM ✦</h1>
+            <p class="subtitle">The Crew Behind UTARA GARAGE</p>
+        </div>
+
+        <div class="section-title">⌇ OUR CREW & ADMIN ⌇</div>
+        <p class="stats" style="text-align: center;"><i class="fas fa-user-shield"></i> Total Admins: <span id="adminCount">0</span></p>
+        <div class="admin-grid" id="adminGrid"></div>
+    </div>
+
+    <footer>
+        <div class="copyright"><i class="fas fa-moon"></i> UTARA GARAGE • ADMIN TEAM • PURPLE DREAM<br><small>© 2026 Utara Garage - All Rights Reserved</small></div>
+    </footer>
+
+    <script src="config.js"></script>
+    <script>
+        function escapeHtml(str) {
+            if (!str) return "";
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
+        }
+
+        function renderAdmins() {
+            const grid = document.getElementById('adminGrid');
+            const countSpan = document.getElementById('adminCount');
+            
+            if (typeof ADMIN_DATA !== 'undefined' && ADMIN_DATA.length > 0) {
+                if (countSpan) countSpan.textContent = ADMIN_DATA.length;
+                
+                grid.innerHTML = ADMIN_DATA.map((admin, index) => `
+                    <div class="admin-card" style="animation-delay: ${index * 0.05}s">
+                        <div class="admin-avatar">
+                            <img src="${admin.photo}" alt="${admin.name}" onerror="this.src='https://placehold.co/110x110/2a1a3e/b77ee6?text=${admin.name.charAt(0)}'">
+                        </div>
+                        <div class="admin-role">${escapeHtml(admin.role)}</div>
+                        <div class="admin-name">${escapeHtml(admin.name)}</div>
+                        <div class="admin-title">${escapeHtml(admin.title)}</div>
+                        <button class="btn-view-profile" onclick="window.open('${admin.profile}', '_blank')">
+                            <i class="fab fa-roblox"></i> View Profile
+                        </button>
+                    </div>
+                `).join('');
+            } else {
+                grid.innerHTML = '<div style="text-align:center;padding:3rem;color:#b89fd9;">✨ Tidak ada data admin ✨</div>';
+                if (countSpan) countSpan.textContent = '0';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', renderAdmins);
+    </script>
+</body>
+</html>
