@@ -734,7 +734,7 @@
         resizeCanvas(); createParticles(); drawParticles();
         window.addEventListener('resize',()=>{ resizeCanvas(); createParticles(); });
 
-        const ageInput=document.getElementById('memberAge'), submitBtn=document.getElementById('submitDaftar'), warningDiv=document.getElementById('ageWarning'), minAge=(typeof MEMBER_CONFIG!=='undefined')?MEMBER_CONFIG.min_age:13, memberModal=document.getElementById('memberModal'), closeModalBtn=document.getElementById('closeModalBtn'); // baris ini umur nya juga ganti
+        const ageInput=document.getElementById('memberAge'), submitBtn=document.getElementById('submitDaftar'), warningDiv=document.getElementById('ageWarning'), minAge=(typeof MEMBER_CONFIG!=='undefined')?MEMBER_CONFIG.min_age:13 , memberModal=document.getElementById('memberModal'), closeModalBtn=document.getElementById('closeModalBtn'); // baris ini umur nya juga ganti
         function checkAge(){ if(!isMemberMode) return; const age=parseInt(ageInput?.value); if(!isNaN(age)&&age<minAge){ if(warningDiv) warningDiv.style.display='block'; if(submitBtn){ submitBtn.disabled=true; submitBtn.style.opacity='0.5'; } } else { if(warningDiv) warningDiv.style.display='none'; if(submitBtn){ submitBtn.disabled=false; submitBtn.style.opacity='1'; } } }
         if(ageInput&&isMemberMode) ageInput.addEventListener('input',checkAge);
         function resetFormAndWarning(){ if(!isMemberMode) return; const form=document.getElementById('memberForm'); if(form) form.reset(); if(warningDiv) warningDiv.style.display='none'; if(submitBtn){ submitBtn.disabled=false; submitBtn.style.opacity='1'; } }
