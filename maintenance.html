@@ -24,7 +24,6 @@
             overflow-x: hidden;
         }
 
-        /* ===== DEEP AESTHETIC BACKGROUND ===== */
         .ambient-glow {
             position: fixed;
             width: 100%;
@@ -83,7 +82,6 @@
             100% { transform: translate(4%, -3%) scale(1.15); }
         }
 
-        /* Grain & Grid Texture */
         .film-grain {
             position: fixed;
             top: 0;
@@ -106,7 +104,6 @@
             z-index: 1;
         }
 
-        /* Floating particles (tools & aesthetic symbols) */
         .floating-symbol {
             position: fixed;
             pointer-events: none;
@@ -123,7 +120,6 @@
             100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
         }
 
-        /* ===== MAIN CARD - MODERN GLASS + LOCK THEME ===== */
         .lock-card {
             position: relative;
             z-index: 30;
@@ -153,7 +149,6 @@
             100% { opacity: 1; transform: scale(1) translateY(0); backdrop-filter: blur(20px); }
         }
 
-        /* LOCK / KEY ICON - UTAMA (perbaikan) */
         .lock-icon-container {
             width: 130px;
             height: 130px;
@@ -228,7 +223,6 @@
             color: transparent;
         }
 
-        /* Progress bar premium */
         .progress-premium {
             background: rgba(35, 28, 55, 0.9);
             border-radius: 100px;
@@ -254,7 +248,6 @@
             100% { width: 28%; opacity: 0.9; }
         }
 
-        /* Feature chips */
         .feature-chips {
             display: flex;
             flex-wrap: wrap;
@@ -287,7 +280,6 @@
             transform: translateY(-2px);
         }
 
-        /* Social area */
         .social-ring {
             display: flex;
             justify-content: center;
@@ -319,7 +311,6 @@
             box-shadow: 0 12px 22px -8px #9b5eff;
         }
 
-        /* elegant timer dengan auto refresh */
         .elegant-timer-lock {
             font-size: 0.75rem;
             background: rgba(0, 0, 0, 0.45);
@@ -375,7 +366,6 @@
             color: transparent;
         }
 
-        /* CTA BUTTON with lock theme */
         .btn-lock {
             background: linear-gradient(102deg, #5f2d9c, #9b4dff);
             border: none;
@@ -440,7 +430,6 @@
             .lock-icon-container i { font-size: 3rem; }
         }
 
-        /* ripple effect */
         .ripple-lock {
             position: absolute;
             border-radius: 50%;
@@ -454,7 +443,6 @@
             100% { transform: scale(30); opacity: 0; }
         }
 
-        /* live indicator */
         .live-dot {
             width: 8px;
             height: 8px;
@@ -472,8 +460,6 @@
     </style>
 </head>
 <body>
-
-    <!-- Background layers -->
     <div class="ambient-glow">
         <div class="glow-1"></div>
         <div class="glow-2"></div>
@@ -483,7 +469,6 @@
     <div class="grid-lines"></div>
     <div id="floatingSymbolsContainer"></div>
 
-    <!-- MAIN CARD -->
     <div class="lock-card">
         <div class="lock-icon-container">
             <i class="fas fa-tools"></i>
@@ -514,7 +499,6 @@
             <a href="https://tiktok.com/@utara_garage" class="social-icon-lock" target="_blank"><i class="fab fa-tiktok"></i></a>
         </div>
 
-        <!-- AUTO REFRESH TIMER DISPLAY -->
         <div class="elegant-timer-lock">
             <span class="live-dot"></span>
             <span>AUTO REFRESH</span>
@@ -544,7 +528,6 @@
 
     <script src="config.js"></script>
     <script>
-        // ========== FLOATING SYMBOLS (tools, keys, locks) ==========
         const symbolsContainer = document.getElementById('floatingSymbolsContainer');
         const toolSymbols = ['🔧', '🔨', '⚙️', '🔒', '🔑', '🛠️', '✨', '🔩', '🧰', '⚡', '💎', '🔐', '🔄'];
         for (let i = 0; i < 55; i++) {
@@ -560,7 +543,6 @@
             symbolsContainer.appendChild(sym);
         }
 
-        // Additional floating soft particles
         for (let i = 0; i < 30; i++) {
             const particle = document.createElement('div');
             particle.classList.add('floating-symbol');
@@ -576,14 +558,12 @@
             symbolsContainer.appendChild(particle);
         }
 
-        // ========== AUTO REFRESH LOGIC (CORE) ==========
         let refreshInterval = null;
         let countdownSec = 8;
         
-        // elemen UI untuk ring progress dan angka
         const countdownNumberSpan = document.getElementById('countdownNumber');
         const progressCircle = document.querySelector('.progress-ring-circle');
-        const circumference = 2 * Math.PI * 14; // r=14 => 87.9646
+        const circumference = 2 * Math.PI * 14;
         
         function setProgress(percent) {
             if(progressCircle) {
@@ -600,17 +580,14 @@
             setProgress(percent);
         }
         
-        // fungsi untuk melakukan pengecekan config & redirect jika maintenance_mode = false
         function performAutoCheck() {
             if (typeof CONFIG !== 'undefined' && CONFIG.maintenance_mode === false) {
-                // Maintenance sudah selesai -> redirect ke index
                 window.location.href = 'index.html';
                 return true;
             }
             return false;
         }
         
-        // Timer utama auto refresh: setiap detik update countdown, reset dan cek saat 0
         function startAutoRefreshTimer() {
             if(refreshInterval) clearInterval(refreshInterval);
             
@@ -619,13 +596,10 @@
             
             refreshInterval = setInterval(() => {
                 if(countdownSec <= 1) {
-                    // saat mencapai 0, lakukan pengecekan
                     performAutoCheck();
-                    // reset countdown ke 8 detik
                     countdownSec = 8;
                     updateUI();
                     
-                    // efek visual tambahan: sedikit animasi pada badge
                     const badge = document.querySelector('.status-shield');
                     if(badge) {
                         badge.style.transform = 'scale(1.02)';
@@ -638,22 +612,16 @@
             }, 1000);
         }
         
-        // Fungsi manual refresh (tombol)
         function manualCheck() {
-            // reset timer countdown agar user merasakan feedback
             countdownSec = 8;
             updateUI();
-            
-            // efek ripple dan spin pada tombol sudah ditangani event listener
-            performAutoCheck(); // cek langsung
+            performAutoCheck();
         }
         
-        // ========== EVENT LISTENER TOMBOL ==========
         const refreshButton = document.getElementById('refreshLockBtn');
         refreshButton.addEventListener('click', (e) => {
             e.preventDefault();
             
-            // Ripple effect
             const ripple = document.createElement('span');
             ripple.className = 'ripple-lock';
             const rect = refreshButton.getBoundingClientRect();
@@ -675,16 +643,13 @@
             manualCheck();
         });
         
-        // Inisialisasi auto refresh timer
         startAutoRefreshTimer();
         
-        // Cek awal saat load
         if (typeof CONFIG === 'undefined') {
             console.log("Config belum terdefinisi — maintenance mode aktif (default), auto refresh berjalan.");
         }
         performAutoCheck();
         
-        // ========== MICRO INTERACTION: mouse move parallax ==========
         const card = document.querySelector('.lock-card');
         document.addEventListener('mousemove', (e) => {
             if(!card) return;
@@ -696,7 +661,6 @@
             if(card) card.style.transform = 'perspective(1100px) rotateY(0deg) rotateX(0deg) translateY(0px)';
         });
         
-        // Dynamic badge text rotation
         const badgeElement = document.querySelector('.status-shield');
         const badgeMessages = [
             '<i class="fas fa-shield-haltered"></i> MAINTENANCE · LOCK MODE',
@@ -711,7 +675,6 @@
             }
         }, 4800);
         
-        // Animated progress glow effect
         const progressFill = document.querySelector('.progress-shine-lock');
         if (progressFill) {
             setInterval(() => {
@@ -720,7 +683,6 @@
             }, 2200);
         }
         
-        // Set initial ring progress (100% -> 8 detik awal)
         setProgress(100);
     </script>
 </body>
