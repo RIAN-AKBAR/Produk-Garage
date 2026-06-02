@@ -22,7 +22,6 @@
             position: relative;
         }
 
-        /* MODERN BACKGROUND EFFECTS */
         .bg-grid {
             position: fixed;
             top: 0;
@@ -96,7 +95,6 @@
             text-align: center;
         }
 
-        /* LOADING SCREEN */
         .loading-screen {
             position: fixed;
             top: 0;
@@ -348,21 +346,27 @@
         .hero h2 { font-size: clamp(1.2rem, 5vw, 2rem); font-family: 'Playfair Display', serif; color: #d4c0ff; }
         .hero p { color: #b89fd9; margin-top: 0.5rem; font-size: clamp(0.75rem, 3vw, 1rem); }
 
+        .section-header {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin: 2rem 0 1.5rem;
+        }
         .section-title { 
             font-size: clamp(1.2rem, 5vw, 1.8rem); 
             font-weight: 600; 
-            margin: 2rem 0 1.5rem; 
             font-family: 'Playfair Display', serif; 
             color: #b77ee6; 
             position: relative; 
             display: inline-block;
             text-align: center;
-            width: 100%;
         }
         .section-title:before { content: '✦'; position: absolute; left: -25px; top: 0; color: #9c6cd6; font-size: clamp(1rem, 4vw, 1.5rem); }
         .section-title:after { content: '✦'; position: absolute; right: -25px; top: 0; color: #9c6cd6; font-size: clamp(1rem, 4vw, 1.5rem); }
         @media (max-width: 600px) { .section-title:before, .section-title:after { display: none; } }
-
+        
         .filter-group { display: flex; gap: 0.8rem; margin: 1rem 0 2rem; flex-wrap: wrap; justify-content: center; }
         .filter-btn { background: rgba(26, 15, 42, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(156, 108, 214, 0.4); padding: 0.5rem 1rem; border-radius: 40px; color: #d4c0ff; cursor: pointer; transition: 0.3s; font-weight: 500; font-size: clamp(0.7rem, 3vw, 0.9rem); }
         .filter-btn.active, .filter-btn:hover { background: linear-gradient(135deg, #6b46a0, #4a2a6e); border-color: #b77ee6; color: white; transform: translateY(-2px); }
@@ -442,30 +446,68 @@
         .btn-event { background: linear-gradient(135deg, #25D366, #128C7E); }
         .btn-event:hover { transform: translateY(-2px); gap: 12px; box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4); }
 
-        .team-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-            gap: 1.2rem; 
-            margin: 2rem 0; 
+        .info-buttons {
+            display: flex;
             justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
         }
-        .team-card { 
-            background: rgba(15, 10, 25, 0.6); 
-            backdrop-filter: blur(15px); 
-            border-radius: 28px; 
-            padding: 1.2rem; 
-            text-align: center; 
-            border: 1px solid rgba(156, 108, 214, 0.3); 
-            transition: 0.3s; 
+        .info-card {
+            background: rgba(15, 10, 25, 0.5);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            border: 1px solid rgba(156, 108, 214, 0.3);
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 200px;
+            max-width: 280px;
         }
-        .team-card:hover { transform: translateY(-5px); border-color: #b77ee6; }
-        .team-avatar { width: min(80px, 25vw); height: min(80px, 25vw); border-radius: 50%; margin: 0 auto 0.8rem; overflow: hidden; border: 3px solid #b77ee6; box-shadow: 0 0 20px rgba(183, 126, 230, 0.3); }
-        .team-avatar img { width: 100%; height: 100%; object-fit: cover; }
-        .team-role { background: rgba(156, 108, 214, 0.25); display: inline-block; padding: 0.2rem 0.6rem; border-radius: 30px; font-size: 0.6rem; color: #b77ee6; margin-bottom: 0.5rem; }
-        .team-name { font-size: 1rem; font-weight: 700; margin: 0.3rem 0; }
-        .team-title { font-size: 0.7rem; color: #b89fd9; }
-        .btn-profile { background: transparent; border: 1.5px solid #9c6cd6; border-radius: 40px; padding: 0.4rem 0.8rem; color: #b77ee6; cursor: pointer; transition: 0.3s; font-size: 0.7rem; margin-top: 0.5rem; }
-        .btn-profile:hover { background: #9c6cd6; color: #0a0a0f; }
+        .info-card:hover {
+            transform: translateY(-5px);
+            border-color: #b77ee6;
+            background: rgba(107, 70, 160, 0.2);
+        }
+        .info-icon {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #e0d4ff, #b77ee6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.8rem;
+        }
+        .info-card h3 {
+            font-size: 1.2rem;
+            color: #d4c0ff;
+            margin-bottom: 0.3rem;
+        }
+        .info-card p {
+            font-size: 0.75rem;
+            color: #b89fd9;
+            margin-bottom: 1rem;
+        }
+        .btn-info {
+            background: linear-gradient(135deg, #6b46a0, #4a2a6e);
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 40px;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        .btn-info:hover {
+            background: linear-gradient(135deg, #9c6cd6, #6b46a0);
+            transform: scale(1.02);
+            gap: 12px;
+            color: white;
+        }
 
         .tutorial-box { 
             background: linear-gradient(135deg, rgba(107, 70, 160, 0.15), rgba(26, 15, 42, 0.4)); 
@@ -526,6 +568,14 @@
             .container {
                 width: 95%;
             }
+            .info-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .info-card {
+                width: 100%;
+                max-width: 100%;
+            }
         }
     </style>
 </head>
@@ -552,7 +602,7 @@
     <div class="top-nav">
         <div class="nav-container">
             <div class="nav-logo"><h2>✦ UTARA GARAGE ✦</h2></div>
-            <div class="nav-links"><a onclick="scrollToSection('home')">HOME</a><a onclick="scrollToSection('shop')">SHOP</a><a onclick="scrollToSection('team')">TEAM</a></div>
+            <div class="nav-links"><a onclick="scrollToSection('home')">HOME</a><a onclick="scrollToSection('shop')">SHOP</a><a onclick="scrollToSection('info')">INFO</a></div>
             <div class="nav-search"><input type="text" id="searchInput" placeholder="Cari produk..."><button id="searchBtn"><i class="fas fa-search"></i></button></div>
         </div>
     </div>
@@ -579,13 +629,33 @@
             </div>
         </div>
 
-        <div class="section-title" id="team">⌇ OUR CREW ⌇</div>
-        <div class="team-grid" id="teamGrid"></div>
+        <div id="info">
+            <div class="section-header">
+                <div class="section-title">⌇ COMMUNITY ⌇</div>
+            </div>
+            <div class="info-buttons">
+                <div class="info-card">
+                    <div class="info-icon"><i class="fas fa-user-shield"></i></div>
+                    <h3>ADMIN TEAM</h3>
+                    <p>Kenali para admin dan crew di balik UTARA GARAGE</p>
+                    <a href="admin.html" class="btn-info">
+                        <i class="fas fa-arrow-right"></i> VIEW ADMIN
+                    </a>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon"><i class="fas fa-users"></i></div>
+                    <h3>MEMBER LIST</h3>
+                    <p>Lihat semua member yang telah bergabung dengan komunitas kami</p>
+                    <a href="member.html" class="btn-info">
+                        <i class="fas fa-arrow-right"></i> VIEW MEMBER
+                    </a>
+                </div>
+            </div>
+        </div>
 
         <div id="tutorialSection"><div class="tutorial-box" id="tutorialBox"></div></div>
     </div>
 
-    <!-- FOOTER -->
     <footer>
         <div class="social-links">
             <a href="https://whatsapp.com/channel/0029VbCEmlcL2ATqlP5QNf2S" target="_blank"><i class="fab fa-whatsapp"></i><span>WhatsApp Channel</span></a>
@@ -682,18 +752,6 @@
         document.querySelectorAll('.filter-btn').forEach(btn=>{ btn.addEventListener('click',()=>{ document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); currentFilter=btn.dataset.filter; renderProducts(); }); });
         document.getElementById('searchBtn')?.addEventListener('click',()=>{ searchQuery=document.getElementById('searchInput').value; renderProducts(); });
         document.getElementById('searchInput')?.addEventListener('keypress',(e)=>{ if(e.key==='Enter'){ searchQuery=e.target.value; renderProducts(); } });
-        
-        const team = [ 
-            { name:"BRIAN", role:"OWNER", title:"Founder & Creative Director", profile:"https://www.roblox.com/users/3624054708/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-1E6F2F7197750D011DB7AC78A24FD707-Png/150/150/AvatarHeadshot/Webp/noFilter" },
-            { name:"RYAN", role:"PARTNER", title:"Web Developer", profile:"https://www.roblox.com/users/1210293463/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-A47999B915DF81863CAB7A71ABFC4875-Png/150/150/AvatarHeadshot/Webp/noFilter" },
-            { name:"DAVIDD", role:"ADMIN", title:"Contributor", profile:"https://www.roblox.com/users/9925671622/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-1F01A40F02D4A323D4AB9BE9F78DECD5-Png/150/150/AvatarHeadshot/Webp/noFilter" },
-            { name:"TON", role:"ADMIN", title:"Donatur & Support", profile:"https://www.roblox.com/users/1574004264/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-414E9E9FB1F41CC4DCD349336E113F6E-Png/150/150/AvatarHeadshot/Webp/noFilter" },
-            { name:"Alexander", role:"ADMIN", title:"Donatur & Support", profile:"https://www.roblox.com/users/8610088002/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-A1252E3A4A8C8AF2D881F0DC530874E1-Png/150/150/AvatarHeadshot/Webp/noFilter" },
-            { name:"NAVAA", role:"ADMIN", title:"Contributor", profile:"https://www.roblox.com/users/2617253374/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-90C3CEC8A71411A516626437E6BB1F67-Png/150/150/AvatarHeadshot/Webp/noFilter" },
-            { name:"Nararya", role:"DONATUR", title:"Donatur", profile:"https://www.roblox.com/users/4885409097/profile", photo:"https://tr.rbxcdn.com/30DAY-AvatarHeadshot-8E32FADF36265DAF5AF1C4DD8E1ED085-Png/150/150/AvatarHeadshot/Webp/noFilter" }
-        ];
-        const teamGrid=document.getElementById('teamGrid'); 
-        if(teamGrid) teamGrid.innerHTML=team.map(m=>`<div class="team-card"><div class="team-avatar"><img src="${m.photo}" onerror="this.src='https://placehold.co/100x100/2a1a3e/b77ee6?text=${m.name.charAt(0)}'"></div><div class="team-role">${m.role}</div><div class="team-name">${m.name}</div><div class="team-title">${m.title}</div><button class="btn-profile" onclick="window.open('${m.profile}', '_blank')"><i class="fab fa-roblox"></i> View Profile</button></div>`).join('');
         
         window.copyEmail=()=>{ navigator.clipboard.writeText("utaragarageofficial@gmail.com"); showToast("📧 Email admin disalin!"); };
         window.scrollToSection=(section)=>{ const el=document.getElementById(section); if(el) el.scrollIntoView({ behavior:'smooth' }); };
