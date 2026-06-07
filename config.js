@@ -3,11 +3,11 @@
 // member_mode: true = mode DAFTAR MEMBER, false = mode DAFTAR EVENT
 
 const CONFIG = {
-    maintenance_mode: false,  // Ganti jadi true untuk maintenance, false untuk normal
-    member_mode: true         // true = DAFTAR MEMBER, false = DAFTAR EVENT
+    maintenance_mode: false,
+    member_mode: true
 };
 
-// Data Produk (bisa diedit langsung di sini)
+// Data Produk
 const PRODUCTS_DATA = [
     {
         "id": 1,
@@ -59,7 +59,7 @@ const PRODUCTS_DATA = [
 // Konfigurasi Pendaftaran Member
 const MEMBER_CONFIG = {
     admin_email: "utaragarageofficial@gmail.com",
-    min_age: 13
+    min_age: 15
 };
 
 // Konfigurasi Event WhatsApp
@@ -68,8 +68,9 @@ const EVENT_CONFIG = {
     message: "Assalamualaikum Bang Saya Mau Daftar Event"
 };
 
-// ==================== DATA MEMBER ====================
+// ==================== DATA MEMBER (LAMA 26 + BARU 10 = 36) ====================
 const MEMBERS_DATA = [
+    // --- MEMBER LAMA (26) ---
     {
         "username": "alxximutt",
         "avatar": "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-C5B5BBC6057732B73A2F01F047FD8FDD-Png/150/150/AvatarHeadshot/Webp/noFilter",
@@ -199,6 +200,58 @@ const MEMBERS_DATA = [
         "username": "pupu065",
         "avatar": "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-57966CB507B34000562E776AD802FE8F-Png/150/150/AvatarHeadshot/Webp/noFilter",
         "profile_link": "https://www.roblox.com/id/users/4781655517"
+    },
+
+    // --- MEMBER BARU (10, tanpa duplikat) ---
+    {
+        "username": "waz123497",
+        "avatar": "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-EC3B375133CF90597B84DD033F0A5BD0-Png/150/150/AvatarHeadshot/Webp/noFilter",
+        "profile_link": "https://www.roblox.com/users/8847797335"
+    },
+    {
+        "username": "216XAPINX",
+        "avatar": "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-EE3EDF7AC609E098FB8B155243C2A86A-Png/150/150/AvatarHeadshot/Webp/noFilter",
+        "profile_link": "https://www.roblox.com/users/10861905147"
+    },
+    {
+        "username": "Rip_TSQGH",
+        "avatar": "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-DDF46E68364277EB45257D1214315864-Png/150/150/AvatarHeadshot/Webp/noFilter",
+        "profile_link": "https://www.roblox.com/users/7543024402"
+    },
+    {
+        "username": "gungujay1",
+        "avatar": "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-FA5265A84581B49C0FDD5B12DB4E0334-Png/150/150/AvatarHeadshot/Webp/noFilter",
+        "profile_link": "https://www.roblox.com/users/6030866366"
+    },
+    {
+        "username": "10NaeLL",
+        "avatar": "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-E9765CDE6DB0C04D65128339F201F496-Png/150/150/AvatarHeadshot/Webp/noFilter",
+        "profile_link": "https://www.roblox.com/users/10658119451"
+    },
+    {
+        "username": "arsadgnt",
+        "avatar": "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-9DAF75CBE499E1BDFFF6A1C56930B8CF-Png/150/150/AvatarHeadshot/Webp/noFilter",
+        "profile_link": "https://www.roblox.com/users/9129689545"
+    },
+    {
+        "username": "icida72",
+        "avatar": "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-44BE71C80F3E79446D5527C41DF40D86-Png/150/150/AvatarHeadshot/Webp/noFilter",
+        "profile_link": "https://www.roblox.com/users/4518865283"
+    },
+    {
+        "username": "ziss_ajee23",
+        "avatar": "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-87E01DD36A8BB0AA785E75231F6AD00E-Png/150/150/AvatarHeadshot/Webp/noFilter",
+        "profile_link": "https://www.roblox.com/users/11019348468"
+    },
+    {
+        "username": "benicio_azam",
+        "avatar": "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-BAA17445CC17B2B05708DC27BB704C15-Png/150/150/AvatarHeadshot/Webp/noFilter",
+        "profile_link": "https://www.roblox.com/users/2464696754"
+    },
+    {
+        "username": "aple_royal",
+        "avatar": "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-314BCBFD968876C341F3D2434BCF1140-Png/150/150/AvatarHeadshot/Webp/noFilter",
+        "profile_link": "https://www.roblox.com/users/11043996118"
     }
 ];
 
