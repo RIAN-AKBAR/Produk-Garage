@@ -252,18 +252,22 @@ const MEMBERS_DATA = [
         "username": "aple_royal",
         "avatar": "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-314BCBFD968876C341F3D2434BCF1140-Png/150/150/AvatarHeadshot/Webp/noFilter",
         "profile_link": "https://www.roblox.com/users/11043996118"
-    }
+    },
+    {
+        "username": "Rip_TSQGH",
+        "avatar": "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-DDF46E68364277EB45257D1214315864-Png/150/150/AvatarHeadshot/Webp/noFilter",
+        "profile_link": "https://www.roblox.com/users/7543024402"
+    },
+    {
+        "name": "sunjaya_211",
+        "avatar": "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-D07CC7CABDFEBE4BF9C1359B62AF0649-Png/150/150/AvatarHeadshot/Webp/noFilter",
+        "profile_link": "https://www.roblox.com/id/users/10404698712"
+    },
 ];
 
 // ==================== DATA ADMIN ====================
 const ADMIN_DATA = [
-    {
-        "name": "sunjaya_211",
-        "role": "ADMIN",
-        "title": "Contributor",
-        "profile": "https://www.roblox.com/id/users/10404698712",
-        "photo": "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-D07CC7CABDFEBE4BF9C1359B62AF0649-Png/150/150/AvatarHeadshot/Webp/noFilter"
-    },
+ 
     {
         "name": "BRIAN",
         "role": "OWNER",
