@@ -68,7 +68,7 @@ const EVENT_CONFIG = {
     message: "Assalamualaikum Bang Saya Mau Daftar Event"
 };
 
-// ==================== DATA MEMBER (LAMA 26 + BARU 10 = 36) ====================
+// ==================== DATA MEMBER ====================
 const MEMBERS_DATA = [
     // --- MEMBER LAMA (26) ---
     {
@@ -202,7 +202,7 @@ const MEMBERS_DATA = [
         "profile_link": "https://www.roblox.com/id/users/4781655517"
     },
 
-    // --- MEMBER BARU (10, tanpa duplikat) ---
+    // --- MEMBER BARU (11, tanpa duplikat) ---
     {
         "username": "waz123497",
         "avatar": "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-EC3B375133CF90597B84DD033F0A5BD0-Png/150/150/AvatarHeadshot/Webp/noFilter",
@@ -254,12 +254,7 @@ const MEMBERS_DATA = [
         "profile_link": "https://www.roblox.com/users/11043996118"
     },
     {
-        "username": "Rip_TSQGH",
-        "avatar": "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-DDF46E68364277EB45257D1214315864-Png/150/150/AvatarHeadshot/Webp/noFilter",
-        "profile_link": "https://www.roblox.com/users/7543024402"
-    },
-    {
-        "name": "sunjaya_211",
+        "username": "sunjaya_211",
         "avatar": "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-D07CC7CABDFEBE4BF9C1359B62AF0649-Png/150/150/AvatarHeadshot/Webp/noFilter",
         "profile_link": "https://www.roblox.com/id/users/10404698712"
     }
@@ -267,7 +262,6 @@ const MEMBERS_DATA = [
 
 // ==================== DATA ADMIN ====================
 const ADMIN_DATA = [
- 
     {
         "name": "BRIAN",
         "role": "OWNER",
