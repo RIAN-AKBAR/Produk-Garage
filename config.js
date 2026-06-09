@@ -59,7 +59,7 @@ const PRODUCTS_DATA = [
 // Konfigurasi Pendaftaran Member
 const MEMBER_CONFIG = {
     admin_email: "utaragarageofficial@gmail.com",
-    min_age: 15
+    min_age: 13
 };
 
 // Konfigurasi Event WhatsApp
