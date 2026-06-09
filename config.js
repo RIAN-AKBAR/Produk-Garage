@@ -262,7 +262,7 @@ const MEMBERS_DATA = [
         "name": "sunjaya_211",
         "avatar": "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-D07CC7CABDFEBE4BF9C1359B62AF0649-Png/150/150/AvatarHeadshot/Webp/noFilter",
         "profile_link": "https://www.roblox.com/id/users/10404698712"
-    },
+    }
 ];
 
 // ==================== DATA ADMIN ====================
