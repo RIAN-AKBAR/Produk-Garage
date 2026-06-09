@@ -102,7 +102,7 @@
             backdrop-filter: blur(15px);
             border-radius: 40px;
             padding: 2rem;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             border: 1px solid rgba(156, 108, 214, 0.3);
             text-align: center;
         }
@@ -126,11 +126,93 @@
             transform: scale(1.02);
         }
 
+        /* ===== SEARCH BAR ===== */
+        .search-section {
+            margin: 1.5rem 0 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .search-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .search-wrapper i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #b77ee6;
+            font-size: 0.9rem;
+            pointer-events: none;
+        }
+
+        .search-input {
+            width: 100%;
+            background: rgba(26, 15, 42, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(156, 108, 214, 0.4);
+            border-radius: 60px;
+            padding: 0.85rem 1rem 0.85rem 45px;
+            color: white;
+            font-size: 0.9rem;
+            outline: none;
+            transition: all 0.3s ease;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .search-input:focus {
+            border-color: #b77ee6;
+            box-shadow: 0 0 20px rgba(183, 126, 230, 0.3);
+            background: rgba(26, 15, 42, 0.9);
+        }
+
+        .search-input::placeholder {
+            color: #8a7bb0;
+            font-size: 0.85rem;
+        }
+
+        .search-clear {
+            background: rgba(156, 108, 214, 0.2);
+            border: 1px solid rgba(156, 108, 214, 0.4);
+            border-radius: 50px;
+            padding: 0.7rem 1.2rem;
+            color: #b77ee6;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .search-clear:hover {
+            background: rgba(156, 108, 214, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .search-result-info {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 0.8rem;
+            color: #b89fd9;
+        }
+
+        .search-result-info span {
+            color: #b77ee6;
+            font-weight: bold;
+        }
+
         .members-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 1.5rem;
-            margin-top: 2rem;
+            margin-top: 1.5rem;
         }
 
         .member-card {
@@ -197,7 +279,7 @@
         .section-title {
             font-size: clamp(1.2rem, 5vw, 1.8rem);
             font-weight: 600;
-            margin: 2rem 0 1.5rem;
+            margin: 1rem 0 1rem;
             font-family: 'Playfair Display', serif;
             color: #b77ee6;
             position: relative;
@@ -241,6 +323,24 @@
             }
         }
 
+        /* No result styling */
+        .no-result {
+            text-align: center;
+            padding: 3rem;
+            color: #b89fd9;
+            background: rgba(15, 10, 25, 0.4);
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            grid-column: 1 / -1;
+        }
+
+        .no-result i {
+            font-size: 3rem;
+            color: #b77ee6;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
         footer {
             text-align: center;
             border-top: 1px solid rgba(156, 108, 214, 0.3);
@@ -271,6 +371,16 @@
                 width: 80px;
                 height: 80px;
             }
+            .search-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .search-wrapper {
+                max-width: 100%;
+            }
+            .search-clear {
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -291,6 +401,21 @@
             <p class="stats" style="margin-top: 1rem;"><i class="fas fa-users"></i> Total Members: <span id="memberCount">0</span></p>
         </div>
 
+        <!-- ===== SEARCH BAR ===== -->
+        <div class="search-section">
+            <div class="search-wrapper">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchMemberInput" class="search-input" placeholder="Cari nama member...">
+            </div>
+            <button id="clearSearchBtn" class="search-clear">
+                <i class="fas fa-times"></i> Clear
+            </button>
+        </div>
+
+        <div id="searchResultInfo" class="search-result-info" style="display: none;">
+            Menampilkan <span id="resultCount">0</span> dari <span id="totalCount">0</span> member
+        </div>
+
         <div class="section-title">⌇ OUR MEMBERS ⌇</div>
         <div class="members-grid" id="membersGrid"></div>
     </div>
@@ -301,6 +426,9 @@
 
     <script src="config.js"></script>
     <script>
+        let allMembers = [];
+        let currentSearchQuery = "";
+
         function escapeHtml(str) {
             if (!str) return "";
             return str.replace(/[&<>]/g, function(m) {
@@ -311,31 +439,123 @@
             });
         }
 
-        function renderMembers() {
+        function renderMembers(filteredMembers, searchQuery = "") {
             const grid = document.getElementById('membersGrid');
             const countSpan = document.getElementById('memberCount');
+            const searchResultInfo = document.getElementById('searchResultInfo');
+            const resultCountSpan = document.getElementById('resultCount');
+            const totalCountSpan = document.getElementById('totalCount');
             
-            if (typeof MEMBERS_DATA !== 'undefined' && MEMBERS_DATA.length > 0) {
-                if (countSpan) countSpan.textContent = MEMBERS_DATA.length;
-                
-                grid.innerHTML = MEMBERS_DATA.map((member, index) => `
-                    <div class="member-card" style="animation-delay: ${index * 0.03}s">
-                        <div class="member-avatar">
-                            <img src="${member.avatar}" alt="${member.username}" onerror="this.src='https://placehold.co/100x100/2a1a3e/b77ee6?text=${member.username.charAt(0).toUpperCase()}'">
-                        </div>
-                        <div class="member-username">${escapeHtml(member.username)}</div>
-                        <button class="btn-view-profile" onclick="window.open('${member.profile_link}', '_blank')">
-                            <i class="fab fa-roblox"></i> View Profile
-                        </button>
+            if (!grid) return;
+            
+            const totalMembers = allMembers.length;
+            if (countSpan) countSpan.textContent = totalMembers;
+            
+            if (filteredMembers.length === 0) {
+                grid.innerHTML = `
+                    <div class="no-result">
+                        <i class="fas fa-user-slash"></i>
+                        <p>✨ Tidak ada member dengan nama "${escapeHtml(searchQuery)}" ✨</p>
+                        <p style="font-size: 0.7rem; margin-top: 0.5rem;">Coba kata kunci lain</p>
                     </div>
-                `).join('');
+                `;
+                if (searchResultInfo) {
+                    if (searchQuery) {
+                        searchResultInfo.style.display = 'block';
+                        if (resultCountSpan) resultCountSpan.textContent = '0';
+                        if (totalCountSpan) totalCountSpan.textContent = totalMembers;
+                    } else {
+                        searchResultInfo.style.display = 'none';
+                    }
+                }
+                return;
+            }
+            
+            // Tampilkan hasil pencarian
+            if (searchResultInfo) {
+                if (searchQuery) {
+                    searchResultInfo.style.display = 'block';
+                    if (resultCountSpan) resultCountSpan.textContent = filteredMembers.length;
+                    if (totalCountSpan) totalCountSpan.textContent = totalMembers;
+                } else {
+                    searchResultInfo.style.display = 'none';
+                }
+            }
+            
+            grid.innerHTML = filteredMembers.map((member, index) => `
+                <div class="member-card" style="animation-delay: ${index * 0.03}s">
+                    <div class="member-avatar">
+                        <img src="${member.avatar}" alt="${member.username}" onerror="this.src='https://placehold.co/100x100/2a1a3e/b77ee6?text=${member.username.charAt(0).toUpperCase()}'">
+                    </div>
+                    <div class="member-username">${escapeHtml(member.username)}</div>
+                    <button class="btn-view-profile" onclick="window.open('${member.profile_link}', '_blank')">
+                        <i class="fab fa-roblox"></i> View Profile
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function filterMembersBySearch(query) {
+            if (!query || query.trim() === "") {
+                return allMembers;
+            }
+            const lowerQuery = query.toLowerCase().trim();
+            return allMembers.filter(member => 
+                member.username.toLowerCase().includes(lowerQuery)
+            );
+        }
+
+        function handleSearch() {
+            const searchInput = document.getElementById('searchMemberInput');
+            currentSearchQuery = searchInput ? searchInput.value : "";
+            const filtered = filterMembersBySearch(currentSearchQuery);
+            renderMembers(filtered, currentSearchQuery);
+        }
+
+        function clearSearch() {
+            const searchInput = document.getElementById('searchMemberInput');
+            if (searchInput) {
+                searchInput.value = "";
+            }
+            currentSearchQuery = "";
+            renderMembers(allMembers, "");
+        }
+
+        // Inisialisasi data member
+        function initMembers() {
+            if (typeof MEMBERS_DATA !== 'undefined' && MEMBERS_DATA.length > 0) {
+                allMembers = [...MEMBERS_DATA];
+                renderMembers(allMembers, "");
             } else {
-                grid.innerHTML = '<div style="text-align:center;padding:3rem;color:#b89fd9;">✨ Belum ada member yang terdaftar ✨</div>';
+                const grid = document.getElementById('membersGrid');
+                if (grid) {
+                    grid.innerHTML = '<div class="no-result"><i class="fas fa-users-slash"></i><p>✨ Belum ada member yang terdaftar ✨</p></div>';
+                }
+                const countSpan = document.getElementById('memberCount');
                 if (countSpan) countSpan.textContent = '0';
             }
         }
 
-        document.addEventListener('DOMContentLoaded', renderMembers);
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            initMembers();
+            
+            const searchInput = document.getElementById('searchMemberInput');
+            const clearBtn = document.getElementById('clearSearchBtn');
+            
+            if (searchInput) {
+                searchInput.addEventListener('input', handleSearch);
+                searchInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        handleSearch();
+                    }
+                });
+            }
+            
+            if (clearBtn) {
+                clearBtn.addEventListener('click', clearSearch);
+            }
+        });
     </script>
 </body>
 </html>
