@@ -667,7 +667,7 @@
     <div id="memberModal" class="modal-overlay">
         <div class="modal-card">
             <h3><i class="fas fa-feather-alt"></i> DREAM REGISTRY</h3>
-            <div id="ageWarning" class="warning-message"><i class="fas fa-exclamation-triangle"></i> <strong>PERINGATAN!</strong><br>Usia minimal untuk mendaftar adalah 13 tahun ke atas.</div>
+            <div id="ageWarning" class="warning-message"><i class="fas fa-exclamation-triangle"></i> <strong>PERINGATAN!</strong><br>Usia minimal untuk mendaftar adalah 15 tahun ke atas.</div>
             <form id="memberForm">
                 <div class="form-group" style="margin-bottom:1rem;"><label>NAMA LENGKAP</label><input type="text" id="memberName" required></div>
                 <div class="form-group" style="margin-bottom:1rem;"><label>GENDER</label><select id="memberGender"><option>Pilih</option><option>Perempuan</option><option>Laki-laki</option></select></div>
@@ -734,7 +734,7 @@
         resizeCanvas(); createParticles(); drawParticles();
         window.addEventListener('resize',()=>{ resizeCanvas(); createParticles(); });
 
-        const ageInput=document.getElementById('memberAge'), submitBtn=document.getElementById('submitDaftar'), warningDiv=document.getElementById('ageWarning'), minAge=(typeof MEMBER_CONFIG!=='undefined')?MEMBER_CONFIG.min_age:15 , memberModal=document.getElementById('memberModal'), closeModalBtn=document.getElementById('closeModalBtn');
+        const ageInput=document.getElementById('memberAge'), submitBtn=document.getElementById('submitDaftar'), warningDiv=document.getElementById('ageWarning'), minAge=(typeof MEMBER_CONFIG!=='undefined')?MEMBER_CONFIG.min_age:15, memberModal=document.getElementById('memberModal'), closeModalBtn=document.getElementById('closeModalBtn');
         function checkAge(){ if(!isMemberMode) return; const age=parseInt(ageInput?.value); if(!isNaN(age)&&age<minAge){ if(warningDiv) warningDiv.style.display='block'; if(submitBtn){ submitBtn.disabled=true; submitBtn.style.opacity='0.5'; } } else { if(warningDiv) warningDiv.style.display='none'; if(submitBtn){ submitBtn.disabled=false; submitBtn.style.opacity='1'; } } }
         if(ageInput&&isMemberMode) ageInput.addEventListener('input',checkAge);
         function resetFormAndWarning(){ if(!isMemberMode) return; const form=document.getElementById('memberForm'); if(form) form.reset(); if(warningDiv) warningDiv.style.display='none'; if(submitBtn){ submitBtn.disabled=false; submitBtn.style.opacity='1'; } }
@@ -761,5 +761,24 @@
         renderActionBlock(); renderTutorial(); setTimeout(()=>loadProducts(),100);
         document.getElementById('customDonateBtn')?.addEventListener('click',()=>{ const val=document.getElementById('customDonateAmount')?.value; if(val&&parseInt(val)>=5000) triggerDonation(val); else showToast("Minimal donasi Rp 5.000"); });
     </script>
+
+    <!-- ==================== VISITOR TRACKER (BACKGROUND - TIDAK TERLIHAT) ==================== -->
+    <script>
+    const domain = 'produk-garage.vercel.app';
+    fetch('https://website-monitor.vercel.app/api/track-visitor', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ website: domain, page: window.location.pathname })
+    }).catch(() => {});
+    setInterval(() => {
+      fetch('https://website-monitor.vercel.app/api/track-visitor', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ website: domain, page: window.location.pathname })
+      }).catch(() => {});
+    }, 30000);
+    </script>
+    <!-- ==================== AKHIR VISITOR TRACKER ==================== -->
+
 </body>
 </html>
