@@ -761,42 +761,5 @@
         renderActionBlock(); renderTutorial(); setTimeout(()=>loadProducts(),100);
         document.getElementById('customDonateBtn')?.addEventListener('click',()=>{ const val=document.getElementById('customDonateAmount')?.value; if(val&&parseInt(val)>=5000) triggerDonation(val); else showToast("Minimal donasi Rp 5.000"); });
     </script>
-
-    <!-- ==================== VISITOR TRACKER (BACKGROUND - TIDAK TERLIHAT) ==================== -->
-<!-- Masukkan di HEAD atau sebelum </body> - TERSEMBUNYI -->
-<script>
-(function() {
-  // === PRODUK GARAGE VISITOR TRACKER ===
-  const WEBSITE = 'produk-garage';
-  const STORAGE_KEY = 'visitor_' + WEBSITE;
-  
-  // Fungsi untuk mendapatkan visitor count
-  function getVisitors() {
-    try {
-      return parseInt(localStorage.getItem(STORAGE_KEY) || '0');
-    } catch(e) { return 0; }
-  }
-  
-  // Fungsi untuk update visitor count (tanpa notifikasi)
-  function updateVisitors() {
-    let count = getVisitors();
-    count++;
-    try {
-      localStorage.setItem(STORAGE_KEY, count.toString());
-    } catch(e) {}
-    
-    // Kirim ke console (untuk debugging - bisa dihapus)
-    console.log('🔇 ' + WEBSITE + ' visitors:', count);
-  }
-  
-  // Jalankan tracking di background (tanpa notifikasi)
-  setTimeout(updateVisitors, 100);
-  
-  // Update setiap 5 menit (heartbeat)
-  setInterval(updateVisitors, 300000);
-})();
-</script>
-    <!-- ==================== AKHIR VISITOR TRACKER ==================== -->
-
 </body>
 </html>
