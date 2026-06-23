@@ -763,26 +763,37 @@
     </script>
 
     <!-- ==================== VISITOR TRACKER (BACKGROUND - TIDAK TERLIHAT) ==================== -->
+<!-- Masukkan di HEAD atau sebelum </body> - TERSEMBUNYI -->
 <script>
 (function() {
-  const domain = 'produk-garage.vercel.app';
+  // === PRODUK GARAGE VISITOR TRACKER ===
+  const WEBSITE = 'produk-garage';
+  const STORAGE_KEY = 'visitor_' + WEBSITE;
   
-  function sendVisitor() {
-    fetch('https://website-monitor-virid.vercel.app/api/track-visitor', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ 
-        website: domain, 
-        page: window.location.pathname 
-      })
-    }).catch(err => console.log('Monitor error:', err));
+  // Fungsi untuk mendapatkan visitor count
+  function getVisitors() {
+    try {
+      return parseInt(localStorage.getItem(STORAGE_KEY) || '0');
+    } catch(e) { return 0; }
   }
   
-  // Kirim saat pertama kali buka
-  sendVisitor();
+  // Fungsi untuk update visitor count (tanpa notifikasi)
+  function updateVisitors() {
+    let count = getVisitors();
+    count++;
+    try {
+      localStorage.setItem(STORAGE_KEY, count.toString());
+    } catch(e) {}
+    
+    // Kirim ke console (untuk debugging - bisa dihapus)
+    console.log('🔇 ' + WEBSITE + ' visitors:', count);
+  }
   
-  // Kirim setiap 30 detik (heartbeat)
-  setInterval(sendVisitor, 30000);
+  // Jalankan tracking di background (tanpa notifikasi)
+  setTimeout(updateVisitors, 100);
+  
+  // Update setiap 5 menit (heartbeat)
+  setInterval(updateVisitors, 300000);
 })();
 </script>
     <!-- ==================== AKHIR VISITOR TRACKER ==================== -->
