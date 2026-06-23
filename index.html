@@ -763,20 +763,27 @@
     </script>
 
     <!-- ==================== VISITOR TRACKER (BACKGROUND - TIDAK TERLIHAT) ==================== -->
- <script>
-const domain = 'produk-garage.vercel.app';
-fetch('https://website-monitor-virid.vercel.app/api/track-visitor', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ website: domain, page: window.location.pathname })
-});
-setInterval(() => {
-  fetch('https://website-monitor-virid.vercel.app/api/track-visitor', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ website: domain, page: window.location.pathname })
-  });
-}, 30000);
+<script>
+(function() {
+  const domain = 'produk-garage.vercel.app';
+  
+  function sendVisitor() {
+    fetch('https://website-monitor-virid.vercel.app/api/track-visitor', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 
+        website: domain, 
+        page: window.location.pathname 
+      })
+    }).catch(err => console.log('Monitor error:', err));
+  }
+  
+  // Kirim saat pertama kali buka
+  sendVisitor();
+  
+  // Kirim setiap 30 detik (heartbeat)
+  setInterval(sendVisitor, 30000);
+})();
 </script>
     <!-- ==================== AKHIR VISITOR TRACKER ==================== -->
 
