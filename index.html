@@ -414,12 +414,47 @@
         @keyframes gentleFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
         .donation-header h3 { font-family: 'Playfair Display', serif; font-size: clamp(1.2rem, 5vw, 1.8rem); background: linear-gradient(135deg, #f0e6ff, #cbaaff); -webkit-background-clip: text; background-clip: text; color: transparent; margin: 0.3rem 0; }
         .donation-sub span { background: rgba(156, 108, 214, 0.2); padding: 4px 10px; border-radius: 40px; font-size: 0.7rem; backdrop-filter: blur(5px); display: inline-block; margin: 0 0.3rem; }
-        .custom-donation { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; align-items: center; margin-top: 0.5rem; }
-        .custom-input { background: rgba(26, 15, 42, 0.7); border: 1px solid #7a4ca8; border-radius: 60px; padding: 0.6rem 1rem; color: white; width: 170px; text-align: center; font-size: 0.85rem; outline: none; }
-        .custom-input:focus { border-color: #b77ee6; box-shadow: 0 0 12px rgba(183, 126, 230, 0.4); }
-        .btn-donate { background: linear-gradient(135deg, #8a5fc9, #563b7c); border: none; padding: 0.6rem 1.5rem; border-radius: 60px; color: white; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; transition: 0.25s; }
-        .btn-donate:hover { background: linear-gradient(135deg, #a274df, #6a4796); transform: scale(1.02); gap: 12px; }
-        .donation-note { font-size: 0.65rem; color: #b48ad6; margin-top: 1rem; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+
+        .btn-donate-sociabuzz {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: clamp(0.85rem, 3vw, 1rem);
+            background: linear-gradient(135deg, #8a5fc9, #563b7c);
+            border: none;
+            padding: 0.9rem 2.5rem;
+            border-radius: 60px;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(107, 70, 160, 0.4);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+        .btn-donate-sociabuzz:hover {
+            background: linear-gradient(135deg, #a274df, #6a4796);
+            transform: scale(1.03) translateY(-3px);
+            box-shadow: 0 12px 32px rgba(107, 70, 160, 0.6);
+            gap: 16px;
+        }
+        .btn-donate-sociabuzz i {
+            transition: transform 0.3s ease;
+        }
+        .btn-donate-sociabuzz:hover i {
+            transform: scale(1.1);
+        }
+
+        .donation-note {
+            font-size: 0.65rem;
+            color: #b48ad6;
+            margin-top: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
 
         .action-block { 
             background: linear-gradient(135deg, rgba(107, 70, 160, 0.2), rgba(26, 15, 42, 0.5)); 
@@ -622,10 +657,29 @@
         <div class="section-title">⌇ DREAM COLLECTION ⌇</div>
         <div class="products-grid" id="productGrid"></div>
 
+        <!-- ===== DONASI VIA SOCIABUZZ ===== -->
         <div class="donation-section">
             <div class="donation-wrapper">
-                <div class="donation-header"><div class="donation-icon"><i class="fas fa-hand-holding-heart"></i></div><h3>✦ SUPPORT OUR DREAM ✦</h3><div class="donation-sub"><span><i class="fas fa-gem"></i> Donasi</span><span><i class="fas fa-crown"></i> Dukungan Kreator</span><span><i class="fas fa-moon"></i> Bantu Kami Berkarya</span></div></div>
-                <div class="donation-footer"><div class="custom-donation"><input type="number" id="customDonateAmount" class="custom-input" placeholder="Masukkan nominal (Rp)" min="5000" step="1000"><button id="customDonateBtn" class="btn-donate"><i class="fas fa-heart"></i> DONASI SEKARANG</button></div><div class="donation-note"><i class="fas fa-lock"></i> Aman & Terpercaya <i class="fas fa-gift"></i> Setiap donasi mendukung pengembangan koleksi <i class="fas fa-coffee"></i> Terima kasih untuk supportnya!</div></div>
+                <div class="donation-header">
+                    <div class="donation-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                    <h3>✦ SUPPORT OUR DREAM ✦</h3>
+                    <div class="donation-sub">
+                        <span><i class="fas fa-gem"></i> Donasi</span>
+                        <span><i class="fas fa-crown"></i> Dukungan Kreator</span>
+                        <span><i class="fas fa-moon"></i> Bantu Kami Berkarya</span>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 0.5rem;">
+                    <a href="https://sociabuzz.com/utara_garage/tribe" target="_blank" class="btn-donate-sociabuzz">
+                        <i class="fas fa-heart"></i> DONASI VIA SOCIABUZZ
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <div class="donation-note">
+                        <i class="fas fa-lock"></i> Aman & Terpercaya 
+                        <i class="fas fa-gift"></i> Setiap donasi mendukung pengembangan koleksi 
+                        <i class="fas fa-coffee"></i> Terima kasih untuk supportnya!
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -724,7 +778,6 @@
         }
 
         function openWhatsApp(){ let phone="6281234567890", msg="Assalamualaikum Bang Saya Mau Daftar Event"; if(typeof EVENT_CONFIG !== 'undefined'){ phone=EVENT_CONFIG.whatsapp_number||phone; msg=EVENT_CONFIG.message||msg; } window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`,'_blank'); showToast('✨ Membuka WhatsApp... ✨'); }
-        function triggerDonation(amount){ let nominal=parseInt(amount); if(isNaN(nominal)||nominal<5000){ showToast("Minimal donasi Rp 5.000"); return; } const adminEmail="utaragarageofficial@gmail.com"; window.location.href=`mailto:${adminEmail}?subject=${encodeURIComponent(`DONASI UTARA GARAGE - Rp ${nominal.toLocaleString()}`)}&body=${encodeURIComponent(`Halo Tim UTARA GARAGE,\n\nSaya ingin melakukan donasi sebesar Rp ${nominal.toLocaleString()}.\n\nMohon informasi metode pembayaran lebih lanjut.\nTerima kasih. ✨\n\n-- Support Dream Collection`)}`; showToast(`💜 Terima kasih! Email donasi Rp ${nominal.toLocaleString()} akan terbuka`); }
 
         const canvas=document.getElementById('particleCanvas'), ctx=canvas.getContext('2d');
         let particles=[];
@@ -759,7 +812,6 @@
         function showToast(msg){ const toast=document.getElementById('toastMsg'); if(toast){ toast.textContent=msg; toast.style.opacity='1'; setTimeout(()=>toast.style.opacity='0',3000); } }
 
         renderActionBlock(); renderTutorial(); setTimeout(()=>loadProducts(),100);
-        document.getElementById('customDonateBtn')?.addEventListener('click',()=>{ const val=document.getElementById('customDonateAmount')?.value; if(val&&parseInt(val)>=5000) triggerDonation(val); else showToast("Minimal donasi Rp 5.000"); });
     </script>
 </body>
 </html>
