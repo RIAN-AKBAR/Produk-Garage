@@ -475,9 +475,9 @@
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
         .action-block h2 { font-family: 'Playfair Display', serif; color: #b77ee6; font-size: clamp(1.2rem, 5vw, 1.5rem); margin-bottom: 0.5rem; }
         .action-block p { color: #b89fd9; margin-bottom: 1rem; font-size: clamp(0.75rem, 3vw, 0.85rem); }
-        .btn-member, .btn-event { padding: 0.7rem 1.5rem; border-radius: 50px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; font-size: clamp(0.8rem, 3.5vw, 1rem); cursor: pointer; border: none; color: white; transition: 0.3s; }
-        .btn-member { background: linear-gradient(135deg, #6b46a0, #4a2a6e); }
-        .btn-member:hover { transform: translateY(-2px); gap: 12px; box-shadow: 0 5px 20px rgba(107, 70, 160, 0.4); }
+        .btn-member, .btn-event { padding: 0.7rem 1.5rem; border-radius: 50px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; font-size: clamp(0.8rem, 3.5vw, 1rem); cursor: pointer; border: none; color: white; transition: 0.3s; text-decoration: none; }
+        .btn-member { background: linear-gradient(135deg, #5865F2, #4752C4); }
+        .btn-member:hover { transform: translateY(-2px); gap: 12px; box-shadow: 0 5px 20px rgba(88, 101, 242, 0.4); }
         .btn-event { background: linear-gradient(135deg, #25D366, #128C7E); }
         .btn-event:hover { transform: translateY(-2px); gap: 12px; box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4); }
 
@@ -558,9 +558,42 @@
         .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
         .step { background: rgba(10, 5, 20, 0.5); border-radius: 20px; padding: 0.8rem; text-align: center; transition: 0.3s; }
         .step:hover { transform: translateY(-3px); background: rgba(107, 70, 160, 0.2); }
-        .step-number { width: 35px; height: 35px; background: linear-gradient(135deg, #6b46a0, #9c6cd6); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem; font-weight: bold; color: white; font-size: 0.9rem; }
-        .step h4 { font-size: 0.8rem; margin-bottom: 0.3rem; }
+        .step-number { width: 35px; height: 35px; background: linear-gradient(135deg, #5865F2, #4752C4); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem; font-weight: bold; color: white; font-size: 0.9rem; }
+        .step h4 { font-size: 0.8rem; margin-bottom: 0.3rem; color: #d4c0ff; }
         .step p { font-size: 0.65rem; color: #b89fd9; }
+        .discord-invite {
+            background: rgba(88, 101, 242, 0.1);
+            border: 1px solid rgba(88, 101, 242, 0.2);
+            border-radius: 20px;
+            padding: 0.8rem;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .discord-invite span { color: #b89fd9; font-size: 0.8rem; }
+        .discord-invite .invite-code { color: #b77ee6; font-weight: 600; font-size: 0.85rem; word-break: break-all; }
+        .btn-join-discord {
+            background: linear-gradient(135deg, #5865F2, #4752C4);
+            border: none;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            text-decoration: none;
+        }
+        .btn-join-discord:hover {
+            transform: scale(1.03);
+            box-shadow: 0 5px 20px rgba(88, 101, 242, 0.4);
+        }
         .email-highlight { background: rgba(42, 26, 62, 0.8); padding: 0.4rem 0.8rem; border-radius: 40px; display: inline-block; font-size: 0.7rem; margin-top: 0.5rem; font-family: monospace; }
         .copy-btn { background: #6b46a0; border: none; padding: 0.2rem 0.6rem; border-radius: 30px; color: white; cursor: pointer; margin-left: 8px; font-size: 0.7rem; transition: 0.3s; }
         .copy-btn:hover { background: #9c6cd6; }
@@ -586,7 +619,7 @@
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; z-index: 1000; visibility: hidden; opacity: 0; transition: 0.2s; }
         .modal-overlay.active { visibility: visible; opacity: 1; }
         .modal-card { background: linear-gradient(135deg, #1a1025, #0f0a1a); max-width: 400px; width: 90%; border-radius: 28px; padding: 1.5rem; border: 1px solid #9c6cd6; text-align: center; }
-        .modal-card h3 { text-align: center; margin-bottom: 1rem; }
+        .modal-card h3 { text-align: center; margin-bottom: 1rem; color: #d4c0ff; }
         .modal-card input, .modal-card select { width: 100%; padding: 0.6rem; border-radius: 40px; background: #0f0a1a; border: 1px solid #6b46a0; color: white; font-size: 0.85rem; margin-top: 0.3rem; outline: none; }
         .modal-card input:focus, .modal-card select:focus { border-color: #b77ee6; }
         .modal-card label { color: #b77ee6; font-size: 0.8rem; display: block; text-align: left; }
@@ -611,6 +644,50 @@
                 width: 100%;
                 max-width: 100%;
             }
+        }
+
+        /* Discord User Status */
+        .discord-user-status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 0.5rem 1rem;
+            background: rgba(88, 101, 242, 0.15);
+            border-radius: 40px;
+            border: 1px solid rgba(88, 101, 242, 0.3);
+            margin-top: 0.8rem;
+            flex-wrap: wrap;
+        }
+        .discord-user-status img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+        }
+        .discord-user-status .uname {
+            color: #d4c0ff;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+        .discord-user-status .badge {
+            background: rgba(88, 101, 242, 0.3);
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.6rem;
+            color: #b77ee6;
+        }
+        .discord-user-status .btn-logout {
+            background: rgba(255,50,50,0.15);
+            border: 1px solid rgba(255,50,50,0.3);
+            padding: 2px 12px;
+            border-radius: 20px;
+            color: #ff6b6b;
+            cursor: pointer;
+            font-size: 0.65rem;
+            transition: 0.3s;
+        }
+        .discord-user-status .btn-logout:hover {
+            background: rgba(255,50,50,0.3);
         }
     </style>
 </head>
@@ -714,10 +791,12 @@
         <div class="social-links">
             <a href="https://whatsapp.com/channel/0029VbCEmlcL2ATqlP5QNf2S" target="_blank"><i class="fab fa-whatsapp"></i><span>WhatsApp Channel</span></a>
             <a href="https://tiktok.com/@utara_garage" target="_blank"><i class="fab fa-tiktok"></i><span>TikTok</span></a>
+            <a href="https://discord.gg/WbGKZ5A8z" target="_blank"><i class="fab fa-discord"></i><span>Discord</span></a>
         </div>
         <div class="copyright"><i class="fas fa-moon"></i> UTARA GARAGE • ESTHETIC COLLECTION • PURPLE DREAM<br><small>© 2026 Utara Garage - All Rights Reserved</small></div>
     </footer>
 
+    <!-- Modal Member (tetap sama) -->
     <div id="memberModal" class="modal-overlay">
         <div class="modal-card">
             <h3><i class="fas fa-feather-alt"></i> DREAM REGISTRY</h3>
@@ -736,6 +815,23 @@
 
     <script src="config.js"></script>
     <script>
+        // ===== DISCORD CONFIGURATION =====
+        // Ganti dengan Client ID dari Discord Developer Portal
+        const DISCORD_CLIENT_ID = 'YOUR_DISCORD_CLIENT_ID';
+        // Ganti dengan redirect URI yang sudah didaftarkan
+        const REDIRECT_URI = window.location.origin + window.location.pathname;
+        // Ganti dengan invite link server Discord
+        const DISCORD_INVITE = 'https://discord.gg/WbGKZ5A8z';
+        // Ganti dengan Guild ID server Anda
+        const GUILD_ID = 'YOUR_GUILD_ID';
+        
+        // Discord OAuth2 Scopes
+        const SCOPES = ['identify', 'guilds'];
+        const OAUTH_URL = `https://discord.com/api/oauth2/authorize?client_id=${DISCORD_CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=token&scope=${encodeURIComponent(SCOPES.join(' '))}`;
+
+        let discordUser = null;
+
+        // ===== LOADING SCREEN =====
         let loadingProgress = 0;
         const percentElement = document.getElementById('loadingPercent');
         const loadingInterval = setInterval(() => {
@@ -756,27 +852,216 @@
 
         if(typeof CONFIG !== 'undefined' && CONFIG.maintenance_mode === true) window.location.href = 'maintenance.html';
 
+        // Cek member mode dari config
         const isMemberMode = (typeof CONFIG !== 'undefined' && CONFIG.member_mode === true);
-        
-        function renderActionBlock(){
-            const ab=document.getElementById('actionBlock');
-            if(!ab) return;
-            if(isMemberMode){ ab.innerHTML=`<div class="action-logo"><img src="logo.png" alt="UG" onerror="this.src='https://placehold.co/100x100/6b46a0/b77ee6?text=UG'"></div><h2>✦ DREAM REGISTRY ✦</h2><p>Bergabunglah menjadi bagian dari keluarga UTARA GARAGE</p><button id="actionBtn" class="btn-member"><i class="fas fa-user-plus"></i> DAFTAR MEMBER</button>`; }
-            else { ab.innerHTML=`<div class="action-logo"><img src="logo.png" alt="UG" onerror="this.src='https://placehold.co/100x100/6b46a0/b77ee6?text=UG'"></div><h2>✦ DAFTAR EVENT ✦</h2><p>Ikuti event seru dari UTARA GARAGE! Dapatkan hadiah menarik dan merchandise eksklusif</p><button id="actionBtn" class="btn-event"><i class="fab fa-whatsapp"></i> DAFTAR EVENT SEKARANG</button>`; }
-            const btn=document.getElementById('actionBtn');
-            if(btn){ if(isMemberMode) btn.onclick=()=>{ resetFormAndWarning(); if(memberModal) memberModal.classList.add('active'); }; else btn.onclick=openWhatsApp; }
-        }
 
-        function renderTutorial(){
-            const tb=document.getElementById('tutorialBox');
-            if(!tb) return;
-            if(isMemberMode){
-                tb.innerHTML=`<div style="text-align:center;"><i class="fas fa-feather-alt" style="font-size:2rem; color:#b77ee6;"></i><h3 style="margin-top:0.5rem;">📖 TUTORIAL DAFTAR MEMBER</h3></div><div class="steps"><div class="step"><div class="step-number">1</div><h4>Isi Formulir</h4><p>Klik tombol DAFTAR MEMBER</p></div><div class="step"><div class="step-number">2</div><h4>Isi Data</h4><p>Lengkapi formulir pendaftaran</p></div><div class="step"><div class="step-number">3</div><h4>Kirim Email</h4><p>Otomatis buka Gmail</p></div><div class="step"><div class="step-number">4</div><h4>Tunggu Konfirmasi</h4><p>Admin akan konfirmasi</p></div></div><div style="text-align:center;"><p><i class="fas fa-envelope"></i> Email Admin:</p><div class="email-highlight">utaragarageofficial@gmail.com<button class="copy-btn" onclick="copyEmail()"><i class="fas fa-copy"></i> Salin</button></div></div>`;
-            } else {
-                tb.innerHTML=`<div style="text-align:center;"><i class="fas fa-calendar-alt" style="font-size:2rem; color:#b77ee6;"></i><h3 style="margin-top:0.5rem;">📖 TUTORIAL DAFTAR EVENT</h3></div><div class="steps"><div class="step"><div class="step-number">1</div><h4>Klik Tombol</h4><p>Klik tombol DAFTAR EVENT</p></div><div class="step"><div class="step-number">2</div><h4>Konfirmasi</h4><p>Anda akan diarahkan ke WhatsApp</p></div><div class="step"><div class="step-number">3</div><h4>Kirim Pesan</h4><p>Pesan otomatis terkirim</p></div><div class="step"><div class="step-number">4</div><h4>Konfirmasi Admin</h4><p>Admin akan membalas</p></div></div><div style="text-align:center;"><p><i class="fas fa-envelope"></i> Email Admin:</p><div class="email-highlight">utaragarageofficial@gmail.com<button class="copy-btn" onclick="copyEmail()"><i class="fas fa-copy"></i> Salin</button></div></div>`;
+        // ===== DISCORD AUTH =====
+        function handleDiscordRedirect() {
+            if (window.location.hash) {
+                const hashParams = new URLSearchParams(window.location.hash.substring(1));
+                const accessToken = hashParams.get('access_token');
+                if (accessToken) {
+                    localStorage.setItem('discord_access_token', accessToken);
+                    window.history.replaceState(null, null, window.location.pathname);
+                    fetchDiscordUser(accessToken);
+                }
             }
         }
 
+        async function fetchDiscordUser(token) {
+            try {
+                const userRes = await fetch('https://discord.com/api/users/@me', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (!userRes.ok) throw new Error('Failed to fetch user');
+                const userData = await userRes.json();
+                
+                const guildsRes = await fetch('https://discord.com/api/users/@me/guilds', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (!guildsRes.ok) throw new Error('Failed to fetch guilds');
+                const guildsData = await guildsRes.json();
+
+                // Cek apakah user ada di server
+                const isInServer = guildsData.some(g => g.id === GUILD_ID);
+
+                discordUser = {
+                    id: userData.id,
+                    username: userData.username,
+                    discriminator: userData.discriminator,
+                    avatar: userData.avatar,
+                    global_name: userData.global_name,
+                    isInServer: isInServer
+                };
+
+                localStorage.setItem('discord_user', JSON.stringify(discordUser));
+                renderActionBlock();
+                renderTutorial();
+                showToast(`✨ Selamat datang ${discordUser.global_name || discordUser.username}! ✨`);
+
+            } catch (error) {
+                console.error('Discord auth error:', error);
+                showToast('⚠️ Gagal verifikasi Discord. Silakan coba lagi.');
+                localStorage.removeItem('discord_access_token');
+                localStorage.removeItem('discord_user');
+            }
+        }
+
+        function loginWithDiscord() {
+            window.location.href = OAUTH_URL;
+        }
+
+        function logoutDiscord() {
+            localStorage.removeItem('discord_access_token');
+            localStorage.removeItem('discord_user');
+            discordUser = null;
+            renderActionBlock();
+            renderTutorial();
+            showToast('👋 Berhasil logout dari Discord');
+        }
+
+        // ===== RENDER ACTION BLOCK =====
+        function renderActionBlock(){
+            const ab=document.getElementById('actionBlock');
+            if(!ab) return;
+
+            const storedUser = localStorage.getItem('discord_user');
+            if (storedUser) {
+                try {
+                    discordUser = JSON.parse(storedUser);
+                } catch (e) {
+                    discordUser = null;
+                }
+            }
+
+            if (discordUser && discordUser.isInServer) {
+                // Sudah member terverifikasi
+                const avatarUrl = discordUser.avatar 
+                    ? `https://cdn.discordapp.com/avatars/${discordUser.id}/${discordUser.avatar}.png?size=64`
+                    : 'https://cdn.discordapp.com/embed/avatars/0.png';
+                
+                ab.innerHTML = `
+                    <div class="action-logo"><img src="logo.png" alt="UG" onerror="this.src='https://placehold.co/100x100/6b46a0/b77ee6?text=UG'"></div>
+                    <h2>✦ MEMBER TERVERIFIKASI ✦</h2>
+                    <div class="discord-user-status">
+                        <img src="${avatarUrl}" alt="Avatar">
+                        <span class="uname">${discordUser.global_name || discordUser.username}</span>
+                        <span class="badge"><i class="fab fa-discord"></i> Member</span>
+                        <button class="btn-logout" onclick="logoutDiscord()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                    </div>
+                    <p style="margin-top:0.5rem;"><i class="fas fa-check-circle" style="color:#25D366;"></i> Selamat! Anda adalah member resmi UTARA GARAGE</p>
+                    <a href="${DISCORD_INVITE}" target="_blank" class="btn-member" style="display:inline-flex; margin-top:0.5rem;">
+                        <i class="fab fa-discord"></i> BUKA DISCORD
+                    </a>
+                `;
+            } else if (discordUser && !discordUser.isInServer) {
+                // Sudah login Discord tapi belum join server
+                ab.innerHTML = `
+                    <div class="action-logo"><img src="logo.png" alt="UG" onerror="this.src='https://placehold.co/100x100/6b46a0/b77ee6?text=UG'"></div>
+                    <h2>✦ BERGABUNG DULU ✦</h2>
+                    <p>Kamu sudah login dengan Discord, tapi belum bergabung dengan server kami.</p>
+                    <div style="display:flex; gap:0.8rem; justify-content:center; flex-wrap:wrap; margin-top:0.5rem;">
+                        <a href="${DISCORD_INVITE}" target="_blank" class="btn-member" style="display:inline-flex;">
+                            <i class="fab fa-discord"></i> JOIN SERVER
+                        </a>
+                        <button onclick="logoutDiscord()" style="background:rgba(255,50,50,0.15); border:1px solid rgba(255,50,50,0.3); padding:0.6rem 1.2rem; border-radius:50px; color:#ff6b6b; cursor:pointer; font-weight:600;">
+                            <i class="fas fa-sign-out-alt"></i> LOGOUT
+                        </button>
+                    </div>
+                `;
+            } else {
+                // Belum login Discord
+                ab.innerHTML = `
+                    <div class="action-logo"><img src="logo.png" alt="UG" onerror="this.src='https://placehold.co/100x100/6b46a0/b77ee6?text=UG'"></div>
+                    <h2>✦ DREAM REGISTRY ✦</h2>
+                    <p>Bergabunglah menjadi member resmi UTARA GARAGE melalui Discord</p>
+                    <button id="actionBtn" class="btn-member" onclick="loginWithDiscord()">
+                        <i class="fab fa-discord"></i> DAFTAR MEMBER DENGAN DISCORD
+                    </button>
+                    <div style="margin-top:0.5rem; font-size:0.65rem; color:#b89fd9;">
+                        <i class="fas fa-shield-alt"></i> Verifikasi akun Discord Anda
+                    </div>
+                `;
+            }
+        }
+
+        // ===== RENDER TUTORIAL =====
+        function renderTutorial(){
+            const tb=document.getElementById('tutorialBox');
+            if(!tb) return;
+
+            const storedUser = localStorage.getItem('discord_user');
+            let isMember = false;
+            if (storedUser) {
+                try {
+                    const user = JSON.parse(storedUser);
+                    isMember = user.isInServer === true;
+                } catch (e) {}
+            }
+
+            if (isMember) {
+                tb.innerHTML = `
+                    <div style="text-align:center;">
+                        <i class="fab fa-discord" style="font-size:2rem; color:#5865F2;"></i>
+                        <h3 style="margin-top:0.5rem; color:#d4c0ff;">✅ ANDA SUDAH TERDAFTAR SEBAGAI MEMBER</h3>
+                        <p style="color:#b89fd9; font-size:0.8rem;">Selamat! Anda memiliki akses ke semua channel eksklusif UTARA GARAGE</p>
+                    </div>
+                    <div class="discord-invite" style="margin-top:1rem;">
+                        <span><i class="fas fa-link"></i> Link Server:</span>
+                        <span class="invite-code">${DISCORD_INVITE}</span>
+                        <a href="${DISCORD_INVITE}" target="_blank" class="btn-join-discord">
+                            <i class="fab fa-discord"></i> BUKA DISCORD
+                        </a>
+                    </div>
+                    <div style="text-align:center; margin-top:1rem;">
+                        <p><i class="fas fa-envelope"></i> Email Admin:</p>
+                        <div class="email-highlight">utaragarageofficial@gmail.com<button class="copy-btn" onclick="copyEmail()"><i class="fas fa-copy"></i> Salin</button></div>
+                    </div>
+                `;
+            } else {
+                tb.innerHTML = `
+                    <div style="text-align:center;">
+                        <i class="fab fa-discord" style="font-size:2rem; color:#5865F2;"></i>
+                        <h3 style="margin-top:0.5rem; color:#d4c0ff;">📖 TUTORIAL DAFTAR MEMBER DISCORD</h3>
+                    </div>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h4>Login Discord</h4>
+                            <p>Klik tombol DAFTAR MEMBER dan login dengan akun Discord</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h4>Join Server</h4>
+                            <p>Bergabung dengan server Discord UTARA GARAGE</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h4>Verifikasi</h4>
+                            <p>Otomatis terverifikasi sebagai member</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <h4>Akses Eksklusif</h4>
+                            <p>Dapatkan akses ke channel dan event khusus member</p>
+                        </div>
+                    </div>
+                    <div class="discord-invite">
+                        <span><i class="fas fa-link"></i> Link Invite Server:</span>
+                        <span class="invite-code">${DISCORD_INVITE}</span>
+                        <a href="${DISCORD_INVITE}" target="_blank" class="btn-join-discord">
+                            <i class="fab fa-discord"></i> JOIN SEKARANG
+                        </a>
+                    </div>
+                    <div style="text-align:center; margin-top:1rem;">
+                        <p><i class="fas fa-envelope"></i> Email Admin:</p>
+                        <div class="email-highlight">utaragarageofficial@gmail.com<button class="copy-btn" onclick="copyEmail()"><i class="fas fa-copy"></i> Salin</button></div>
+                    </div>
+                `;
+            }
+        }
+
+        // ===== FUNGSI LAINNYA =====
         function openWhatsApp(){ let phone="6281234567890", msg="Assalamualaikum Bang Saya Mau Daftar Event"; if(typeof EVENT_CONFIG !== 'undefined'){ phone=EVENT_CONFIG.whatsapp_number||phone; msg=EVENT_CONFIG.message||msg; } window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`,'_blank'); showToast('✨ Membuka WhatsApp... ✨'); }
 
         const canvas=document.getElementById('particleCanvas'), ctx=canvas.getContext('2d');
@@ -787,31 +1072,180 @@
         resizeCanvas(); createParticles(); drawParticles();
         window.addEventListener('resize',()=>{ resizeCanvas(); createParticles(); });
 
-        const ageInput=document.getElementById('memberAge'), submitBtn=document.getElementById('submitDaftar'), warningDiv=document.getElementById('ageWarning'), minAge=(typeof MEMBER_CONFIG!=='undefined')?MEMBER_CONFIG.min_age:15, memberModal=document.getElementById('memberModal'), closeModalBtn=document.getElementById('closeModalBtn');
-        function checkAge(){ if(!isMemberMode) return; const age=parseInt(ageInput?.value); if(!isNaN(age)&&age<minAge){ if(warningDiv) warningDiv.style.display='block'; if(submitBtn){ submitBtn.disabled=true; submitBtn.style.opacity='0.5'; } } else { if(warningDiv) warningDiv.style.display='none'; if(submitBtn){ submitBtn.disabled=false; submitBtn.style.opacity='1'; } } }
-        if(ageInput&&isMemberMode) ageInput.addEventListener('input',checkAge);
-        function resetFormAndWarning(){ if(!isMemberMode) return; const form=document.getElementById('memberForm'); if(form) form.reset(); if(warningDiv) warningDiv.style.display='none'; if(submitBtn){ submitBtn.disabled=false; submitBtn.style.opacity='1'; } }
-        const memberForm=document.getElementById('memberForm');
-        if(memberForm&&isMemberMode){
-            memberForm.onsubmit=(e)=>{ e.preventDefault(); const age=parseInt(ageInput.value); if(isNaN(age)||age<minAge){ showToast(`⚠️ Usia harus ${minAge} tahun ke atas!`); return; } const name=document.getElementById('memberName').value, gender=document.getElementById('memberGender').value, wa=document.getElementById('memberWa').value; if(!name||!gender||!wa){ showToast('Lengkapi semua data!'); return; } const adminEmail=(typeof MEMBER_CONFIG!=='undefined')?MEMBER_CONFIG.admin_email:"utaragarageofficial@gmail.com"; window.location.href=`mailto:${adminEmail}?subject=${encodeURIComponent(`[UTARA GARAGE] Pendaftaran Member - ${name}`)}&body=${encodeURIComponent(`✨ PENDAFTARAN MEMBER UTARA GARAGE ✨\n\n📛 Nama: ${name}\n⚥ Gender: ${gender}\n🎂 Umur: ${age}\n📱 WA: ${wa}\n📅 Waktu: ${new Date().toLocaleString('id-ID')}`)}`; showToast('✨ Membuka Gmail... ✨'); if(memberModal) memberModal.classList.remove('active'); resetFormAndWarning(); };
+        // ===== MODAL MEMBER =====
+        const ageInput=document.getElementById('memberAge');
+        const submitBtn=document.getElementById('submitDaftar');
+        const warningDiv=document.getElementById('ageWarning');
+        const minAge = (typeof MEMBER_CONFIG !== 'undefined') ? MEMBER_CONFIG.min_age : 15;
+        const memberModal = document.getElementById('memberModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+
+        function checkAge(){
+            const age = parseInt(ageInput?.value);
+            if(!isNaN(age) && age < minAge){
+                if(warningDiv) warningDiv.style.display = 'block';
+                if(submitBtn){ submitBtn.disabled = true; submitBtn.style.opacity = '0.5'; }
+            } else {
+                if(warningDiv) warningDiv.style.display = 'none';
+                if(submitBtn){ submitBtn.disabled = false; submitBtn.style.opacity = '1'; }
+            }
         }
-        if(closeModalBtn) closeModalBtn.onclick=()=>{ if(memberModal) memberModal.classList.remove('active'); resetFormAndWarning(); };
-        if(memberModal) memberModal.onclick=(e)=>{ if(e.target===memberModal){ memberModal.classList.remove('active'); resetFormAndWarning(); } };
 
-        let products=[], currentFilter="all", searchQuery="";
-        function loadProducts(){ if(typeof PRODUCTS_DATA !== 'undefined' && PRODUCTS_DATA.length){ products=JSON.parse(JSON.stringify(PRODUCTS_DATA)); renderProducts(); } else { const grid=document.getElementById('productGrid'); if(grid) grid.innerHTML='<div style="text-align:center;padding:3rem;color:#b89fd9;">✨ Produk akan segera hadir ✨</div>'; } }
-        function renderProducts(){ const grid=document.getElementById('productGrid'); if(!grid) return; if(!products||!products.length){ grid.innerHTML='<div style="text-align:center;padding:3rem;color:#b89fd9;">✨ Tidak ada produk ditemukan ✨</div>'; return; } let filtered=products.filter(p=>(currentFilter==="all"||p.category===currentFilter)&&(!searchQuery||p.name.toLowerCase().includes(searchQuery.toLowerCase()))); if(filtered.length===0){ grid.innerHTML='<div style="text-align:center;padding:3rem;color:#b89fd9;">✨ Tidak ada produk ditemukan ✨</div>'; return; } grid.innerHTML=filtered.map((p,idx)=>`<div class="product-card" style="animation-delay: ${idx*0.05}s"><div class="product-img"><img src="${p.image}" onerror="this.src='https://placehold.co/420x420/2a1a3e/b77ee6?text=UG'"></div><h3>${escapeHtml(p.name)}</h3><div class="product-desc">${escapeHtml(p.description||p.name)}</div><button class="btn-buy" onclick="buyNow(${p.id})"><i class="fas fa-shopping-bag"></i> BELI SEKARANG</button></div>`).join(''); }
-        window.buyNow=function(id){ const p=products.find(p=>p.id===id); if(!p) return showToast('Produk tidak ditemukan!'); if(p.link&&p.link!=='#'){ window.open(p.link,'_blank'); showToast(`✨ Membuka ${p.name} di Roblox ✨`); } else showToast('Link produk tidak tersedia!'); };
-        document.querySelectorAll('.filter-btn').forEach(btn=>{ btn.addEventListener('click',()=>{ document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); currentFilter=btn.dataset.filter; renderProducts(); }); });
-        document.getElementById('searchBtn')?.addEventListener('click',()=>{ searchQuery=document.getElementById('searchInput').value; renderProducts(); });
-        document.getElementById('searchInput')?.addEventListener('keypress',(e)=>{ if(e.key==='Enter'){ searchQuery=e.target.value; renderProducts(); } });
+        if(ageInput) ageInput.addEventListener('input', checkAge);
+
+        function resetFormAndWarning(){
+            const form = document.getElementById('memberForm');
+            if(form) form.reset();
+            if(warningDiv) warningDiv.style.display = 'none';
+            if(submitBtn){ submitBtn.disabled = false; submitBtn.style.opacity = '1'; }
+        }
+
+        const memberForm = document.getElementById('memberForm');
+        if(memberForm){
+            memberForm.onsubmit = function(e){
+                e.preventDefault();
+                const age = parseInt(ageInput.value);
+                if(isNaN(age) || age < minAge){
+                    showToast(`⚠️ Usia harus ${minAge} tahun ke atas!`);
+                    return;
+                }
+                const name = document.getElementById('memberName').value;
+                const gender = document.getElementById('memberGender').value;
+                const wa = document.getElementById('memberWa').value;
+                if(!name || !gender || !wa){
+                    showToast('Lengkapi semua data!');
+                    return;
+                }
+                const adminEmail = (typeof MEMBER_CONFIG !== 'undefined') ? MEMBER_CONFIG.admin_email : "utaragarageofficial@gmail.com";
+                window.location.href = `mailto:${adminEmail}?subject=${encodeURIComponent(`[UTARA GARAGE] Pendaftaran Member - ${name}`)}&body=${encodeURIComponent(`✨ PENDAFTARAN MEMBER UTARA GARAGE ✨\n\n📛 Nama: ${name}\n⚥ Gender: ${gender}\n🎂 Umur: ${age}\n📱 WA: ${wa}\n📅 Waktu: ${new Date().toLocaleString('id-ID')}`)}`;
+                showToast('✨ Membuka Gmail... ✨');
+                if(memberModal) memberModal.classList.remove('active');
+                resetFormAndWarning();
+            };
+        }
+
+        if(closeModalBtn){
+            closeModalBtn.onclick = function(){
+                if(memberModal) memberModal.classList.remove('active');
+                resetFormAndWarning();
+            };
+        }
+
+        if(memberModal){
+            memberModal.onclick = function(e){
+                if(e.target === memberModal){
+                    memberModal.classList.remove('active');
+                    resetFormAndWarning();
+                }
+            };
+        }
+
+        // ===== PRODUCTS =====
+        let products = [];
+        let currentFilter = "all";
+        let searchQuery = "";
+
+        function loadProducts(){
+            if(typeof PRODUCTS_DATA !== 'undefined' && PRODUCTS_DATA.length){
+                products = JSON.parse(JSON.stringify(PRODUCTS_DATA));
+                renderProducts();
+            } else {
+                const grid = document.getElementById('productGrid');
+                if(grid) grid.innerHTML = '<div style="text-align:center;padding:3rem;color:#b89fd9;">✨ Produk akan segera hadir ✨</div>';
+            }
+        }
+
+        function renderProducts(){
+            const grid = document.getElementById('productGrid');
+            if(!grid) return;
+            if(!products || !products.length){
+                grid.innerHTML = '<div style="text-align:center;padding:3rem;color:#b89fd9;">✨ Tidak ada produk ditemukan ✨</div>';
+                return;
+            }
+            let filtered = products.filter(p => 
+                (currentFilter === "all" || p.category === currentFilter) &&
+                (!searchQuery || p.name.toLowerCase().includes(searchQuery.toLowerCase()))
+            );
+            if(filtered.length === 0){
+                grid.innerHTML = '<div style="text-align:center;padding:3rem;color:#b89fd9;">✨ Tidak ada produk ditemukan ✨</div>';
+                return;
+            }
+            grid.innerHTML = filtered.map((p, idx) => `
+                <div class="product-card" style="animation-delay: ${idx*0.05}s">
+                    <div class="product-img"><img src="${p.image}" onerror="this.src='https://placehold.co/420x420/2a1a3e/b77ee6?text=UG'"></div>
+                    <h3>${escapeHtml(p.name)}</h3>
+                    <div class="product-desc">${escapeHtml(p.description || p.name)}</div>
+                    <button class="btn-buy" onclick="buyNow(${p.id})"><i class="fas fa-shopping-bag"></i> BELI SEKARANG</button>
+                </div>
+            `).join('');
+        }
+
+        window.buyNow = function(id){
+            const p = products.find(p => p.id === id);
+            if(!p) return showToast('Produk tidak ditemukan!');
+            if(p.link && p.link !== '#'){
+                window.open(p.link, '_blank');
+                showToast(`✨ Membuka ${p.name} di Roblox ✨`);
+            } else {
+                showToast('Link produk tidak tersedia!');
+            }
+        };
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function(){
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentFilter = this.dataset.filter;
+                renderProducts();
+            });
+        });
+
+        document.getElementById('searchBtn')?.addEventListener('click', function(){
+            searchQuery = document.getElementById('searchInput').value;
+            renderProducts();
+        });
+
+        document.getElementById('searchInput')?.addEventListener('keypress', function(e){
+            if(e.key === 'Enter'){
+                searchQuery = this.value;
+                renderProducts();
+            }
+        });
         
-        window.copyEmail=()=>{ navigator.clipboard.writeText("utaragarageofficial@gmail.com"); showToast("📧 Email admin disalin!"); };
-        window.scrollToSection=(section)=>{ const el=document.getElementById(section); if(el) el.scrollIntoView({ behavior:'smooth' }); };
-        function escapeHtml(str){ if(!str) return ""; return str.replace(/[&<>]/g,function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m; }); }
-        function showToast(msg){ const toast=document.getElementById('toastMsg'); if(toast){ toast.textContent=msg; toast.style.opacity='1'; setTimeout(()=>toast.style.opacity='0',3000); } }
+        window.copyEmail = function(){
+            navigator.clipboard.writeText("utaragarageofficial@gmail.com");
+            showToast("📧 Email admin disalin!");
+        };
 
-        renderActionBlock(); renderTutorial(); setTimeout(()=>loadProducts(),100);
+        window.scrollToSection = function(section){
+            const el = document.getElementById(section);
+            if(el) el.scrollIntoView({ behavior: 'smooth' });
+        };
+
+        function escapeHtml(str){
+            if(!str) return "";
+            return str.replace(/[&<>]/g, function(m){
+                if(m === '&') return '&amp;';
+                if(m === '<') return '&lt;';
+                if(m === '>') return '&gt;';
+                return m;
+            });
+        }
+
+        function showToast(msg){
+            const toast = document.getElementById('toastMsg');
+            if(toast){
+                toast.textContent = msg;
+                toast.style.opacity = '1';
+                setTimeout(() => toast.style.opacity = '0', 3000);
+            }
+        }
+
+        // ===== INITIALIZE =====
+        handleDiscordRedirect();
+        renderActionBlock();
+        renderTutorial();
+        setTimeout(() => loadProducts(), 100);
     </script>
 </body>
 </html>
