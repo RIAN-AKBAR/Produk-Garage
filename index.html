@@ -816,20 +816,8 @@
     <script src="config.js"></script>
     <script>
         // ===== DISCORD CONFIGURATION =====
-        // Ganti dengan Client ID dari Discord Developer Portal
-        const DISCORD_CLIENT_ID = 'YOUR_DISCORD_CLIENT_ID';
-        // Ganti dengan redirect URI yang sudah didaftarkan
-        const REDIRECT_URI = window.location.origin + window.location.pathname;
-        // Ganti dengan invite link server Discord
+        // Discord invite link yang akan digunakan
         const DISCORD_INVITE = 'https://discord.gg/WbGKZ5A8z';
-        // Ganti dengan Guild ID server Anda
-        const GUILD_ID = 'YOUR_GUILD_ID';
-        
-        // Discord OAuth2 Scopes
-        const SCOPES = ['identify', 'guilds'];
-        const OAUTH_URL = `https://discord.com/api/oauth2/authorize?client_id=${DISCORD_CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=token&scope=${encodeURIComponent(SCOPES.join(' '))}`;
-
-        let discordUser = null;
 
         // ===== LOADING SCREEN =====
         let loadingProgress = 0;
@@ -855,134 +843,23 @@
         // Cek member mode dari config
         const isMemberMode = (typeof CONFIG !== 'undefined' && CONFIG.member_mode === true);
 
-        // ===== DISCORD AUTH =====
-        function handleDiscordRedirect() {
-            if (window.location.hash) {
-                const hashParams = new URLSearchParams(window.location.hash.substring(1));
-                const accessToken = hashParams.get('access_token');
-                if (accessToken) {
-                    localStorage.setItem('discord_access_token', accessToken);
-                    window.history.replaceState(null, null, window.location.pathname);
-                    fetchDiscordUser(accessToken);
-                }
-            }
-        }
-
-        async function fetchDiscordUser(token) {
-            try {
-                const userRes = await fetch('https://discord.com/api/users/@me', {
-                    headers: { 'Authorization': `Bearer ${token}` }
-                });
-                if (!userRes.ok) throw new Error('Failed to fetch user');
-                const userData = await userRes.json();
-                
-                const guildsRes = await fetch('https://discord.com/api/users/@me/guilds', {
-                    headers: { 'Authorization': `Bearer ${token}` }
-                });
-                if (!guildsRes.ok) throw new Error('Failed to fetch guilds');
-                const guildsData = await guildsRes.json();
-
-                // Cek apakah user ada di server
-                const isInServer = guildsData.some(g => g.id === GUILD_ID);
-
-                discordUser = {
-                    id: userData.id,
-                    username: userData.username,
-                    discriminator: userData.discriminator,
-                    avatar: userData.avatar,
-                    global_name: userData.global_name,
-                    isInServer: isInServer
-                };
-
-                localStorage.setItem('discord_user', JSON.stringify(discordUser));
-                renderActionBlock();
-                renderTutorial();
-                showToast(`✨ Selamat datang ${discordUser.global_name || discordUser.username}! ✨`);
-
-            } catch (error) {
-                console.error('Discord auth error:', error);
-                showToast('⚠️ Gagal verifikasi Discord. Silakan coba lagi.');
-                localStorage.removeItem('discord_access_token');
-                localStorage.removeItem('discord_user');
-            }
-        }
-
-        function loginWithDiscord() {
-            window.location.href = OAUTH_URL;
-        }
-
-        function logoutDiscord() {
-            localStorage.removeItem('discord_access_token');
-            localStorage.removeItem('discord_user');
-            discordUser = null;
-            renderActionBlock();
-            renderTutorial();
-            showToast('👋 Berhasil logout dari Discord');
-        }
-
         // ===== RENDER ACTION BLOCK =====
         function renderActionBlock(){
             const ab=document.getElementById('actionBlock');
             if(!ab) return;
 
-            const storedUser = localStorage.getItem('discord_user');
-            if (storedUser) {
-                try {
-                    discordUser = JSON.parse(storedUser);
-                } catch (e) {
-                    discordUser = null;
-                }
-            }
-
-            if (discordUser && discordUser.isInServer) {
-                // Sudah member terverifikasi
-                const avatarUrl = discordUser.avatar 
-                    ? `https://cdn.discordapp.com/avatars/${discordUser.id}/${discordUser.avatar}.png?size=64`
-                    : 'https://cdn.discordapp.com/embed/avatars/0.png';
-                
-                ab.innerHTML = `
-                    <div class="action-logo"><img src="logo.png" alt="UG" onerror="this.src='https://placehold.co/100x100/6b46a0/b77ee6?text=UG'"></div>
-                    <h2>✦ MEMBER TERVERIFIKASI ✦</h2>
-                    <div class="discord-user-status">
-                        <img src="${avatarUrl}" alt="Avatar">
-                        <span class="uname">${discordUser.global_name || discordUser.username}</span>
-                        <span class="badge"><i class="fab fa-discord"></i> Member</span>
-                        <button class="btn-logout" onclick="logoutDiscord()"><i class="fas fa-sign-out-alt"></i> Logout</button>
-                    </div>
-                    <p style="margin-top:0.5rem;"><i class="fas fa-check-circle" style="color:#25D366;"></i> Selamat! Anda adalah member resmi UTARA GARAGE</p>
-                    <a href="${DISCORD_INVITE}" target="_blank" class="btn-member" style="display:inline-flex; margin-top:0.5rem;">
-                        <i class="fab fa-discord"></i> BUKA DISCORD
-                    </a>
-                `;
-            } else if (discordUser && !discordUser.isInServer) {
-                // Sudah login Discord tapi belum join server
-                ab.innerHTML = `
-                    <div class="action-logo"><img src="logo.png" alt="UG" onerror="this.src='https://placehold.co/100x100/6b46a0/b77ee6?text=UG'"></div>
-                    <h2>✦ BERGABUNG DULU ✦</h2>
-                    <p>Kamu sudah login dengan Discord, tapi belum bergabung dengan server kami.</p>
-                    <div style="display:flex; gap:0.8rem; justify-content:center; flex-wrap:wrap; margin-top:0.5rem;">
-                        <a href="${DISCORD_INVITE}" target="_blank" class="btn-member" style="display:inline-flex;">
-                            <i class="fab fa-discord"></i> JOIN SERVER
-                        </a>
-                        <button onclick="logoutDiscord()" style="background:rgba(255,50,50,0.15); border:1px solid rgba(255,50,50,0.3); padding:0.6rem 1.2rem; border-radius:50px; color:#ff6b6b; cursor:pointer; font-weight:600;">
-                            <i class="fas fa-sign-out-alt"></i> LOGOUT
-                        </button>
-                    </div>
-                `;
-            } else {
-                // Belum login Discord
-                ab.innerHTML = `
-                    <div class="action-logo"><img src="logo.png" alt="UG" onerror="this.src='https://placehold.co/100x100/6b46a0/b77ee6?text=UG'"></div>
-                    <h2>✦ DREAM REGISTRY ✦</h2>
-                    <p>Bergabunglah menjadi member resmi UTARA GARAGE melalui Discord</p>
-                    <button id="actionBtn" class="btn-member" onclick="loginWithDiscord()">
-                        <i class="fab fa-discord"></i> DAFTAR MEMBER DENGAN DISCORD
-                    </button>
-                    <div style="margin-top:0.5rem; font-size:0.65rem; color:#b89fd9;">
-                        <i class="fas fa-shield-alt"></i> Verifikasi akun Discord Anda
-                    </div>
-                `;
-            }
+            // Tampilan default dengan tombol langsung ke Discord
+            ab.innerHTML = `
+                <div class="action-logo"><img src="logo.png" alt="UG" onerror="this.src='https://placehold.co/100x100/6b46a0/b77ee6?text=UG'"></div>
+                <h2>✦ DREAM REGISTRY ✦</h2>
+                <p>Bergabunglah menjadi member resmi UTARA GARAGE melalui Discord</p>
+                <a href="${DISCORD_INVITE}" target="_blank" class="btn-member">
+                    <i class="fab fa-discord"></i> GABUNG KE DISCORD
+                </a>
+                <div style="margin-top:0.5rem; font-size:0.65rem; color:#b89fd9;">
+                    <i class="fas fa-shield-alt"></i> Bergabung dengan server Discord kami
+                </div>
+            `;
         }
 
         // ===== RENDER TUTORIAL =====
@@ -990,75 +867,45 @@
             const tb=document.getElementById('tutorialBox');
             if(!tb) return;
 
-            const storedUser = localStorage.getItem('discord_user');
-            let isMember = false;
-            if (storedUser) {
-                try {
-                    const user = JSON.parse(storedUser);
-                    isMember = user.isInServer === true;
-                } catch (e) {}
-            }
-
-            if (isMember) {
-                tb.innerHTML = `
-                    <div style="text-align:center;">
-                        <i class="fab fa-discord" style="font-size:2rem; color:#5865F2;"></i>
-                        <h3 style="margin-top:0.5rem; color:#d4c0ff;">✅ ANDA SUDAH TERDAFTAR SEBAGAI MEMBER</h3>
-                        <p style="color:#b89fd9; font-size:0.8rem;">Selamat! Anda memiliki akses ke semua channel eksklusif UTARA GARAGE</p>
+            tb.innerHTML = `
+                <div style="text-align:center;">
+                    <i class="fab fa-discord" style="font-size:2rem; color:#5865F2;"></i>
+                    <h3 style="margin-top:0.5rem; color:#d4c0ff;">📖 BERGABUNG DENGAN DISCORD</h3>
+                </div>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h4>Klik Tombol</h4>
+                        <p>Klik tombol GABUNG KE DISCORD di atas</p>
                     </div>
-                    <div class="discord-invite" style="margin-top:1rem;">
-                        <span><i class="fas fa-link"></i> Link Server:</span>
-                        <span class="invite-code">${DISCORD_INVITE}</span>
-                        <a href="${DISCORD_INVITE}" target="_blank" class="btn-join-discord">
-                            <i class="fab fa-discord"></i> BUKA DISCORD
-                        </a>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h4>Login Discord</h4>
+                        <p>Login dengan akun Discord Anda</p>
                     </div>
-                    <div style="text-align:center; margin-top:1rem;">
-                        <p><i class="fas fa-envelope"></i> Email Admin:</p>
-                        <div class="email-highlight">utaragarageofficial@gmail.com<button class="copy-btn" onclick="copyEmail()"><i class="fas fa-copy"></i> Salin</button></div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h4>Join Server</h4>
+                        <p>Klik "Gabung Server" di Discord</p>
                     </div>
-                `;
-            } else {
-                tb.innerHTML = `
-                    <div style="text-align:center;">
-                        <i class="fab fa-discord" style="font-size:2rem; color:#5865F2;"></i>
-                        <h3 style="margin-top:0.5rem; color:#d4c0ff;">📖 TUTORIAL DAFTAR MEMBER DISCORD</h3>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h4>Selamat!</h4>
+                        <p>Anda resmi menjadi member UTARA GARAGE</p>
                     </div>
-                    <div class="steps">
-                        <div class="step">
-                            <div class="step-number">1</div>
-                            <h4>Login Discord</h4>
-                            <p>Klik tombol DAFTAR MEMBER dan login dengan akun Discord</p>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">2</div>
-                            <h4>Join Server</h4>
-                            <p>Bergabung dengan server Discord UTARA GARAGE</p>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">3</div>
-                            <h4>Verifikasi</h4>
-                            <p>Otomatis terverifikasi sebagai member</p>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">4</div>
-                            <h4>Akses Eksklusif</h4>
-                            <p>Dapatkan akses ke channel dan event khusus member</p>
-                        </div>
-                    </div>
-                    <div class="discord-invite">
-                        <span><i class="fas fa-link"></i> Link Invite Server:</span>
-                        <span class="invite-code">${DISCORD_INVITE}</span>
-                        <a href="${DISCORD_INVITE}" target="_blank" class="btn-join-discord">
-                            <i class="fab fa-discord"></i> JOIN SEKARANG
-                        </a>
-                    </div>
-                    <div style="text-align:center; margin-top:1rem;">
-                        <p><i class="fas fa-envelope"></i> Email Admin:</p>
-                        <div class="email-highlight">utaragarageofficial@gmail.com<button class="copy-btn" onclick="copyEmail()"><i class="fas fa-copy"></i> Salin</button></div>
-                    </div>
-                `;
-            }
+                </div>
+                <div class="discord-invite">
+                    <span><i class="fas fa-link"></i> Link Invite Server:</span>
+                    <span class="invite-code">${DISCORD_INVITE}</span>
+                    <a href="${DISCORD_INVITE}" target="_blank" class="btn-join-discord">
+                        <i class="fab fa-discord"></i> JOIN SEKARANG
+                    </a>
+                </div>
+                <div style="text-align:center; margin-top:1rem;">
+                    <p><i class="fas fa-envelope"></i> Email Admin:</p>
+                    <div class="email-highlight">utaragarageofficial@gmail.com<button class="copy-btn" onclick="copyEmail()"><i class="fas fa-copy"></i> Salin</button></div>
+                </div>
+            `;
         }
 
         // ===== FUNGSI LAINNYA =====
@@ -1242,7 +1089,6 @@
         }
 
         // ===== INITIALIZE =====
-        handleDiscordRedirect();
         renderActionBlock();
         renderTutorial();
         setTimeout(() => loadProducts(), 100);
