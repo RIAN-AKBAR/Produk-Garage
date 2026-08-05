@@ -3,7 +3,7 @@
 // member_mode: true = mode DAFTAR MEMBER, false = mode DAFTAR EVENT
 
 const CONFIG = {
-    maintenance_mode: true,
+    maintenance_mode: false,
     member_mode: true
 };
 
