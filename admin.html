@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>UTARA GARAGE | Admin Team</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -14,36 +14,108 @@
         }
 
         body {
-            background: #0a0515;
-            font-family: 'Quicksand', sans-serif;
+            background: #06040e;
+            font-family: 'Inter', sans-serif;
             color: #f0e6ff;
             min-height: 100vh;
             overflow-x: hidden;
         }
 
-        .bg-grid {
+        /* ===== ANIMATED GRID BACKGROUND ===== */
+        .cyber-grid {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: linear-gradient(rgba(156, 108, 214, 0.08) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(156, 108, 214, 0.08) 1px, transparent 1px);
-            background-size: 50px 50px;
             z-index: 0;
             pointer-events: none;
+            overflow: hidden;
         }
 
-        .bg-gradient {
+        .cyber-grid .grid-line {
+            position: absolute;
+            background: rgba(120, 80, 255, 0.06);
+        }
+
+        .cyber-grid .grid-line.h {
+            width: 100%;
+            height: 1px;
+            left: 0;
+            animation: gridMoveH 20s linear infinite;
+        }
+
+        .cyber-grid .grid-line.v {
+            width: 1px;
+            height: 100%;
+            top: 0;
+            animation: gridMoveV 25s linear infinite;
+        }
+
+        @keyframes gridMoveH {
+            0% { transform: translateY(-100%); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        @keyframes gridMoveV {
+            0% { transform: translateX(-100%); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateX(100vw); opacity: 0; }
+        }
+
+        .neon-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 0;
+            animation: orbFloat 8s ease-in-out infinite alternate;
+        }
+
+        .neon-orb.purple {
+            width: 500px;
+            height: 500px;
+            top: -10%;
+            left: -10%;
+            background: radial-gradient(circle, rgba(160, 80, 255, 0.25), transparent 70%);
+        }
+
+        .neon-orb.blue {
+            width: 400px;
+            height: 400px;
+            bottom: -10%;
+            right: -10%;
+            background: radial-gradient(circle, rgba(0, 180, 255, 0.15), transparent 70%);
+            animation-delay: -3s;
+        }
+
+        @keyframes orbFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(60px, -40px) scale(1.2); }
+        }
+
+        .scanlines {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(ellipse at 20% 30%, rgba(107, 70, 160, 0.25) 0%, transparent 50%),
-                        radial-gradient(ellipse at 80% 70%, rgba(183, 126, 230, 0.2) 0%, transparent 50%),
-                        linear-gradient(135deg, #0a0515 0%, #150d25 50%, #0a0515 100%);
-            z-index: 0;
+            pointer-events: none;
+            z-index: 1;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+        }
+
+        .glow-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 50% 50%, rgba(80, 40, 160, 0.08), transparent 70%);
+            z-index: 1;
             pointer-events: none;
         }
 
@@ -56,228 +128,468 @@
             z-index: 10;
         }
 
+        /* ===== PAGE HEADER ===== */
         .page-header {
             text-align: center;
             margin-bottom: 3rem;
+            position: relative;
         }
 
         .back-home {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            background: rgba(156, 108, 214, 0.2);
-            border: 1px solid rgba(156, 108, 214, 0.5);
-            border-radius: 40px;
-            padding: 0.5rem 1.2rem;
-            color: #b77ee6;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(160, 80, 255, 0.1);
+            border-radius: 60px;
+            padding: 0.6rem 1.6rem;
+            color: #8a78b0;
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 1px;
             margin-bottom: 2rem;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
         }
 
         .back-home:hover {
-            background: rgba(156, 108, 214, 0.4);
-            transform: translateY(-2px);
+            background: rgba(160, 80, 255, 0.08);
+            border-color: rgba(160, 80, 255, 0.2);
+            color: #d4c0ff;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(160, 80, 255, 0.1);
+        }
+
+        .back-home i {
+            transition: transform 0.3s ease;
+        }
+
+        .back-home:hover i {
+            transform: translateX(-4px);
         }
 
         h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.8rem, 8vw, 3rem);
-            background: linear-gradient(135deg, #e0d4ff, #b77ee6, #9c6cd6);
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(1.8rem, 7vw, 3.2rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #a050ff, #00b8ff, #ff40a0);
+            background-size: 200% 200%;
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            letter-spacing: 2px;
+            letter-spacing: 4px;
+            animation: gradShift 4s ease-in-out infinite;
+            position: relative;
+            display: inline-block;
+        }
+
+        @keyframes gradShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #a050ff, #00b8ff, transparent);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(160, 80, 255, 0.2);
         }
 
         .subtitle {
-            color: #b89fd9;
-            margin-top: 0.5rem;
-            font-size: 0.9rem;
+            color: #6a5a88;
+            margin-top: 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+        }
+
+        .subtitle i {
+            color: #a050ff;
+            margin: 0 6px;
+        }
+
+        .stats-glass {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(160, 80, 255, 0.06);
+            border-radius: 60px;
+            padding: 0.6rem 1.8rem;
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: #7a6a9a;
+            margin: 0 auto 1.5rem;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', monospace;
+            letter-spacing: 1px;
+        }
+
+        .stats-glass:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(160, 80, 255, 0.1);
+        }
+
+        .stats-glass i {
+            color: #a050ff;
+            margin-right: 8px;
+        }
+
+        .stats-glass span {
+            color: #d4c0ff;
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-size: clamp(1rem, 4vw, 1.6rem);
+            font-weight: 700;
+            margin: 0 0 2rem;
+            font-family: 'Orbitron', monospace;
+            color: #d4c0ff;
+            text-align: center;
+            position: relative;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .section-title::before {
+            content: '◆';
+            margin-right: 14px;
+            color: #a050ff;
+            font-size: clamp(0.6rem, 2vw, 0.9rem);
+        }
+
+        .section-title::after {
+            content: '◆';
+            margin-left: 14px;
+            color: #a050ff;
+            font-size: clamp(0.6rem, 2vw, 0.9rem);
         }
 
         .admin-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
         }
 
         .admin-card {
-            background: rgba(15, 10, 25, 0.6);
-            backdrop-filter: blur(15px);
-            border-radius: 28px;
-            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            border-radius: 32px;
+            padding: 1.8rem 1.2rem 1.5rem;
             text-align: center;
-            border: 1px solid rgba(156, 108, 214, 0.3);
-            transition: all 0.4s ease;
-            animation: fadeInUp 0.6s ease backwards;
+            border: 1px solid rgba(160, 80, 255, 0.06);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: fadeInUp 0.8s ease backwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .admin-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 0%, rgba(160, 80, 255, 0.05), transparent 50%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+
+        .admin-card:hover::before {
+            opacity: 1;
         }
 
         .admin-card:hover {
-            transform: translateY(-8px);
-            border-color: #b77ee6;
-            box-shadow: 0 20px 40px rgba(107, 70, 160, 0.3);
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(160, 80, 255, 0.12);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3), 0 0 40px rgba(160, 80, 255, 0.04);
+        }
+
+        .admin-card .neon-border {
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            width: calc(100% + 2px);
+            height: calc(100% + 2px);
+            border-radius: 33px;
+            background: conic-gradient(from 0deg, transparent, rgba(160, 80, 255, 0.1), transparent, rgba(0, 180, 255, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .admin-card:hover .neon-border {
+            opacity: 1;
+            animation: spinBorder 4s linear infinite;
+        }
+
+        @keyframes spinBorder {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .admin-avatar {
-            width: 110px;
-            height: 110px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            margin: 0 auto 1rem;
+            margin: 0 auto 1.2rem;
             overflow: hidden;
-            border: 3px solid #b77ee6;
-            box-shadow: 0 0 20px rgba(183, 126, 230, 0.3);
+            border: 2px solid rgba(160, 80, 255, 0.15);
+            box-shadow: 0 0 30px rgba(160, 80, 255, 0.05);
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .admin-card:hover .admin-avatar {
+            transform: scale(1.05);
+            border-color: rgba(160, 80, 255, 0.3);
+            box-shadow: 0 0 50px rgba(160, 80, 255, 0.1);
         }
 
         .admin-avatar img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .admin-card:hover .admin-avatar img {
+            transform: scale(1.1);
         }
 
         .admin-role {
-            background: rgba(156, 108, 214, 0.25);
+            background: rgba(160, 80, 255, 0.08);
+            backdrop-filter: blur(10px);
             display: inline-block;
-            padding: 0.2rem 0.8rem;
-            border-radius: 30px;
-            font-size: 0.65rem;
-            color: #b77ee6;
-            margin-bottom: 0.5rem;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 0.55rem;
+            font-weight: 600;
+            color: #a050ff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            border: 1px solid rgba(160, 80, 255, 0.08);
+            font-family: 'Orbitron', monospace;
+            position: relative;
+            z-index: 1;
         }
 
         .admin-name {
             font-size: 1.1rem;
             font-weight: 700;
-            margin: 0.3rem 0;
+            margin: 0.2rem 0 0.2rem;
             color: #d4c0ff;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 1;
         }
 
         .admin-title {
-            font-size: 0.75rem;
-            color: #b89fd9;
-            margin-bottom: 0.8rem;
+            font-size: 0.7rem;
+            color: #6a5a88;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
         }
 
         .btn-view-profile {
-            background: transparent;
-            border: 1.5px solid #9c6cd6;
-            border-radius: 40px;
-            padding: 0.5rem 1rem;
-            color: #b77ee6;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(160, 80, 255, 0.08);
+            border-radius: 60px;
+            padding: 0.6rem 1.4rem;
+            color: #8a78b0;
             cursor: pointer;
-            transition: 0.3s;
-            font-size: 0.75rem;
-            margin-top: 0.5rem;
+            transition: all 0.4s ease;
+            font-size: 0.65rem;
+            font-weight: 500;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
+            font-family: 'Orbitron', monospace;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-view-profile i {
+            transition: transform 0.3s ease;
         }
 
         .btn-view-profile:hover {
-            background: #9c6cd6;
-            color: #0a0a0f;
+            background: rgba(160, 80, 255, 0.08);
+            border-color: rgba(160, 80, 255, 0.15);
+            color: #d4c0ff;
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(160, 80, 255, 0.05);
         }
 
-        .section-title {
-            font-size: clamp(1.2rem, 5vw, 1.8rem);
-            font-weight: 600;
-            margin: 2rem 0 1.5rem;
-            font-family: 'Playfair Display', serif;
-            color: #b77ee6;
-            position: relative;
-            display: inline-block;
-            text-align: center;
-            width: 100%;
-        }
-
-        .section-title:before {
-            content: '✦';
-            position: absolute;
-            left: -25px;
-            top: 0;
-            color: #9c6cd6;
-            font-size: clamp(1rem, 4vw, 1.5rem);
-        }
-
-        .section-title:after {
-            content: '✦';
-            position: absolute;
-            right: -25px;
-            top: 0;
-            color: #9c6cd6;
-            font-size: clamp(1rem, 4vw, 1.5rem);
-        }
-
-        @media (max-width: 600px) {
-            .section-title:before, .section-title:after {
-                display: none;
-            }
+        .btn-view-profile:hover i {
+            transform: translateX(4px);
         }
 
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(40px) scale(0.95);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
         }
 
         footer {
             text-align: center;
-            border-top: 1px solid rgba(156, 108, 214, 0.3);
+            border-top: 1px solid rgba(160, 80, 255, 0.04);
             padding: 2rem 1rem;
-            margin-top: 2rem;
-            background: rgba(10, 5, 21, 0.8);
-            backdrop-filter: blur(10px);
+            margin-top: 3rem;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+            position: relative;
+            z-index: 10;
         }
 
-        .stats {
-            background: rgba(156, 108, 214, 0.15);
-            border-radius: 50px;
-            padding: 0.5rem 1.2rem;
-            display: inline-block;
-            margin-bottom: 1.5rem;
-            font-size: 0.85rem;
+        .copyright {
+            color: #3a2a50;
+            font-size: 0.6rem;
+            line-height: 1.8;
+            font-weight: 300;
+            letter-spacing: 2px;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+        }
+
+        .copyright i {
+            color: #6a5a88;
+            margin: 0 6px;
+        }
+
+        .copyright small {
+            display: block;
+            opacity: 0.4;
+            font-size: 0.5rem;
+            letter-spacing: 1px;
         }
 
         @media (max-width: 768px) {
             .container {
                 width: 95%;
+                padding: 1rem 0;
             }
             .admin-grid {
                 grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                gap: 1.2rem;
+            }
+            .admin-avatar {
+                width: 90px;
+                height: 90px;
+            }
+            .admin-card {
+                padding: 1.2rem 0.8rem 1rem;
+            }
+            .admin-name {
+                font-size: 0.95rem;
+            }
+            .stats-glass {
+                font-size: 0.65rem;
+                padding: 0.4rem 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .admin-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
                 gap: 1rem;
             }
             .admin-avatar {
-                width: 80px;
-                height: 80px;
+                width: 70px;
+                height: 70px;
+            }
+            .admin-card {
+                padding: 1rem 0.6rem 0.8rem;
+                border-radius: 24px;
+            }
+            .admin-role {
+                font-size: 0.45rem;
+                padding: 0.1rem 0.8rem;
+            }
+            .admin-name {
+                font-size: 0.8rem;
+            }
+            .admin-title {
+                font-size: 0.55rem;
+            }
+            .btn-view-profile {
+                font-size: 0.55rem;
+                padding: 0.4rem 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="bg-grid"></div>
-    <div class="bg-gradient"></div>
+    <div class="cyber-grid">
+        <div class="grid-line h" style="top:10%; animation-delay:0s;"></div>
+        <div class="grid-line h" style="top:30%; animation-delay:4s;"></div>
+        <div class="grid-line h" style="top:50%; animation-delay:8s;"></div>
+        <div class="grid-line h" style="top:70%; animation-delay:12s;"></div>
+        <div class="grid-line h" style="top:90%; animation-delay:16s;"></div>
+        <div class="grid-line v" style="left:15%; animation-delay:2s;"></div>
+        <div class="grid-line v" style="left:35%; animation-delay:6s;"></div>
+        <div class="grid-line v" style="left:55%; animation-delay:10s;"></div>
+        <div class="grid-line v" style="left:75%; animation-delay:14s;"></div>
+        <div class="grid-line v" style="left:90%; animation-delay:18s;"></div>
+    </div>
+    <div class="neon-orb purple"></div>
+    <div class="neon-orb blue"></div>
+    <div class="scanlines"></div>
+    <div class="glow-overlay"></div>
 
     <div class="container">
         <div class="page-header">
-            <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            <a href="index.html" class="back-home">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
             <h1>✦ ADMIN TEAM ✦</h1>
-            <p class="subtitle">The Crew Behind UTARA GARAGE</p>
+            <p class="subtitle">
+                <i class="fas fa-gem"></i>UTARA GARAGE <i class="fas fa-gem"></i>
+            </p>
         </div>
 
-        <div class="section-title">⌇ OUR CREW & ADMIN ⌇</div>
-        <p class="stats" style="text-align: center;"><i class="fas fa-user-shield"></i> Total Admins: <span id="adminCount">0</span></p>
+        <div style="text-align: center;">
+            <div class="stats-glass">
+                <i class="fas fa-user-shield"></i> Total Admins: <span id="adminCount">0</span>
+            </div>
+        </div>
+
+        <div class="section-title">⌇ CREW & ADMIN ⌇</div>
         <div class="admin-grid" id="adminGrid"></div>
     </div>
 
     <footer>
-        <div class="copyright"><i class="fas fa-moon"></i> UTARA GARAGE • ADMIN TEAM • PURPLE DREAM<br><small>© 2026 Utara Garage - All Rights Reserved</small></div>
+        <div class="copyright">
+            <i class="fas fa-bolt"></i> UTARA GARAGE • ADMIN TEAM • NEON DREAM
+            <small>© 2026 Utara Garage - All Rights Reserved</small>
+        </div>
     </footer>
 
     <script src="config.js"></script>
@@ -300,9 +612,10 @@
                 if (countSpan) countSpan.textContent = ADMIN_DATA.length;
                 
                 grid.innerHTML = ADMIN_DATA.map((admin, index) => `
-                    <div class="admin-card" style="animation-delay: ${index * 0.05}s">
+                    <div class="admin-card" style="animation-delay: ${index * 0.06}s">
+                        <div class="neon-border"></div>
                         <div class="admin-avatar">
-                            <img src="${admin.photo}" alt="${admin.name}" onerror="this.src='https://placehold.co/110x110/2a1a3e/b77ee6?text=${admin.name.charAt(0)}'">
+                            <img src="${admin.photo}" alt="${admin.name}" onerror="this.src='https://placehold.co/120x120/1a1030/a050ff?text=${admin.name.charAt(0)}'">
                         </div>
                         <div class="admin-role">${escapeHtml(admin.role)}</div>
                         <div class="admin-name">${escapeHtml(admin.name)}</div>
@@ -313,7 +626,12 @@
                     </div>
                 `).join('');
             } else {
-                grid.innerHTML = '<div style="text-align:center;padding:3rem;color:#b89fd9;">✨ Tidak ada data admin ✨</div>';
+                grid.innerHTML = `
+                    <div style="text-align:center;padding:4rem 2rem;color:#4a3a60;grid-column:1/-1;background:rgba(255,255,255,0.02);border-radius:40px;border:1px solid rgba(160,80,255,0.06);font-family:'Orbitron',monospace;letter-spacing:2px;">
+                        <i class="fas fa-users" style="font-size:3rem;color:#a050ff;display:block;margin-bottom:1rem;"></i>
+                        <p style="font-size:1rem;">✨ Tidak ada data admin ✨</p>
+                    </div>
+                `;
                 if (countSpan) countSpan.textContent = '0';
             }
         }
