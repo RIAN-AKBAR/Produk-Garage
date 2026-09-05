@@ -64,23 +64,23 @@ const ADMIN_DATA = [
         "profile": "https://www.roblox.com/users/3624054708/profile",
         "photo": "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-47700F9497B53A8BC94499B8CBB4F169-Png/150/150/AvatarHeadshot/Webp/noFilter"
     },
-     {
-        "name": "YAYA",
-        "role": "🌼ADMIN/Contributor🌼",
-        "title": "🌼ADMIN/Contributor🌼",
-        "profile": "https://www.roblox.com/id/users/9484463561",
-        "photo": "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-51AD40F0B2366A6763E987ACED6FF119-Png/150/150/AvatarHeadshot/Webp/noFilter"
-    },
     {
         "name": "RYAN",
-        "role": "⚡️PARTNER & Web Developer⚡️",
+        "role": "⚡️PARTNER⚡️",
         "title": "⚡️PARTNER & Web Developer⚡️",
         "profile": "https://www.roblox.com/users/1210293463/profile",
         "photo": "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-D40BC7D46AE66919897197136846A115-Png/150/150/AvatarHeadshot/Webp/noFilter"
     },
+    {
+        "name": "YAYA",
+        "role": "🌼ADMIN🌼",
+        "title": "🌼ADMIN/Contributor🌼",
+        "profile": "https://www.roblox.com/id/users/9484463561",
+        "photo": "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-51AD40F0B2366A6763E987ACED6FF119-Png/150/150/AvatarHeadshot/Webp/noFilter"
+    },
       {
         "name": "NAVILA",
-        "role": "🌼Contributor/Admin imut🌼",
+        "role": "🌼Admin imut🌼",
         "title": "🌼Contributor/Admin imut🌼",
         "profile": "https://www.roblox.com/id/users/10650806951",
         "photo": "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-DD72AE8CD20BAF4CDA2992979C1BF429-Png/150/150/AvatarHeadshot/Webp/noFilter"
