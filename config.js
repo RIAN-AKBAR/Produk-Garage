@@ -89,8 +89,8 @@ const ADMIN_DATA = [
         "name": "-",
         "role": "⚡Donatur⚡",
         "title": "⚡Donatur Utara Garage⚡",
-        "profile": "https://www.roblox.com/id/users/",
-        "photo": "-"
+        "profile": "https://www.roblox.com/id/users/1229922751",
+        "photo": "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-D5FA8CCA89763142B7ED138B1EAFDFE9-Png-Background/150/150/AvatarHeadshot/Webp/noFilter"
     }
    
 ];
