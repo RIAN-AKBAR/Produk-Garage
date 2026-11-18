@@ -86,7 +86,7 @@ const ADMIN_DATA = [
         "photo": "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-DD72AE8CD20BAF4CDA2992979C1BF429-Png/150/150/AvatarHeadshot/Webp/noFilter"
     },
     {
-        "name": "-",
+        "name": "lielaislacis",
         "role": "⚡Donatur⚡",
         "title": "⚡Donatur Utara Garage⚡",
         "profile": "https://www.roblox.com/id/users/1229922751",
