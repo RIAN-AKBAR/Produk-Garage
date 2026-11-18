@@ -84,6 +84,13 @@ const ADMIN_DATA = [
         "title": "🌼Contributor/Admin imut🌼",
         "profile": "https://www.roblox.com/id/users/10650806951",
         "photo": "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-DD72AE8CD20BAF4CDA2992979C1BF429-Png/150/150/AvatarHeadshot/Webp/noFilter"
+    },
+    {
+        "name": "-",
+        "role": "⚡Donatur⚡",
+        "title": "⚡Donatur Utara Garage⚡",
+        "profile": "https://www.roblox.com/id/users/",
+        "photo": "-"
     }
    
 ];
